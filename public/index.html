@@ -16,7 +16,7 @@
         <span class="logo-grid"></span>
       </div>
       <div>
-        <div class="brand-eyebrow">UX RESEARCH CORPUS &amp; INTERACTIVE p5.js PRODUCT · 1966–2026</div>
+        <div class="brand-eyebrow">OPEN EDUCATIONAL PLATFORM · INTERACTIVE p5.js LAB &amp; 1,026-WIREFRAME CORPUS · 1966–2026</div>
         <h1 class="brand-title">A History in UI Development</h1>
       </div>
     </div>
@@ -30,6 +30,7 @@
     </div>
 
     <div class="topbar-actions">
+      <button class="btn btn-accent" id="btn-open-guide" title="Open Guided Curriculum, Usability Guide, Limitations & Unlicensed IP Notice">? Curriculum, Usability &amp; Limits</button>
       <button class="btn btn-secondary" id="btn-export-json" title="Export currently filtered wireframes as JSON">Export JSON</button>
       <button class="btn btn-secondary" id="btn-export-csv" title="Export currently filtered wireframes as CSV">Export CSV</button>
     </div>
@@ -37,6 +38,22 @@
 
   <!-- 12-Era Quick Ribbon -->
   <nav class="era-ribbon" id="era-ribbon" aria-label="Historical UI Eras 1966 to 2026"></nav>
+
+  <!-- Interactive Guided Curriculum Strip -->
+  <section class="curriculum-strip" aria-label="Guided Educational Modules and Platform Notices">
+    <div class="curriculum-strip-left">
+      <span class="curriculum-tag">GUIDED LESSONS</span>
+      <button class="lesson-pill" data-lesson-id="L1" title="1966–1984: From Vector CRT Scopes to Direct-Manipulation Desktops">L1 · Vector CRTs → WIMP (1966–84)</button>
+      <button class="lesson-pill" data-lesson-id="L2" title="1991–2001: HTML 2.0 Documents to Nested Table Portals">L2 · Web 1.0 → Table Portals (1991–01)</button>
+      <button class="lesson-pill" data-lesson-id="L3" title="2002–2006: XMLHttpRequest (Ajax) & the Visual Chrome Peak">L3 · Web 2.0 Ajax &amp; Chrome Peak (2002–06)</button>
+      <button class="lesson-pill" data-lesson-id="L4" title="2007–2016: Capacitive Multi-Touch, 960px Grids & Flat Collapse">L4 · Touch &amp; Responsive Flat (2007–16)</button>
+      <button class="lesson-pill" data-lesson-id="L5" title="Interactive Fitts's Law Target Acquisition & Ergonomics Lab">L5 · Fitts's Law Heatmap Lab</button>
+      <button class="lesson-pill" data-lesson-id="L6" title="2017–2026: Design Tokens, ⌘K Command Velocity & Agentic Ledgers">L6 · ⌘K Bento &amp; Agentic UI (2017–26)</button>
+    </div>
+    <div class="curriculum-strip-right">
+      <button class="btn-link" id="btn-strip-limits">Methodology, Limitations &amp; Unlicensed IP Notice →</button>
+    </div>
+  </section>
 
   <!-- Main Product Layout -->
   <main class="workspace">
@@ -281,6 +298,9 @@
             <button class="dash-tab" data-dash-tab="analytics" role="tab">
               60-Year UX &amp; Web Trend Analytics
             </button>
+            <button class="dash-tab" data-dash-tab="guide" role="tab">
+              Curriculum, Usability &amp; Limits
+            </button>
           </div>
 
           <div class="pagination-controls" id="gallery-pagination">
@@ -325,9 +345,32 @@
         <div class="dash-view hidden" id="view-analytics">
           <div class="analytics-layout" id="analytics-content"></div>
         </div>
+
+        <!-- TAB 5: Guided Curriculum, Usability Guide, Limitations & Unlicensed IP -->
+        <div class="dash-view hidden" id="view-guide">
+          <div class="guide-layout" id="guide-content"></div>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- Educational Platform Footer: Usability, Scope Limitations & Unlicensed IP Notice -->
+  <footer class="platform-footer" aria-label="Educational Platform Limitations and IP Notice">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="hud-eyebrow">OPEN EDUCATIONAL PLATFORM · USABILITY QUICK-START</div>
+        <p>Use the <strong>4 p5.js Modes</strong> above to scrub the 60-year timeline (<em>01 Chronos</em>), inspect wireframe shaders and Fitts's Law heatmaps (<em>02 Simulator</em>), interpolate web layouts from 1993 to 2026 (<em>03 Morphing Lab</em>), or trace lineage rings (<em>04 Constellation</em>). Click any <strong>Guided Lesson (L1–L6)</strong> in the top strip for an automated walkthrough.</p>
+      </div>
+      <div class="footer-col">
+        <div class="hud-eyebrow">METHODOLOGY &amp; LIMITATIONS NOTICE</div>
+        <p><strong>Procedural Schematics, Not Archival Screenshots:</strong> All 1,026 wireframes (including the 122 historical landmarks) are deterministic, procedurally generated bounding-box schematics (<code>layoutSpec.nodes</code>), not pixel-exact vendor screenshots or decompiled binaries. Quantitative <code>uxMetrics</code> are heuristic geometric models for comparative instruction, not human-subject laboratory trials.</p>
+      </div>
+      <div class="footer-col">
+        <div class="hud-eyebrow">UNLICENSED IP, PUBLIC DOMAIN &amp; TRADEMARK NOTICE</div>
+        <p><strong>The Unlicense (Public Domain) &amp; Nominative Fair Use:</strong> All original code, layout generators, schemas, and synthetic wireframe geometries are dedicated to the public domain under <strong>The Unlicense</strong>. Historical third-party product names are referenced strictly for educational UX analysis with <strong>no vendor affiliation, endorsement, or licensed proprietary assets</strong>.</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="./data/corpus-bundle.js"></script>
   <script src="./js/p5-experience.js"></script>

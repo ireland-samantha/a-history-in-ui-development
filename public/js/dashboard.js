@@ -64,6 +64,7 @@
       renderInspectorView();
       renderCompareView();
       renderAnalyticsView();
+      renderGuideView();
 
       if (window.initP5Experience) {
         window.initP5Experience();
@@ -379,6 +380,23 @@
       });
     });
 
+    // Guided Curriculum Lessons & Guide buttons
+    document.querySelectorAll("[data-lesson-id]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        launchGuidedLesson(btn.getAttribute("data-lesson-id"));
+      });
+    });
+
+    document.getElementById("btn-open-guide")?.addEventListener("click", () => {
+      switchDashTab("guide");
+      document.getElementById("view-guide")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    document.getElementById("btn-strip-limits")?.addEventListener("click", () => {
+      switchDashTab("guide");
+      document.getElementById("view-guide")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
     // Export buttons
     document.getElementById("btn-export-json")?.addEventListener("click", () => exportDataset("json"));
     document.getElementById("btn-export-csv")?.addEventListener("click", () => exportDataset("csv"));
@@ -403,7 +421,7 @@
     document.querySelectorAll(".dash-tab").forEach((t) => {
       t.classList.toggle("active", t.getAttribute("data-dash-tab") === tabName);
     });
-    ["gallery", "inspector", "compare", "analytics"].forEach((v) => {
+    ["gallery", "inspector", "compare", "analytics", "guide"].forEach((v) => {
       const el = document.getElementById(`view-${v}`);
       if (el) el.classList.toggle("hidden", v !== tabName);
     });
@@ -413,6 +431,7 @@
     if (tabName === "inspector") renderInspectorView();
     if (tabName === "compare") renderCompareView();
     if (tabName === "analytics") renderAnalyticsView();
+    if (tabName === "guide") renderGuideView();
   }
 
   function applyFiltersAndRender() {
@@ -956,9 +975,217 @@
     }
   }
 
+  function launchGuidedLesson(lessonId) {
+    const st = window.UIHistoryState;
+    const wfs = st.wireframes || [];
+    if (wfs.length === 0) return;
+
+    document.querySelectorAll(".lesson-pill").forEach((p) => {
+      p.classList.toggle("active", p.getAttribute("data-lesson-id") === lessonId);
+    });
+
+    resetFilters();
+
+    const findLandmark = (yr, kw) =>
+      wfs.find((w) => w.year === yr && w.isLandmark && (!kw || w.title.toLowerCase().includes(kw.toLowerCase()))) ||
+      wfs.find((w) => w.year === yr && w.isLandmark) ||
+      wfs[0];
+
+    if (lessonId === "L1") {
+      document.getElementById("filter-year-min").value = "1966";
+      document.getElementById("filter-year-max").value = "1984";
+      applyFiltersAndRender();
+      const target = findLandmark(1968, "NLS");
+      selectActiveWireframe(target.id, true);
+      st.simFidelity = "era-authentic";
+      const fidSel = document.getElementById("sim-fidelity-select");
+      if (fidSel) fidSel.value = "era-authentic";
+      if (window.updateHudReadout) {
+        window.updateHudReadout("Lesson L1 Active: 1966–1984 Vector CRTs to Early WIMP Desktops. Inspecting 1968 SRI NLS Console.");
+      }
+    } else if (lessonId === "L2") {
+      document.getElementById("filter-year-min").value = "1991";
+      document.getElementById("filter-year-max").value = "2001";
+      applyFiltersAndRender();
+      const target = findLandmark(1993, "Mosaic");
+      selectActiveWireframe(target.id, false);
+      switchP5Mode("web-morph");
+      st.morphProgress = 1.0;
+      const ms = document.getElementById("morph-stage-slider");
+      if (ms) ms.value = "100";
+      if (window.updateMorphStageLabel) window.updateMorphStageLabel();
+    } else if (lessonId === "L3") {
+      document.getElementById("filter-era").value = "E07_WEB20_AJAX_RIA";
+      applyFiltersAndRender();
+      const target = findLandmark(2004, "Gmail");
+      selectActiveWireframe(target.id, false);
+      switchP5Mode("chronos");
+      st.chronosMetric = "visualChromeRatio";
+      const cm = document.getElementById("chronos-metric-select");
+      if (cm) cm.value = "visualChromeRatio";
+    } else if (lessonId === "L4") {
+      document.getElementById("filter-year-min").value = "2007";
+      document.getElementById("filter-year-max").value = "2016";
+      applyFiltersAndRender();
+      const target = findLandmark(2007, "iPhone");
+      selectActiveWireframe(target.id, false);
+      switchP5Mode("web-morph");
+      st.morphProgress = 3.0;
+      const ms = document.getElementById("morph-stage-slider");
+      if (ms) ms.value = "300";
+      if (window.updateMorphStageLabel) window.updateMorphStageLabel();
+    } else if (lessonId === "L5") {
+      const target = findLandmark(1984, "Macintosh");
+      selectActiveWireframe(target.id, true);
+      st.simFidelity = "fitts-heatmap";
+      const fidSel = document.getElementById("sim-fidelity-select");
+      if (fidSel) fidSel.value = "fitts-heatmap";
+    } else if (lessonId === "L6") {
+      document.getElementById("filter-year-min").value = "2017";
+      document.getElementById("filter-year-max").value = "2026";
+      applyFiltersAndRender();
+      const target = findLandmark(2026, "Agentic");
+      selectActiveWireframe(target.id, false);
+      switchP5Mode("web-morph");
+      st.morphProgress = 5.0;
+      const ms = document.getElementById("morph-stage-slider");
+      if (ms) ms.value = "500";
+      if (window.updateMorphStageLabel) window.updateMorphStageLabel();
+    }
+  }
+
+  function renderGuideView() {
+    const container = document.getElementById("guide-content");
+    if (!container) return;
+
+    const lessons = [
+      {
+        id: "L1",
+        badge: "LESSON 01 · 1966–1984",
+        title: "From Vector CRT Scopes to Direct-Manipulation WIMP Desktops",
+        desc: "Trace how light-pen vector displays (1966 TX-2 Sketchpad II, 1968 SRI NLS) and 80×24 block-mode terminals (IBM 3270, VT100) gave way to overlapping bitmap windows, global menu bars, and mouse cursors (1981 Xerox Star, 1984 Macintosh).",
+        cta: "Launch Lesson 01 in Simulator →",
+      },
+      {
+        id: "L2",
+        badge: "LESSON 02 · 1991–2001",
+        title: "Birth of the Web: Linear HTML 2.0 to Dot-Com Table Portals",
+        desc: "Compare early single-column hypertext documents (1990 WorldWideWeb.app, 1993 NCSA Mosaic) against dense 3-column nested HTML table portals and 1px spacer GIF grids (1994 Yahoo!, 1995 Amazon, 1998 eBay).",
+        cta: "Launch Lesson 02 in Morphing Lab →",
+      },
+      {
+        id: "L3",
+        badge: "LESSON 03 · 2002–2006",
+        title: "The Web 2.0 Ajax Revolution & the Visual Chrome Peak",
+        desc: "Examine how XMLHttpRequest (2004 Gmail Beta, 2005 Google Maps) enabled asynchronous split-pane web apps while glossy gradients, rounded tabs, and skeuomorphic bevels pushed visual chrome ratios near 80%.",
+        cta: "Launch Lesson 03 on Chronos Curve →",
+      },
+      {
+        id: "L4",
+        badge: "LESSON 04 · 2007–2016",
+        title: "Capacitive Multi-Touch, 960px Grids & the Flat Collapse",
+        desc: "Observe how capacitive touchscreens (2007 iPhone OS) and responsive 12-column CSS Flexbox/Bootstrap grids replaced scrollbars and heavy bevels, collapsing visual chrome overhead below 28% after 2013.",
+        cta: "Launch Lesson 04 in Morphing Lab →",
+      },
+      {
+        id: "L5",
+        badge: "LESSON 05 · ERGONOMICS LAB",
+        title: "Fitts's Law Target Acquisition & Attention Heatmap",
+        desc: "Use the Live p5.js Simulator's Fitts's Law shader to inspect target distance and size across eras, computing Index of Difficulty in bits (ID = log2(D/W + 1)) from the viewport center to every interactive primitive.",
+        cta: "Launch Lesson 05 Heatmap Shader →",
+      },
+      {
+        id: "L6",
+        badge: "LESSON 06 · 2017–2026",
+        title: "Design Tokens, ⌘K Command Velocity & Agentic Proof Ledgers",
+        desc: "Explore how modern interfaces combine 1970s keyboard speed (ubiquitous ⌘K command palettes in VS Code, Superhuman, Linear) with CSS Grid bento layouts, multiplayer WebGL canvases, and verifiable agentic trace ledgers.",
+        cta: "Launch Lesson 06 (2026 Agentic Stage) →",
+      },
+    ];
+
+    container.innerHTML = `
+      <div class="insp-panel">
+        <div>
+          <span class="badge">INTERACTIVE CURRICULUM · 6 GUIDED MODULES</span>
+          <h3 style="margin-top:6px;font-size:16px">Guided Learning Modules (1966–2026)</h3>
+          <p style="font-size:12px;color:var(--text-muted)">Click any module below (or in the top Guided Lessons bar) to automatically configure the p5.js laboratory, shaders, and corpus filters for that topic.</p>
+        </div>
+        <div class="lesson-cards-grid">
+          ${lessons
+            .map(
+              (l) => `
+            <div class="lesson-card">
+              <span class="badge">${l.badge}</span>
+              <h4>${l.title}</h4>
+              <p>${l.desc}</p>
+              <button class="btn btn-accent btn-sm" data-guide-lesson="${l.id}">${l.cta}</button>
+            </div>`
+            )
+            .join("")}
+        </div>
+      </div>
+
+      <div class="insp-panel">
+        <div>
+          <span class="badge">PLATFORM USABILITY GUIDE</span>
+          <h3 style="margin-top:6px;font-size:16px">How to Use the p5.js Visual Laboratory &amp; Research Workbench</h3>
+        </div>
+        <div class="guide-2col">
+          <div class="hud-card">
+            <div class="hud-eyebrow">01 · CHRONOS 60-YEAR LANDSCAPE</div>
+            <p class="hud-notes">Plots all 1,026 wireframes from 1966 to 2026. <strong>Hover</strong> any dot (gold = historical landmark) to preview its mini schematic; <strong>click</strong> to select it and draw green predecessor/successor lineage edges. Use the <strong>Y-Axis Metric</strong> selector to compare Density, Chrome Ratio, Responsiveness, Fitts Efficiency, or Input Bias.</p>
+          </div>
+          <div class="hud-card">
+            <div class="hud-eyebrow">02 · LIVE p5.js WIREFRAME SIMULATOR</div>
+            <p class="hud-notes">Renders any wireframe with 3 switchable shaders: <strong>Era-Authentic Chrome</strong> (CRT scanlines, 1-bit Mac shadows, Win95 bevels, spatial glass), <strong>Architectural Blueprint</strong>, and <strong>Fitts's Law Heatmap</strong>. <strong>Click any component node</strong> on the stage to read its exact coordinates in the right HUD.</p>
+          </div>
+          <div class="hud-card">
+            <div class="hud-eyebrow">03 · WEB UI TRENDS MORPHING LAB</div>
+            <p class="hud-notes">Interpolates 8 component slots across 6 web layout eras (<code>1993 HTML 2.0</code> → <code>1998 Table Portal</code> → <code>2005 Web 2.0 Ajax</code> → <code>2013 Responsive Flat</code> → <code>2020 Dark Bento + ⌘K</code> → <code>2026 Agentic Spatial</code>). Drag the slider or <strong>click any stage card on the right</strong> of the canvas.</p>
+          </div>
+          <div class="hud-card">
+            <div class="hud-eyebrow">04 · CONSTELLATION, INSPECTOR &amp; COMPARATOR</div>
+            <p class="hud-notes">Use <strong>Mode 04 Constellation</strong> to explore the radial 60-year DAG by Era or Domain. In the bottom workbench, use the <strong>Deep Blueprint Inspector</strong> to traverse Predecessor/Successor pills, or open the <strong>Side-by-Side Era Comparator</strong> to compare 3 wireframes simultaneously.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-2col">
+        <div class="notice-box">
+          <div class="hud-eyebrow" style="color:var(--accent-amber)">METHODOLOGY, SCOPE &amp; LIMITATIONS NOTICE</div>
+          <h4>What This Educational Dataset Is — and What It Is Not</h4>
+          <ul>
+            <li><strong>Procedural Schematic Reconstructions, Not Archival Screenshots:</strong> All 1,026 wireframes in <code>wireframes.json</code> are deterministic, procedurally generated bounding-box schematics (<code>layoutSpec.nodes</code>) parameterized by era-authentic layout grammars (<code>scripts/generate_dataset.py</code>). Even the 122 historical landmark entries (such as 1966 Sketchpad II, 1968 SRI NLS, 1984 Macintosh, 1993 NCSA Mosaic, or 2004 Gmail) are structural layout reconstructions for comparative geometry and ergonomics instruction—not pixel-accurate archival captures or original vendor source code.</li>
+            <li><strong>Heuristic UX Metric Models, Not Human-Subject Trials:</strong> Quantitative <code>uxMetrics</code> (<code>informationDensity</code>, <code>visualChromeRatio</code>, <code>layoutResponsiveness</code>, <code>fittsLawEfficiency</code>, <code>cognitiveLoadIndex</code>, <code>keyboardToPointerBias</code>) are deterministic geometric and era-parameterized heuristics built for classroom comparison, not measurements from empirical human-subject usability trials or eye-tracking studies.</li>
+            <li><strong>Curated Pedagogical Taxonomy:</strong> The 12 historical eras, 10 domains, 10 platform classes, and directed lineage edges represent an instructional model of major inflection points in computing and web UI design (1966–2026), not an exhaustive census of global software history.</li>
+          </ul>
+        </div>
+
+        <div class="notice-box notice-ip">
+          <div class="hud-eyebrow" style="color:var(--accent-emerald)">UNLICENSED IP, PUBLIC DOMAIN &amp; TRADEMARK NOTICE</div>
+          <h4>The Unlicense (Public Domain) &amp; Third-Party IP Boundary</h4>
+          <ul>
+            <li><strong>Original Code &amp; Procedural Dataset — The Unlicense:</strong> All original source code, HTML/CSS/JavaScript visualization modules, procedural layout generators, JSON schemas, and synthetic wireframe geometries created for this project are dedicated to the public domain under <strong>The Unlicense</strong> (see <code>UNLICENSE</code> in the repository root). You may copy, modify, teach with, and redistribute them freely without restriction.</li>
+            <li><strong>Third-Party Product Names &amp; Unlicensed IP Boundary:</strong> Historical product names, system titles, and organizations referenced in the 122 landmark records (including <em>Sketchpad</em>, <em>IBM 3270</em>, <em>DEC VT100</em>, <em>Xerox Star</em>, <em>Apple Macintosh</em>, <em>Windows</em>, <em>NeXTSTEP</em>, <em>NCSA Mosaic</em>, <em>Netscape</em>, <em>Yahoo!</em>, <em>Amazon</em>, <em>Gmail</em>, <em>Google Maps</em>, <em>iPhone OS</em>, <em>GitHub</em>, <em>Figma</em>, <em>Notion</em>, <em>Linear</em>, and <em>Cursor</em>) are cited strictly for <strong>nominative, educational, and comparative UX history analysis</strong>.</li>
+            <li><strong>No Vendor License or Proprietary Assets:</strong> This independent educational platform is <strong>not licensed by, endorsed by, sponsored by, or affiliated with</strong> any referenced company or trademark owner ("unlicensed IP" in that no third-party proprietary IP is licensed, bundled, or claimed). Zero proprietary vendor screenshots, icons, bitmaps, fonts, or copyrighted UI code are included in this repository. All third-party trademarks remain the property of their respective owners.</li>
+          </ul>
+        </div>
+      </div>
+    `;
+
+    container.querySelectorAll("[data-guide-lesson]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lid = btn.getAttribute("data-guide-lesson");
+        launchGuidedLesson(lid);
+        document.querySelector(".p5-product-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
   window.selectActiveWireframe = selectActiveWireframe;
   window.switchP5Mode = switchP5Mode;
   window.switchDashTab = switchDashTab;
+  window.launchGuidedLesson = launchGuidedLesson;
 
   document.addEventListener("DOMContentLoaded", bootApp);
 })();
