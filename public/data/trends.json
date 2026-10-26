@@ -1,0 +1,6160 @@
+{
+  "title": "A History in UI Development \u2014 60-Year Macro & Web UI Trends",
+  "yearRange": {
+    "min": 1966,
+    "max": 2026,
+    "spanYears": 60
+  },
+  "totalWireframes": 1026,
+  "eras": [
+    {
+      "id": "E01_BATCH_VECTOR_CRT",
+      "code": "E01",
+      "name": "Batch & Light-Pen Vector CRT",
+      "startYear": 1966,
+      "endYear": 1971,
+      "chromeStyle": "vector-crt",
+      "viewport": [
+        1024,
+        1024
+      ],
+      "aspectRatio": "1:1 Vector Scope",
+      "grid": [
+        8,
+        8
+      ],
+      "dominantInput": "Light-Pen, Chord Keyset & Teletype",
+      "webLayoutEngine": "Pre-Web Vector Display List",
+      "palette": {
+        "bg": "#061109",
+        "surface": "#0b1e10",
+        "border": "#28d160",
+        "accent": "#52ff8c",
+        "text": "#8affb2",
+        "muted": "#1e6b38"
+      },
+      "summary": "Direct-view vector refresh CRTs, light-pen tracking crosses, and early time-sharing consoles pioneered spatial manipulation and hypertext before raster bitmaps."
+    },
+    {
+      "id": "E02_BLOCK_TERMINAL_TUI",
+      "code": "E02",
+      "name": "Block-Mode & Character Terminal (TUI)",
+      "startYear": 1972,
+      "endYear": 1978,
+      "chromeStyle": "tui-box",
+      "viewport": [
+        960,
+        600
+      ],
+      "aspectRatio": "80x24 Character Matrix",
+      "grid": [
+        12,
+        8
+      ],
+      "dominantInput": "Mechanical Keyboard & Function Keys (PF1-PF24)",
+      "webLayoutEngine": "Pre-Web 80x24 Character Cell Grid",
+      "palette": {
+        "bg": "#0d0f0a",
+        "surface": "#151a10",
+        "border": "#ffb000",
+        "accent": "#ffd04d",
+        "text": "#ffbe2e",
+        "muted": "#7a5900"
+      },
+      "summary": "Synchronous block-mode forms (IBM 3270) and full-duplex VT100 character terminals standardized tabular data entry, reverse-video field focus, and bottom function-key strips."
+    },
+    {
+      "id": "E03_EARLY_WIMP_DESKTOP",
+      "code": "E03",
+      "name": "Early Bitmap WIMP & Desktop Metaphor",
+      "startYear": 1979,
+      "endYear": 1984,
+      "chromeStyle": "classic-mac",
+      "viewport": [
+        1024,
+        684
+      ],
+      "aspectRatio": "3:2 1-Bit Monochrome Bitmap",
+      "grid": [
+        12,
+        8
+      ],
+      "dominantInput": "1-Button / 2-Button Mechanical Mouse & Keyboard",
+      "webLayoutEngine": "Pre-Web QuickDraw / BitBlt Window Manager",
+      "palette": {
+        "bg": "#dcdcdc",
+        "surface": "#ffffff",
+        "border": "#111111",
+        "accent": "#000000",
+        "text": "#111111",
+        "muted": "#6e6e6e"
+      },
+      "summary": "High-contrast 1-bit dithered bitmaps introduced pull-down global menu bars, overlapping title-bar windows, scrollbars, spatial desktop icons, and direct manipulation."
+    },
+    {
+      "id": "E04_WORKSTATION_HYPERTEXT",
+      "code": "E04",
+      "name": "Color Workstations, 3D Bevels & Hypermedia",
+      "startYear": 1985,
+      "endYear": 1990,
+      "chromeStyle": "bevel-win95",
+      "viewport": [
+        1024,
+        768
+      ],
+      "aspectRatio": "4:3 Workstation XGA",
+      "grid": [
+        12,
+        10
+      ],
+      "dominantInput": "3-Button Mouse, Floating Palettes & Accelerators",
+      "webLayoutEngine": "Pre-Web HyperCard / Motif / NeXT Display PostScript",
+      "palette": {
+        "bg": "#556270",
+        "surface": "#c0c0c0",
+        "border": "#ffffff",
+        "accent": "#000080",
+        "text": "#000000",
+        "muted": "#7f7f7f"
+      },
+      "summary": "Chiseled 3D Motif/NeXTSTEP bevels, floating tear-off inspectors, MDI document workspaces, and HyperCard hypermedia stacks bridged desktop software to the birth of the Web."
+    },
+    {
+      "id": "E05_EARLY_WEB_PORTAL",
+      "code": "E05",
+      "name": "Early Web 1.0 Documents, Framesets & Directories",
+      "startYear": 1991,
+      "endYear": 1996,
+      "chromeStyle": "web1-browser",
+      "viewport": [
+        1024,
+        768
+      ],
+      "aspectRatio": "4:3 SVGA Browser",
+      "grid": [
+        12,
+        10
+      ],
+      "dominantInput": "Pointer Click on Blue Underlined Anchor Links",
+      "webLayoutEngine": "HTML Document Flow & Framesets",
+      "palette": {
+        "bg": "#bfbfbf",
+        "surface": "#dfdfdf",
+        "border": "#808080",
+        "accent": "#0000ee",
+        "text": "#000000",
+        "muted": "#551a8b"
+      },
+      "summary": "The early World Wide Web rendered linear hypertext documents, gray bevel browser chrome, server-side image maps, multi-pane HTML framesets, and hierarchical link directories."
+    },
+    {
+      "id": "E06_DOTCOM_DHTML_SKIN",
+      "code": "E06",
+      "name": "Dot-Com Table Portals, Skinned Apps & Flash Vector",
+      "startYear": 1997,
+      "endYear": 2001,
+      "chromeStyle": "web1-browser",
+      "viewport": [
+        1024,
+        768
+      ],
+      "aspectRatio": "4:3 1024x768 Fixed Table",
+      "grid": [
+        12,
+        10
+      ],
+      "dominantInput": "Mouse Rollovers, Custom Cursors & Form Widgets",
+      "webLayoutEngine": "HTML Nested Table Grids & Spacer GIFs",
+      "palette": {
+        "bg": "#eef2f7",
+        "surface": "#ffffff",
+        "border": "#99acc2",
+        "accent": "#ff6600",
+        "text": "#1b2733",
+        "muted": "#5d7285"
+      },
+      "summary": "Dense 3-column nested HTML table portals, 1px spacer GIF grids, DHTML rollover menus, custom-skinned desktop media players, and animated Flash vector microsites."
+    },
+    {
+      "id": "E07_WEB20_AJAX_RIA",
+      "code": "E07",
+      "name": "Web 2.0 Ajax RIAs, Glossy Tabs & Social Streams",
+      "startYear": 2002,
+      "endYear": 2006,
+      "chromeStyle": "aqua-gloss",
+      "viewport": [
+        1280,
+        800
+      ],
+      "aspectRatio": "16:10 Widescreen Web 2.0",
+      "grid": [
+        12,
+        10
+      ],
+      "dominantInput": "Asynchronous DOM Click, Drag-Pan & Inline Edit",
+      "webLayoutEngine": "CSS Float Grids & XMLHttpRequest (Ajax)",
+      "palette": {
+        "bg": "#f2f6fa",
+        "surface": "#ffffff",
+        "border": "#bdd0e4",
+        "accent": "#0077cc",
+        "text": "#222b34",
+        "muted": "#687b8c"
+      },
+      "summary": "XMLHttpRequest unlocked desktop-grade Rich Internet Applications (Gmail, Google Maps) with CSS float layouts, glossy gradients, rounded tab strips, tag clouds, and RSS feeds."
+    },
+    {
+      "id": "E08_MOBILE_TOUCH_SKEUOMORPHIC",
+      "code": "E08",
+      "name": "Mobile Multi-Touch, Skeuomorphism & 960px Grids",
+      "startYear": 2007,
+      "endYear": 2011,
+      "chromeStyle": "mobile-bezel",
+      "viewport": [
+        1120,
+        760
+      ],
+      "aspectRatio": "Responsive / Touch Hybrid",
+      "grid": [
+        12,
+        10
+      ],
+      "dominantInput": "Capacitive Multi-Touch Gestures & Precision Mouse",
+      "webLayoutEngine": "960.gs 12-Column CSS & Early Media Queries",
+      "palette": {
+        "bg": "#1e242b",
+        "surface": "#f5f5f7",
+        "border": "#8c96a3",
+        "accent": "#1d62f0",
+        "text": "#1c1e21",
+        "muted": "#6b7480"
+      },
+      "summary": "Capacitive touchscreens replaced styluses and scrollbars with inertial flicking, bottom tab bars, stitched-leather skeuomorphic chrome, and standardized 960px 12-column web grids."
+    },
+    {
+      "id": "E09_FLAT_RESPONSIVE_DESIGN_SYSTEM",
+      "code": "E09",
+      "name": "Flat Design, Material Cards & Responsive SaaS",
+      "startYear": 2012,
+      "endYear": 2016,
+      "chromeStyle": "flat-minimal",
+      "viewport": [
+        1366,
+        768
+      ],
+      "aspectRatio": "16:9 HD Responsive",
+      "grid": [
+        12,
+        10
+      ],
+      "dominantInput": "Touch + Trackpad Scroll, Off-Canvas Drawers & FAB",
+      "webLayoutEngine": "Responsive Flexbox & Bootstrap 12-Col",
+      "palette": {
+        "bg": "#f4f6f9",
+        "surface": "#ffffff",
+        "border": "#e1e6ed",
+        "accent": "#2563eb",
+        "text": "#0f172a",
+        "muted": "#64748b"
+      },
+      "summary": "Swiss typography, Metro/iOS 7 flat minimalism, Google Material elevation cards, off-canvas hamburger menus, and SPA component trees (React/Angular) reshaped web apps."
+    },
+    {
+      "id": "E10_COMPONENT_COLLAB_DARKMODE",
+      "code": "E10",
+      "name": "Design Systems, Multiplayer Canvases & Dark Mode",
+      "startYear": 2017,
+      "endYear": 2020,
+      "chromeStyle": "flat-minimal",
+      "viewport": [
+        1440,
+        900
+      ],
+      "aspectRatio": "16:10 Retina Component Grid",
+      "grid": [
+        12,
+        12
+      ],
+      "dominantInput": "Multiplayer Cursors, Command Palette & Trackpad Zoom",
+      "webLayoutEngine": "CSS Grid, Custom Properties & WebGL Canvas",
+      "palette": {
+        "bg": "#0f1117",
+        "surface": "#181b24",
+        "border": "#2a3040",
+        "accent": "#6366f1",
+        "text": "#f1f5f9",
+        "muted": "#94a3b8"
+      },
+      "summary": "Native CSS Grid, semantic dark-mode design tokens, block-based collaborative editors (Notion), and WebGL multiplayer infinite canvases (Figma) blurred document and application boundaries."
+    },
+    {
+      "id": "E11_SPATIAL_BENTO_AI_COPILOT",
+      "code": "E11",
+      "name": "Keyboard-First `\u2318K`, Bento Grids & AI Copilots",
+      "startYear": 2021,
+      "endYear": 2023,
+      "chromeStyle": "glass-spatial",
+      "viewport": [
+        1440,
+        900
+      ],
+      "aspectRatio": "16:10 Local-First / Bento",
+      "grid": [
+        12,
+        12
+      ],
+      "dominantInput": "Omnibox `\u2318K` Keyboard Shortcuts & Conversational Prompts",
+      "webLayoutEngine": "CSS Subgrid, Container Queries & Bento Layouts",
+      "palette": {
+        "bg": "#090b10",
+        "surface": "#121621",
+        "border": "#232a3d",
+        "accent": "#8b5cf6",
+        "text": "#f8fafc",
+        "muted": "#8b98a9"
+      },
+      "summary": "Sub-50ms local-first sync, ubiquitous `\u2318K` command palettes, high-craft glassmorphic bento grids, and inline AI copilot chat/artifact sidebars redefined developer and creative workflows."
+    },
+    {
+      "id": "E12_AGENTIC_GENERATIVE_SPATIAL",
+      "code": "E12",
+      "name": "Agentic Workflows, Malleable UI & Spatial Glass",
+      "startYear": 2024,
+      "endYear": 2026,
+      "chromeStyle": "glass-spatial",
+      "viewport": [
+        1600,
+        960
+      ],
+      "aspectRatio": "16:10 Spatial / Agentic Studio",
+      "grid": [
+        16,
+        12
+      ],
+      "dominantInput": "Natural-Language Intent, Gaze+Pinch & Multi-Agent Delegation",
+      "webLayoutEngine": "Generative Ephemeral DOM, Spatial Ornaments & Canvas",
+      "palette": {
+        "bg": "#07090e",
+        "surface": "#101520",
+        "border": "#28354f",
+        "accent": "#38bdf8",
+        "text": "#f0f9ff",
+        "muted": "#7dd3fc"
+      },
+      "summary": "Interfaces shift from static navigation hierarchies to intent-driven agentic workspaces, streaming artifact diffs, verification ledgers, and eye-tracked spatial glass ornaments."
+    }
+  ],
+  "domains": [
+    "Developer Tools & IDEs",
+    "Productivity & Knowledge Work",
+    "Data Analytics & Financial Systems",
+    "Communication & Social Platforms",
+    "Media, Audio & Creative Studios",
+    "E-Commerce & Digital Marketplaces",
+    "Operating Systems & Window Shells",
+    "Information Retrieval & Search Portals",
+    "Enterprise Operations & CRM",
+    "AI, Scientific & Research Workbenches"
+  ],
+  "platforms": [
+    "Vector CRT / Mainframe Console",
+    "Character Terminal (TUI 80x24)",
+    "Desktop WIMP Native",
+    "Workstation X11 / NeXT / Motif",
+    "Web 1.0 Static / Frameset Browser",
+    "Dot-Com Table Portal / Flash",
+    "Web 2.0 Ajax Rich Internet App",
+    "Mobile Touch Viewport",
+    "Responsive SaaS Web Application",
+    "Spatial / Agentic Web Canvas"
+  ],
+  "componentPrimitives": [
+    "menubar",
+    "toolbar",
+    "command-line",
+    "tree-view",
+    "data-table",
+    "form-group",
+    "crt-vector-viewport",
+    "status-bar",
+    "modal-dialog",
+    "tab-strip",
+    "breadcrumb",
+    "tag-cloud",
+    "carousel",
+    "card-grid",
+    "sidebar-nav",
+    "floating-action-btn",
+    "command-palette",
+    "kanban-lane",
+    "infinite-canvas",
+    "chat-stream",
+    "agent-trace-ledger",
+    "bento-tile",
+    "spatial-ornament",
+    "split-pane",
+    "inspector-panel",
+    "timeline-scrubber",
+    "minimap",
+    "toast-stack",
+    "skeleton-loader",
+    "segmented-control",
+    "bottom-sheet",
+    "ribbon-bar",
+    "dock",
+    "hypertext-body",
+    "function-key-strip"
+  ],
+  "yearlySeries": [
+    {
+      "year": 1966,
+      "era": "E01_BATCH_VECTOR_CRT",
+      "eraCode": "E01",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.447,
+        "interactionComplexity": 0.579,
+        "visualChromeRatio": 0.284,
+        "keyboardToPointerBias": -0.671,
+        "layoutResponsiveness": 0.148,
+        "fittsLawEfficiency": 0.49,
+        "cognitiveLoadIndex": 4.905
+      }
+    },
+    {
+      "year": 1967,
+      "era": "E01_BATCH_VECTOR_CRT",
+      "eraCode": "E01",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.474,
+        "interactionComplexity": 0.581,
+        "visualChromeRatio": 0.313,
+        "keyboardToPointerBias": -0.69,
+        "layoutResponsiveness": 0.144,
+        "fittsLawEfficiency": 0.491,
+        "cognitiveLoadIndex": 5.068
+      }
+    },
+    {
+      "year": 1968,
+      "era": "E01_BATCH_VECTOR_CRT",
+      "eraCode": "E01",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.525,
+        "interactionComplexity": 0.582,
+        "visualChromeRatio": 0.316,
+        "keyboardToPointerBias": -0.742,
+        "layoutResponsiveness": 0.113,
+        "fittsLawEfficiency": 0.498,
+        "cognitiveLoadIndex": 5.276
+      }
+    },
+    {
+      "year": 1969,
+      "era": "E01_BATCH_VECTOR_CRT",
+      "eraCode": "E01",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.53,
+        "interactionComplexity": 0.571,
+        "visualChromeRatio": 0.313,
+        "keyboardToPointerBias": -0.641,
+        "layoutResponsiveness": 0.132,
+        "fittsLawEfficiency": 0.481,
+        "cognitiveLoadIndex": 5.316
+      }
+    },
+    {
+      "year": 1970,
+      "era": "E01_BATCH_VECTOR_CRT",
+      "eraCode": "E01",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.582,
+        "interactionComplexity": 0.578,
+        "visualChromeRatio": 0.345,
+        "keyboardToPointerBias": -0.68,
+        "layoutResponsiveness": 0.151,
+        "fittsLawEfficiency": 0.479,
+        "cognitiveLoadIndex": 5.595
+      }
+    },
+    {
+      "year": 1971,
+      "era": "E01_BATCH_VECTOR_CRT",
+      "eraCode": "E01",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.62,
+        "interactionComplexity": 0.587,
+        "visualChromeRatio": 0.349,
+        "keyboardToPointerBias": -0.705,
+        "layoutResponsiveness": 0.143,
+        "fittsLawEfficiency": 0.509,
+        "cognitiveLoadIndex": 5.718
+      }
+    },
+    {
+      "year": 1972,
+      "era": "E02_BLOCK_TERMINAL_TUI",
+      "eraCode": "E02",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.664,
+        "interactionComplexity": 0.551,
+        "visualChromeRatio": 0.336,
+        "keyboardToPointerBias": -0.635,
+        "layoutResponsiveness": 0.137,
+        "fittsLawEfficiency": 0.506,
+        "cognitiveLoadIndex": 5.885
+      }
+    },
+    {
+      "year": 1973,
+      "era": "E02_BLOCK_TERMINAL_TUI",
+      "eraCode": "E02",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.662,
+        "interactionComplexity": 0.55,
+        "visualChromeRatio": 0.349,
+        "keyboardToPointerBias": -0.686,
+        "layoutResponsiveness": 0.129,
+        "fittsLawEfficiency": 0.523,
+        "cognitiveLoadIndex": 5.876
+      }
+    },
+    {
+      "year": 1974,
+      "era": "E02_BLOCK_TERMINAL_TUI",
+      "eraCode": "E02",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.707,
+        "interactionComplexity": 0.573,
+        "visualChromeRatio": 0.356,
+        "keyboardToPointerBias": -0.719,
+        "layoutResponsiveness": 0.114,
+        "fittsLawEfficiency": 0.508,
+        "cognitiveLoadIndex": 6.098
+      }
+    },
+    {
+      "year": 1975,
+      "era": "E02_BLOCK_TERMINAL_TUI",
+      "eraCode": "E02",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.73,
+        "interactionComplexity": 0.536,
+        "visualChromeRatio": 0.366,
+        "keyboardToPointerBias": -0.678,
+        "layoutResponsiveness": 0.138,
+        "fittsLawEfficiency": 0.518,
+        "cognitiveLoadIndex": 6.199
+      }
+    },
+    {
+      "year": 1976,
+      "era": "E02_BLOCK_TERMINAL_TUI",
+      "eraCode": "E02",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.732,
+        "interactionComplexity": 0.569,
+        "visualChromeRatio": 0.371,
+        "keyboardToPointerBias": -0.73,
+        "layoutResponsiveness": 0.12,
+        "fittsLawEfficiency": 0.548,
+        "cognitiveLoadIndex": 6.176
+      }
+    },
+    {
+      "year": 1977,
+      "era": "E02_BLOCK_TERMINAL_TUI",
+      "eraCode": "E02",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.743,
+        "interactionComplexity": 0.554,
+        "visualChromeRatio": 0.367,
+        "keyboardToPointerBias": -0.71,
+        "layoutResponsiveness": 0.155,
+        "fittsLawEfficiency": 0.542,
+        "cognitiveLoadIndex": 6.22
+      }
+    },
+    {
+      "year": 1978,
+      "era": "E02_BLOCK_TERMINAL_TUI",
+      "eraCode": "E02",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.76,
+        "interactionComplexity": 0.55,
+        "visualChromeRatio": 0.387,
+        "keyboardToPointerBias": -0.726,
+        "layoutResponsiveness": 0.149,
+        "fittsLawEfficiency": 0.565,
+        "cognitiveLoadIndex": 6.299
+      }
+    },
+    {
+      "year": 1979,
+      "era": "E03_EARLY_WIMP_DESKTOP",
+      "eraCode": "E03",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.76,
+        "interactionComplexity": 0.569,
+        "visualChromeRatio": 0.383,
+        "keyboardToPointerBias": 0.231,
+        "layoutResponsiveness": 0.135,
+        "fittsLawEfficiency": 0.543,
+        "cognitiveLoadIndex": 6.322
+      }
+    },
+    {
+      "year": 1980,
+      "era": "E03_EARLY_WIMP_DESKTOP",
+      "eraCode": "E03",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.744,
+        "interactionComplexity": 0.58,
+        "visualChromeRatio": 0.395,
+        "keyboardToPointerBias": 0.267,
+        "layoutResponsiveness": 0.126,
+        "fittsLawEfficiency": 0.562,
+        "cognitiveLoadIndex": 6.249
+      }
+    },
+    {
+      "year": 1981,
+      "era": "E03_EARLY_WIMP_DESKTOP",
+      "eraCode": "E03",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.755,
+        "interactionComplexity": 0.578,
+        "visualChromeRatio": 0.387,
+        "keyboardToPointerBias": 0.252,
+        "layoutResponsiveness": 0.125,
+        "fittsLawEfficiency": 0.563,
+        "cognitiveLoadIndex": 6.278
+      }
+    },
+    {
+      "year": 1982,
+      "era": "E03_EARLY_WIMP_DESKTOP",
+      "eraCode": "E03",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.73,
+        "interactionComplexity": 0.567,
+        "visualChromeRatio": 0.412,
+        "keyboardToPointerBias": 0.245,
+        "layoutResponsiveness": 0.128,
+        "fittsLawEfficiency": 0.575,
+        "cognitiveLoadIndex": 6.204
+      }
+    },
+    {
+      "year": 1983,
+      "era": "E03_EARLY_WIMP_DESKTOP",
+      "eraCode": "E03",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.732,
+        "interactionComplexity": 0.573,
+        "visualChromeRatio": 0.422,
+        "keyboardToPointerBias": 0.195,
+        "layoutResponsiveness": 0.121,
+        "fittsLawEfficiency": 0.556,
+        "cognitiveLoadIndex": 6.255
+      }
+    },
+    {
+      "year": 1984,
+      "era": "E03_EARLY_WIMP_DESKTOP",
+      "eraCode": "E03",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.693,
+        "interactionComplexity": 0.555,
+        "visualChromeRatio": 0.435,
+        "keyboardToPointerBias": 0.3,
+        "layoutResponsiveness": 0.123,
+        "fittsLawEfficiency": 0.576,
+        "cognitiveLoadIndex": 6.086
+      }
+    },
+    {
+      "year": 1985,
+      "era": "E04_WORKSTATION_HYPERTEXT",
+      "eraCode": "E04",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.662,
+        "interactionComplexity": 0.587,
+        "visualChromeRatio": 0.423,
+        "keyboardToPointerBias": 0.235,
+        "layoutResponsiveness": 0.119,
+        "fittsLawEfficiency": 0.57,
+        "cognitiveLoadIndex": 5.946
+      }
+    },
+    {
+      "year": 1986,
+      "era": "E04_WORKSTATION_HYPERTEXT",
+      "eraCode": "E04",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.619,
+        "interactionComplexity": 0.595,
+        "visualChromeRatio": 0.431,
+        "keyboardToPointerBias": 0.154,
+        "layoutResponsiveness": 0.161,
+        "fittsLawEfficiency": 0.583,
+        "cognitiveLoadIndex": 5.756
+      }
+    },
+    {
+      "year": 1987,
+      "era": "E04_WORKSTATION_HYPERTEXT",
+      "eraCode": "E04",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.612,
+        "interactionComplexity": 0.585,
+        "visualChromeRatio": 0.441,
+        "keyboardToPointerBias": 0.111,
+        "layoutResponsiveness": 0.141,
+        "fittsLawEfficiency": 0.607,
+        "cognitiveLoadIndex": 5.716
+      }
+    },
+    {
+      "year": 1988,
+      "era": "E04_WORKSTATION_HYPERTEXT",
+      "eraCode": "E04",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.579,
+        "interactionComplexity": 0.593,
+        "visualChromeRatio": 0.668,
+        "keyboardToPointerBias": 0.194,
+        "layoutResponsiveness": 0.128,
+        "fittsLawEfficiency": 0.613,
+        "cognitiveLoadIndex": 5.978
+      }
+    },
+    {
+      "year": 1989,
+      "era": "E04_WORKSTATION_HYPERTEXT",
+      "eraCode": "E04",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.547,
+        "interactionComplexity": 0.584,
+        "visualChromeRatio": 0.704,
+        "keyboardToPointerBias": 0.185,
+        "layoutResponsiveness": 0.124,
+        "fittsLawEfficiency": 0.615,
+        "cognitiveLoadIndex": 5.904
+      }
+    },
+    {
+      "year": 1990,
+      "era": "E04_WORKSTATION_HYPERTEXT",
+      "eraCode": "E04",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.508,
+        "interactionComplexity": 0.574,
+        "visualChromeRatio": 0.719,
+        "keyboardToPointerBias": 0.095,
+        "layoutResponsiveness": 0.143,
+        "fittsLawEfficiency": 0.618,
+        "cognitiveLoadIndex": 5.762
+      }
+    },
+    {
+      "year": 1991,
+      "era": "E05_EARLY_WEB_PORTAL",
+      "eraCode": "E05",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.485,
+        "interactionComplexity": 0.595,
+        "visualChromeRatio": 0.725,
+        "keyboardToPointerBias": 0.539,
+        "layoutResponsiveness": 0.327,
+        "fittsLawEfficiency": 0.629,
+        "cognitiveLoadIndex": 5.659
+      }
+    },
+    {
+      "year": 1992,
+      "era": "E05_EARLY_WEB_PORTAL",
+      "eraCode": "E05",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.448,
+        "interactionComplexity": 0.603,
+        "visualChromeRatio": 0.756,
+        "keyboardToPointerBias": 0.513,
+        "layoutResponsiveness": 0.322,
+        "fittsLawEfficiency": 0.639,
+        "cognitiveLoadIndex": 5.551
+      }
+    },
+    {
+      "year": 1993,
+      "era": "E05_EARLY_WEB_PORTAL",
+      "eraCode": "E05",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.427,
+        "interactionComplexity": 0.593,
+        "visualChromeRatio": 0.766,
+        "keyboardToPointerBias": 0.505,
+        "layoutResponsiveness": 0.348,
+        "fittsLawEfficiency": 0.627,
+        "cognitiveLoadIndex": 5.496
+      }
+    },
+    {
+      "year": 1994,
+      "era": "E05_EARLY_WEB_PORTAL",
+      "eraCode": "E05",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.414,
+        "interactionComplexity": 0.593,
+        "visualChromeRatio": 0.776,
+        "keyboardToPointerBias": 0.539,
+        "layoutResponsiveness": 0.372,
+        "fittsLawEfficiency": 0.661,
+        "cognitiveLoadIndex": 5.41
+      }
+    },
+    {
+      "year": 1995,
+      "era": "E05_EARLY_WEB_PORTAL",
+      "eraCode": "E05",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.384,
+        "interactionComplexity": 0.6,
+        "visualChromeRatio": 0.796,
+        "keyboardToPointerBias": 0.437,
+        "layoutResponsiveness": 0.348,
+        "fittsLawEfficiency": 0.653,
+        "cognitiveLoadIndex": 5.33
+      }
+    },
+    {
+      "year": 1996,
+      "era": "E05_EARLY_WEB_PORTAL",
+      "eraCode": "E05",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.408,
+        "interactionComplexity": 0.587,
+        "visualChromeRatio": 0.793,
+        "keyboardToPointerBias": 0.508,
+        "layoutResponsiveness": 0.262,
+        "fittsLawEfficiency": 0.656,
+        "cognitiveLoadIndex": 5.423
+      }
+    },
+    {
+      "year": 1997,
+      "era": "E06_DOTCOM_DHTML_SKIN",
+      "eraCode": "E06",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.414,
+        "interactionComplexity": 0.617,
+        "visualChromeRatio": 0.802,
+        "keyboardToPointerBias": 0.51,
+        "layoutResponsiveness": 0.327,
+        "fittsLawEfficiency": 0.66,
+        "cognitiveLoadIndex": 5.457
+      }
+    },
+    {
+      "year": 1998,
+      "era": "E06_DOTCOM_DHTML_SKIN",
+      "eraCode": "E06",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.416,
+        "interactionComplexity": 0.605,
+        "visualChromeRatio": 0.809,
+        "keyboardToPointerBias": 0.516,
+        "layoutResponsiveness": 0.311,
+        "fittsLawEfficiency": 0.672,
+        "cognitiveLoadIndex": 5.463
+      }
+    },
+    {
+      "year": 1999,
+      "era": "E06_DOTCOM_DHTML_SKIN",
+      "eraCode": "E06",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.43,
+        "interactionComplexity": 0.622,
+        "visualChromeRatio": 0.83,
+        "keyboardToPointerBias": 0.54,
+        "layoutResponsiveness": 0.357,
+        "fittsLawEfficiency": 0.683,
+        "cognitiveLoadIndex": 5.545
+      }
+    },
+    {
+      "year": 2000,
+      "era": "E06_DOTCOM_DHTML_SKIN",
+      "eraCode": "E06",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.44,
+        "interactionComplexity": 0.609,
+        "visualChromeRatio": 0.831,
+        "keyboardToPointerBias": 0.55,
+        "layoutResponsiveness": 0.335,
+        "fittsLawEfficiency": 0.686,
+        "cognitiveLoadIndex": 5.581
+      }
+    },
+    {
+      "year": 2001,
+      "era": "E06_DOTCOM_DHTML_SKIN",
+      "eraCode": "E06",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.472,
+        "interactionComplexity": 0.651,
+        "visualChromeRatio": 0.826,
+        "keyboardToPointerBias": 0.471,
+        "layoutResponsiveness": 0.338,
+        "fittsLawEfficiency": 0.675,
+        "cognitiveLoadIndex": 5.725
+      }
+    },
+    {
+      "year": 2002,
+      "era": "E07_WEB20_AJAX_RIA",
+      "eraCode": "E07",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.481,
+        "interactionComplexity": 0.62,
+        "visualChromeRatio": 0.821,
+        "keyboardToPointerBias": 0.526,
+        "layoutResponsiveness": 0.317,
+        "fittsLawEfficiency": 0.693,
+        "cognitiveLoadIndex": 5.729
+      }
+    },
+    {
+      "year": 2003,
+      "era": "E07_WEB20_AJAX_RIA",
+      "eraCode": "E07",
+      "wireframeCount": 17,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.527,
+        "interactionComplexity": 0.623,
+        "visualChromeRatio": 0.799,
+        "keyboardToPointerBias": 0.509,
+        "layoutResponsiveness": 0.33,
+        "fittsLawEfficiency": 0.698,
+        "cognitiveLoadIndex": 5.876
+      }
+    },
+    {
+      "year": 2004,
+      "era": "E07_WEB20_AJAX_RIA",
+      "eraCode": "E07",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.545,
+        "interactionComplexity": 0.62,
+        "visualChromeRatio": 0.805,
+        "keyboardToPointerBias": 0.529,
+        "layoutResponsiveness": 0.337,
+        "fittsLawEfficiency": 0.687,
+        "cognitiveLoadIndex": 5.974
+      }
+    },
+    {
+      "year": 2005,
+      "era": "E07_WEB20_AJAX_RIA",
+      "eraCode": "E07",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.596,
+        "interactionComplexity": 0.623,
+        "visualChromeRatio": 0.777,
+        "keyboardToPointerBias": 0.525,
+        "layoutResponsiveness": 0.358,
+        "fittsLawEfficiency": 0.704,
+        "cognitiveLoadIndex": 6.115
+      }
+    },
+    {
+      "year": 2006,
+      "era": "E07_WEB20_AJAX_RIA",
+      "eraCode": "E07",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.61,
+        "interactionComplexity": 0.627,
+        "visualChromeRatio": 0.753,
+        "keyboardToPointerBias": 0.536,
+        "layoutResponsiveness": 0.337,
+        "fittsLawEfficiency": 0.708,
+        "cognitiveLoadIndex": 6.125
+      }
+    },
+    {
+      "year": 2007,
+      "era": "E08_MOBILE_TOUCH_SKEUOMORPHIC",
+      "eraCode": "E08",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.647,
+        "interactionComplexity": 0.637,
+        "visualChromeRatio": 0.761,
+        "keyboardToPointerBias": 0.621,
+        "layoutResponsiveness": 0.318,
+        "fittsLawEfficiency": 0.724,
+        "cognitiveLoadIndex": 6.277
+      }
+    },
+    {
+      "year": 2008,
+      "era": "E08_MOBILE_TOUCH_SKEUOMORPHIC",
+      "eraCode": "E08",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.671,
+        "interactionComplexity": 0.609,
+        "visualChromeRatio": 0.738,
+        "keyboardToPointerBias": 0.64,
+        "layoutResponsiveness": 0.346,
+        "fittsLawEfficiency": 0.718,
+        "cognitiveLoadIndex": 6.344
+      }
+    },
+    {
+      "year": 2009,
+      "era": "E08_MOBILE_TOUCH_SKEUOMORPHIC",
+      "eraCode": "E08",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.671,
+        "interactionComplexity": 0.632,
+        "visualChromeRatio": 0.707,
+        "keyboardToPointerBias": 0.651,
+        "layoutResponsiveness": 0.347,
+        "fittsLawEfficiency": 0.732,
+        "cognitiveLoadIndex": 6.265
+      }
+    },
+    {
+      "year": 2010,
+      "era": "E08_MOBILE_TOUCH_SKEUOMORPHIC",
+      "eraCode": "E08",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.706,
+        "interactionComplexity": 0.617,
+        "visualChromeRatio": 0.685,
+        "keyboardToPointerBias": 0.696,
+        "layoutResponsiveness": 0.777,
+        "fittsLawEfficiency": 0.728,
+        "cognitiveLoadIndex": 6.382
+      }
+    },
+    {
+      "year": 2011,
+      "era": "E08_MOBILE_TOUCH_SKEUOMORPHIC",
+      "eraCode": "E08",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.624,
+        "interactionComplexity": 0.609,
+        "visualChromeRatio": 0.692,
+        "keyboardToPointerBias": 0.645,
+        "layoutResponsiveness": 0.787,
+        "fittsLawEfficiency": 0.763,
+        "cognitiveLoadIndex": 5.997
+      }
+    },
+    {
+      "year": 2012,
+      "era": "E09_FLAT_RESPONSIVE_DESIGN_SYSTEM",
+      "eraCode": "E09",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.635,
+        "interactionComplexity": 0.608,
+        "visualChromeRatio": 0.241,
+        "keyboardToPointerBias": 0.624,
+        "layoutResponsiveness": 0.72,
+        "fittsLawEfficiency": 0.768,
+        "cognitiveLoadIndex": 5.224
+      }
+    },
+    {
+      "year": 2013,
+      "era": "E09_FLAT_RESPONSIVE_DESIGN_SYSTEM",
+      "eraCode": "E09",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.625,
+        "interactionComplexity": 0.602,
+        "visualChromeRatio": 0.248,
+        "keyboardToPointerBias": 0.628,
+        "layoutResponsiveness": 0.762,
+        "fittsLawEfficiency": 0.758,
+        "cognitiveLoadIndex": 5.209
+      }
+    },
+    {
+      "year": 2014,
+      "era": "E09_FLAT_RESPONSIVE_DESIGN_SYSTEM",
+      "eraCode": "E09",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.646,
+        "interactionComplexity": 0.626,
+        "visualChromeRatio": 0.256,
+        "keyboardToPointerBias": 0.614,
+        "layoutResponsiveness": 0.725,
+        "fittsLawEfficiency": 0.754,
+        "cognitiveLoadIndex": 5.317
+      }
+    },
+    {
+      "year": 2015,
+      "era": "E09_FLAT_RESPONSIVE_DESIGN_SYSTEM",
+      "eraCode": "E09",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.627,
+        "interactionComplexity": 0.594,
+        "visualChromeRatio": 0.272,
+        "keyboardToPointerBias": 0.571,
+        "layoutResponsiveness": 0.784,
+        "fittsLawEfficiency": 0.766,
+        "cognitiveLoadIndex": 5.247
+      }
+    },
+    {
+      "year": 2016,
+      "era": "E09_FLAT_RESPONSIVE_DESIGN_SYSTEM",
+      "eraCode": "E09",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.616,
+        "interactionComplexity": 0.597,
+        "visualChromeRatio": 0.254,
+        "keyboardToPointerBias": 0.678,
+        "layoutResponsiveness": 0.732,
+        "fittsLawEfficiency": 0.776,
+        "cognitiveLoadIndex": 5.158
+      }
+    },
+    {
+      "year": 2017,
+      "era": "E10_COMPONENT_COLLAB_DARKMODE",
+      "eraCode": "E10",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.724,
+        "interactionComplexity": 0.583,
+        "visualChromeRatio": 0.283,
+        "keyboardToPointerBias": 0.218,
+        "layoutResponsiveness": 0.734,
+        "fittsLawEfficiency": 0.785,
+        "cognitiveLoadIndex": 5.649
+      }
+    },
+    {
+      "year": 2018,
+      "era": "E10_COMPONENT_COLLAB_DARKMODE",
+      "eraCode": "E10",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.703,
+        "interactionComplexity": 0.578,
+        "visualChromeRatio": 0.273,
+        "keyboardToPointerBias": 0.124,
+        "layoutResponsiveness": 0.859,
+        "fittsLawEfficiency": 0.772,
+        "cognitiveLoadIndex": 5.56
+      }
+    },
+    {
+      "year": 2019,
+      "era": "E10_COMPONENT_COLLAB_DARKMODE",
+      "eraCode": "E10",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.693,
+        "interactionComplexity": 0.593,
+        "visualChromeRatio": 0.277,
+        "keyboardToPointerBias": 0.159,
+        "layoutResponsiveness": 0.876,
+        "fittsLawEfficiency": 0.793,
+        "cognitiveLoadIndex": 5.5
+      }
+    },
+    {
+      "year": 2020,
+      "era": "E10_COMPONENT_COLLAB_DARKMODE",
+      "eraCode": "E10",
+      "wireframeCount": 16,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.655,
+        "interactionComplexity": 0.588,
+        "visualChromeRatio": 0.299,
+        "keyboardToPointerBias": 0.217,
+        "layoutResponsiveness": 0.904,
+        "fittsLawEfficiency": 0.787,
+        "cognitiveLoadIndex": 5.389
+      }
+    },
+    {
+      "year": 2021,
+      "era": "E11_SPATIAL_BENTO_AI_COPILOT",
+      "eraCode": "E11",
+      "wireframeCount": 18,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.637,
+        "interactionComplexity": 0.58,
+        "visualChromeRatio": 0.306,
+        "keyboardToPointerBias": 0.136,
+        "layoutResponsiveness": 0.863,
+        "fittsLawEfficiency": 0.8,
+        "cognitiveLoadIndex": 5.308
+      }
+    },
+    {
+      "year": 2022,
+      "era": "E11_SPATIAL_BENTO_AI_COPILOT",
+      "eraCode": "E11",
+      "wireframeCount": 18,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.591,
+        "interactionComplexity": 0.585,
+        "visualChromeRatio": 0.295,
+        "keyboardToPointerBias": 0.168,
+        "layoutResponsiveness": 0.904,
+        "fittsLawEfficiency": 0.806,
+        "cognitiveLoadIndex": 5.082
+      }
+    },
+    {
+      "year": 2023,
+      "era": "E11_SPATIAL_BENTO_AI_COPILOT",
+      "eraCode": "E11",
+      "wireframeCount": 18,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.567,
+        "interactionComplexity": 0.584,
+        "visualChromeRatio": 0.312,
+        "keyboardToPointerBias": 0.064,
+        "layoutResponsiveness": 0.877,
+        "fittsLawEfficiency": 0.833,
+        "cognitiveLoadIndex": 4.976
+      }
+    },
+    {
+      "year": 2024,
+      "era": "E12_AGENTIC_GENERATIVE_SPATIAL",
+      "eraCode": "E12",
+      "wireframeCount": 18,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.536,
+        "interactionComplexity": 0.566,
+        "visualChromeRatio": 0.316,
+        "keyboardToPointerBias": 0.143,
+        "layoutResponsiveness": 0.888,
+        "fittsLawEfficiency": 0.818,
+        "cognitiveLoadIndex": 4.875
+      }
+    },
+    {
+      "year": 2025,
+      "era": "E12_AGENTIC_GENERATIVE_SPATIAL",
+      "eraCode": "E12",
+      "wireframeCount": 18,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.507,
+        "interactionComplexity": 0.569,
+        "visualChromeRatio": 0.31,
+        "keyboardToPointerBias": 0.246,
+        "layoutResponsiveness": 0.885,
+        "fittsLawEfficiency": 0.811,
+        "cognitiveLoadIndex": 4.751
+      }
+    },
+    {
+      "year": 2026,
+      "era": "E12_AGENTIC_GENERATIVE_SPATIAL",
+      "eraCode": "E12",
+      "wireframeCount": 18,
+      "landmarkCount": 2,
+      "avgMetrics": {
+        "informationDensity": 0.469,
+        "interactionComplexity": 0.561,
+        "visualChromeRatio": 0.318,
+        "keyboardToPointerBias": 0.196,
+        "layoutResponsiveness": 0.873,
+        "fittsLawEfficiency": 0.833,
+        "cognitiveLoadIndex": 4.576
+      }
+    }
+  ],
+  "webLayoutMorphArchetypes": [
+    {
+      "id": "MORPH_KNOWLEDGE_PORTAL",
+      "name": "Information & Search Portal",
+      "description": "From CERN/Mosaic hypertext indexes to Perplexity/Agentic synthesis",
+      "stages": [
+        {
+          "stage": 1,
+          "year": 1993,
+          "label": "1993 Web 1.0 Linear Document Flow",
+          "engine": "HTML 2.0 Flow",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "toolbar",
+              "label": "URL & Navigation Bar (Information)",
+              "x": 0.012,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "hypertext-body",
+              "label": "H1 Document Title & Anchor Index (Information)",
+              "x": 0.072,
+              "y": 0.126,
+              "w": 0.84,
+              "h": 0.14
+            },
+            {
+              "slot": 3,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block A (Information)",
+              "x": 0.072,
+              "y": 0.286,
+              "w": 0.84,
+              "h": 0.2
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Inline GIF Image Map (Information)",
+              "x": 0.152,
+              "y": 0.506,
+              "w": 0.68,
+              "h": 0.16
+            },
+            {
+              "slot": 5,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block B (Information)",
+              "x": 0.072,
+              "y": 0.686,
+              "w": 0.84,
+              "h": 0.12
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "CGI Submit Form & Text Input (Information)",
+              "x": 0.072,
+              "y": 0.826,
+              "w": 0.54,
+              "h": 0.08
+            },
+            {
+              "slot": 7,
+              "type": "tree-view",
+              "label": "Bottom Bullet Link Directory (Information)",
+              "x": 0.632,
+              "y": 0.826,
+              "w": 0.28,
+              "h": 0.08
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Document Done Status Bar (Information)",
+              "x": 0.012,
+              "y": 0.92,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 2,
+          "year": 1998,
+          "label": "1998 Dot-Com 3-Col Table Portal",
+          "engine": "Nested HTML Tables",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Portal Banner & Search Table Row (Information)",
+              "x": 0.012,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.11
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Left Category Directory Table (Information)",
+              "x": 0.012,
+              "y": 0.146,
+              "w": 0.2,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "breadcrumb",
+              "label": "Yahoo-Style Category Breadcrumb (Information)",
+              "x": 0.232,
+              "y": 0.146,
+              "w": 0.52,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "data-table",
+              "label": "Center Portal Headlines & Links (Information)",
+              "x": 0.232,
+              "y": 0.236,
+              "w": 0.52,
+              "h": 0.36
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Nested Promo Sub-Table (Information)",
+              "x": 0.232,
+              "y": 0.616,
+              "w": 0.52,
+              "h": 0.27
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "Right Member Login & Poll Box (Information)",
+              "x": 0.772,
+              "y": 0.146,
+              "w": 0.2,
+              "h": 0.34
+            },
+            {
+              "slot": 7,
+              "type": "tag-cloud",
+              "label": "Right Ticker & Webring Links (Information)",
+              "x": 0.772,
+              "y": 0.506,
+              "w": 0.2,
+              "h": 0.38
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "800x600 Table Footer (Information)",
+              "x": 0.012,
+              "y": 0.906,
+              "w": 0.96,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 3,
+          "year": 2005,
+          "label": "2005 Web 2.0 Ajax Split Workspace",
+          "engine": "CSS Floats + XHR",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "tab-strip",
+              "label": "Web 2.0 Glossy Top Tab Strip (Information)",
+              "x": 0.012,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Ajax Folder & Label Tree (Information)",
+              "x": 0.012,
+              "y": 0.126,
+              "w": 0.22,
+              "h": 0.52
+            },
+            {
+              "slot": 3,
+              "type": "tag-cloud",
+              "label": "Weighted Folksonomy Tag Cloud (Information)",
+              "x": 0.012,
+              "y": 0.666,
+              "w": 0.22,
+              "h": 0.23
+            },
+            {
+              "slot": 4,
+              "type": "toolbar",
+              "label": "XHR Action Bar (Archive / Report / Tag) (Information)",
+              "x": 0.252,
+              "y": 0.126,
+              "w": 0.72,
+              "h": 0.07
+            },
+            {
+              "slot": 5,
+              "type": "data-table",
+              "label": "Live Ajax Conversation / Item List (Information)",
+              "x": 0.252,
+              "y": 0.216,
+              "w": 0.44,
+              "h": 0.68
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Asynchronous Inline Preview Pane (Information)",
+              "x": 0.712,
+              "y": 0.216,
+              "w": 0.26,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "form-group",
+              "label": "Inline Quick-Reply / Ajax Editor (Information)",
+              "x": 0.712,
+              "y": 0.676,
+              "w": 0.26,
+              "h": 0.22
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "RSS & XMLHttpRequest Sync Bar (Information)",
+              "x": 0.012,
+              "y": 0.916,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 4,
+          "year": 2013,
+          "label": "2013 Responsive 12-Col Flat Grid",
+          "engine": "Bootstrap / Flexbox",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Fixed Top Flat Navbar + Hamburger (Information)",
+              "x": 0.012,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.08
+            },
+            {
+              "slot": 2,
+              "type": "carousel",
+              "label": "Full-Bleed 12-Col Flat Hero Banner (Information)",
+              "x": 0.032,
+              "y": 0.116,
+              "w": 0.92,
+              "h": 0.24
+            },
+            {
+              "slot": 3,
+              "type": "segmented-control",
+              "label": "Filter Pills & Responsive Breakpoint Toggle (Information)",
+              "x": 0.032,
+              "y": 0.376,
+              "w": 0.6,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Elevation Card Column 1 (4-Col) (Information)",
+              "x": 0.032,
+              "y": 0.466,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Elevation Card Column 2 (4-Col) (Information)",
+              "x": 0.347,
+              "y": 0.466,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 6,
+              "type": "card-grid",
+              "label": "Elevation Card Column 3 (4-Col) (Information)",
+              "x": 0.662,
+              "y": 0.466,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 7,
+              "type": "floating-action-btn",
+              "label": "Material Floating Action Button (+) (Information)",
+              "x": 0.872,
+              "y": 0.776,
+              "w": 0.07,
+              "h": 0.09
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Minimal Flat Footer (Information)",
+              "x": 0.032,
+              "y": 0.876,
+              "w": 0.92,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 5,
+          "year": 2020,
+          "label": "2020 Dark Token Bento + \u2318K Omnibox",
+          "engine": "CSS Grid + Custom Props",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "sidebar-nav",
+              "label": "Compact Icon + Workspace Rail (Information)",
+              "x": 0.012,
+              "y": 0.016,
+              "w": 0.15,
+              "h": 0.94
+            },
+            {
+              "slot": 2,
+              "type": "bento-tile",
+              "label": "Primary Bento Feature Span (2x2) (Information)",
+              "x": 0.182,
+              "y": 0.036,
+              "w": 0.48,
+              "h": 0.44
+            },
+            {
+              "slot": 3,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile A (Information)",
+              "x": 0.682,
+              "y": 0.036,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 4,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile B (Information)",
+              "x": 0.682,
+              "y": 0.266,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 5,
+              "type": "kanban-lane",
+              "label": "Keyboard-Triage Issue Stream (Information)",
+              "x": 0.182,
+              "y": 0.496,
+              "w": 0.52,
+              "h": 0.44
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Design Token & Context Inspector (Information)",
+              "x": 0.722,
+              "y": 0.496,
+              "w": 0.25,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "command-palette",
+              "label": "Floating \u2318K Command Palette Overlay (Information)",
+              "x": 0.292,
+              "y": 0.176,
+              "w": 0.44,
+              "h": 0.28
+            },
+            {
+              "slot": 8,
+              "type": "toast-stack",
+              "label": "Non-Blocking Realtime Sync Toast (Information)",
+              "x": 0.752,
+              "y": 0.856,
+              "w": 0.2,
+              "h": 0.08
+            }
+          ]
+        },
+        {
+          "stage": 6,
+          "year": 2026,
+          "label": "2026 Agentic Spatial Canvas & Ledger",
+          "engine": "Generative DOM + Spatial",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "spatial-ornament",
+              "label": "Floating Gaze & Mode Ornament (Information)",
+              "x": 0.012,
+              "y": 0.156,
+              "w": 0.06,
+              "h": 0.68
+            },
+            {
+              "slot": 2,
+              "type": "chat-stream",
+              "label": "Multi-Agent Intent & Thought Stream (Information)",
+              "x": 0.092,
+              "y": 0.036,
+              "w": 0.28,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "command-palette",
+              "label": "Multimodal Intent Composer Bar (Information)",
+              "x": 0.092,
+              "y": 0.796,
+              "w": 0.28,
+              "h": 0.14
+            },
+            {
+              "slot": 4,
+              "type": "infinite-canvas",
+              "label": "Generative Ephemeral UI Sandbox (Information)",
+              "x": 0.392,
+              "y": 0.036,
+              "w": 0.58,
+              "h": 0.56
+            },
+            {
+              "slot": 5,
+              "type": "agent-trace-ledger",
+              "label": "Cryptographic Verification & Proof Ledger (Information)",
+              "x": 0.392,
+              "y": 0.616,
+              "w": 0.36,
+              "h": 0.32
+            },
+            {
+              "slot": 6,
+              "type": "bento-tile",
+              "label": "Live Diff & Rollback Control Tile (Information)",
+              "x": 0.772,
+              "y": 0.616,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 7,
+              "type": "minimap",
+              "label": "Topology & Constellation Radar (Information)",
+              "x": 0.772,
+              "y": 0.786,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Autonomous Verification Gate: PROVEN (Information)",
+              "x": 0.092,
+              "y": 0.92,
+              "w": 0.88,
+              "h": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MORPH_COMMERCE_STORE",
+      "name": "E-Commerce Storefront",
+      "description": "From Amazon 1995 text tables to responsive card grids and AI shopping copilots",
+      "stages": [
+        {
+          "stage": 1,
+          "year": 1993,
+          "label": "1993 Web 1.0 Linear Document Flow",
+          "engine": "HTML 2.0 Flow",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "toolbar",
+              "label": "URL & Navigation Bar (E-Commerce)",
+              "x": 0.02,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "hypertext-body",
+              "label": "H1 Document Title & Anchor Index (E-Commerce)",
+              "x": 0.08,
+              "y": 0.126,
+              "w": 0.84,
+              "h": 0.14
+            },
+            {
+              "slot": 3,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block A (E-Commerce)",
+              "x": 0.08,
+              "y": 0.286,
+              "w": 0.84,
+              "h": 0.2
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Inline GIF Image Map (E-Commerce)",
+              "x": 0.16,
+              "y": 0.506,
+              "w": 0.68,
+              "h": 0.16
+            },
+            {
+              "slot": 5,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block B (E-Commerce)",
+              "x": 0.08,
+              "y": 0.686,
+              "w": 0.84,
+              "h": 0.12
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "CGI Submit Form & Text Input (E-Commerce)",
+              "x": 0.08,
+              "y": 0.826,
+              "w": 0.54,
+              "h": 0.08
+            },
+            {
+              "slot": 7,
+              "type": "tree-view",
+              "label": "Bottom Bullet Link Directory (E-Commerce)",
+              "x": 0.64,
+              "y": 0.826,
+              "w": 0.28,
+              "h": 0.08
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Document Done Status Bar (E-Commerce)",
+              "x": 0.02,
+              "y": 0.92,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 2,
+          "year": 1998,
+          "label": "1998 Dot-Com 3-Col Table Portal",
+          "engine": "Nested HTML Tables",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Portal Banner & Search Table Row (E-Commerce)",
+              "x": 0.02,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.11
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Left Category Directory Table (E-Commerce)",
+              "x": 0.02,
+              "y": 0.146,
+              "w": 0.2,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "breadcrumb",
+              "label": "Yahoo-Style Category Breadcrumb (E-Commerce)",
+              "x": 0.24,
+              "y": 0.146,
+              "w": 0.52,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "data-table",
+              "label": "Center Portal Headlines & Links (E-Commerce)",
+              "x": 0.24,
+              "y": 0.236,
+              "w": 0.52,
+              "h": 0.36
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Nested Promo Sub-Table (E-Commerce)",
+              "x": 0.24,
+              "y": 0.616,
+              "w": 0.52,
+              "h": 0.27
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "Right Member Login & Poll Box (E-Commerce)",
+              "x": 0.78,
+              "y": 0.146,
+              "w": 0.2,
+              "h": 0.34
+            },
+            {
+              "slot": 7,
+              "type": "tag-cloud",
+              "label": "Right Ticker & Webring Links (E-Commerce)",
+              "x": 0.78,
+              "y": 0.506,
+              "w": 0.2,
+              "h": 0.38
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "800x600 Table Footer (E-Commerce)",
+              "x": 0.02,
+              "y": 0.906,
+              "w": 0.96,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 3,
+          "year": 2005,
+          "label": "2005 Web 2.0 Ajax Split Workspace",
+          "engine": "CSS Floats + XHR",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "tab-strip",
+              "label": "Web 2.0 Glossy Top Tab Strip (E-Commerce)",
+              "x": 0.02,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Ajax Folder & Label Tree (E-Commerce)",
+              "x": 0.02,
+              "y": 0.126,
+              "w": 0.22,
+              "h": 0.52
+            },
+            {
+              "slot": 3,
+              "type": "tag-cloud",
+              "label": "Weighted Folksonomy Tag Cloud (E-Commerce)",
+              "x": 0.02,
+              "y": 0.666,
+              "w": 0.22,
+              "h": 0.23
+            },
+            {
+              "slot": 4,
+              "type": "toolbar",
+              "label": "XHR Action Bar (Archive / Report / Tag) (E-Commerce)",
+              "x": 0.26,
+              "y": 0.126,
+              "w": 0.72,
+              "h": 0.07
+            },
+            {
+              "slot": 5,
+              "type": "data-table",
+              "label": "Live Ajax Conversation / Item List (E-Commerce)",
+              "x": 0.26,
+              "y": 0.216,
+              "w": 0.44,
+              "h": 0.68
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Asynchronous Inline Preview Pane (E-Commerce)",
+              "x": 0.72,
+              "y": 0.216,
+              "w": 0.26,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "form-group",
+              "label": "Inline Quick-Reply / Ajax Editor (E-Commerce)",
+              "x": 0.72,
+              "y": 0.676,
+              "w": 0.26,
+              "h": 0.22
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "RSS & XMLHttpRequest Sync Bar (E-Commerce)",
+              "x": 0.02,
+              "y": 0.916,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 4,
+          "year": 2013,
+          "label": "2013 Responsive 12-Col Flat Grid",
+          "engine": "Bootstrap / Flexbox",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Fixed Top Flat Navbar + Hamburger (E-Commerce)",
+              "x": 0.02,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.08
+            },
+            {
+              "slot": 2,
+              "type": "carousel",
+              "label": "Full-Bleed 12-Col Flat Hero Banner (E-Commerce)",
+              "x": 0.04,
+              "y": 0.116,
+              "w": 0.92,
+              "h": 0.24
+            },
+            {
+              "slot": 3,
+              "type": "segmented-control",
+              "label": "Filter Pills & Responsive Breakpoint Toggle (E-Commerce)",
+              "x": 0.04,
+              "y": 0.376,
+              "w": 0.6,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Elevation Card Column 1 (4-Col) (E-Commerce)",
+              "x": 0.04,
+              "y": 0.466,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Elevation Card Column 2 (4-Col) (E-Commerce)",
+              "x": 0.355,
+              "y": 0.466,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 6,
+              "type": "card-grid",
+              "label": "Elevation Card Column 3 (4-Col) (E-Commerce)",
+              "x": 0.67,
+              "y": 0.466,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 7,
+              "type": "floating-action-btn",
+              "label": "Material Floating Action Button (+) (E-Commerce)",
+              "x": 0.88,
+              "y": 0.776,
+              "w": 0.07,
+              "h": 0.09
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Minimal Flat Footer (E-Commerce)",
+              "x": 0.04,
+              "y": 0.876,
+              "w": 0.92,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 5,
+          "year": 2020,
+          "label": "2020 Dark Token Bento + \u2318K Omnibox",
+          "engine": "CSS Grid + Custom Props",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "sidebar-nav",
+              "label": "Compact Icon + Workspace Rail (E-Commerce)",
+              "x": 0.02,
+              "y": 0.016,
+              "w": 0.15,
+              "h": 0.94
+            },
+            {
+              "slot": 2,
+              "type": "bento-tile",
+              "label": "Primary Bento Feature Span (2x2) (E-Commerce)",
+              "x": 0.19,
+              "y": 0.036,
+              "w": 0.48,
+              "h": 0.44
+            },
+            {
+              "slot": 3,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile A (E-Commerce)",
+              "x": 0.69,
+              "y": 0.036,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 4,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile B (E-Commerce)",
+              "x": 0.69,
+              "y": 0.266,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 5,
+              "type": "kanban-lane",
+              "label": "Keyboard-Triage Issue Stream (E-Commerce)",
+              "x": 0.19,
+              "y": 0.496,
+              "w": 0.52,
+              "h": 0.44
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Design Token & Context Inspector (E-Commerce)",
+              "x": 0.73,
+              "y": 0.496,
+              "w": 0.25,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "command-palette",
+              "label": "Floating \u2318K Command Palette Overlay (E-Commerce)",
+              "x": 0.3,
+              "y": 0.176,
+              "w": 0.44,
+              "h": 0.28
+            },
+            {
+              "slot": 8,
+              "type": "toast-stack",
+              "label": "Non-Blocking Realtime Sync Toast (E-Commerce)",
+              "x": 0.76,
+              "y": 0.856,
+              "w": 0.2,
+              "h": 0.08
+            }
+          ]
+        },
+        {
+          "stage": 6,
+          "year": 2026,
+          "label": "2026 Agentic Spatial Canvas & Ledger",
+          "engine": "Generative DOM + Spatial",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "spatial-ornament",
+              "label": "Floating Gaze & Mode Ornament (E-Commerce)",
+              "x": 0.02,
+              "y": 0.156,
+              "w": 0.06,
+              "h": 0.68
+            },
+            {
+              "slot": 2,
+              "type": "chat-stream",
+              "label": "Multi-Agent Intent & Thought Stream (E-Commerce)",
+              "x": 0.1,
+              "y": 0.036,
+              "w": 0.28,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "command-palette",
+              "label": "Multimodal Intent Composer Bar (E-Commerce)",
+              "x": 0.1,
+              "y": 0.796,
+              "w": 0.28,
+              "h": 0.14
+            },
+            {
+              "slot": 4,
+              "type": "infinite-canvas",
+              "label": "Generative Ephemeral UI Sandbox (E-Commerce)",
+              "x": 0.4,
+              "y": 0.036,
+              "w": 0.58,
+              "h": 0.56
+            },
+            {
+              "slot": 5,
+              "type": "agent-trace-ledger",
+              "label": "Cryptographic Verification & Proof Ledger (E-Commerce)",
+              "x": 0.4,
+              "y": 0.616,
+              "w": 0.36,
+              "h": 0.32
+            },
+            {
+              "slot": 6,
+              "type": "bento-tile",
+              "label": "Live Diff & Rollback Control Tile (E-Commerce)",
+              "x": 0.78,
+              "y": 0.616,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 7,
+              "type": "minimap",
+              "label": "Topology & Constellation Radar (E-Commerce)",
+              "x": 0.78,
+              "y": 0.786,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Autonomous Verification Gate: PROVEN (E-Commerce)",
+              "x": 0.1,
+              "y": 0.92,
+              "w": 0.88,
+              "h": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MORPH_COLLAB_COMMUNICATION",
+      "name": "Messaging & Collaboration",
+      "description": "From Frameset webmail to Gmail Ajax, Slack channels, and multi-agent threads",
+      "stages": [
+        {
+          "stage": 1,
+          "year": 1993,
+          "label": "1993 Web 1.0 Linear Document Flow",
+          "engine": "HTML 2.0 Flow",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "toolbar",
+              "label": "URL & Navigation Bar (Messaging)",
+              "x": 0.028,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "hypertext-body",
+              "label": "H1 Document Title & Anchor Index (Messaging)",
+              "x": 0.088,
+              "y": 0.126,
+              "w": 0.84,
+              "h": 0.14
+            },
+            {
+              "slot": 3,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block A (Messaging)",
+              "x": 0.088,
+              "y": 0.286,
+              "w": 0.84,
+              "h": 0.2
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Inline GIF Image Map (Messaging)",
+              "x": 0.168,
+              "y": 0.506,
+              "w": 0.68,
+              "h": 0.16
+            },
+            {
+              "slot": 5,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block B (Messaging)",
+              "x": 0.088,
+              "y": 0.686,
+              "w": 0.84,
+              "h": 0.12
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "CGI Submit Form & Text Input (Messaging)",
+              "x": 0.088,
+              "y": 0.826,
+              "w": 0.54,
+              "h": 0.08
+            },
+            {
+              "slot": 7,
+              "type": "tree-view",
+              "label": "Bottom Bullet Link Directory (Messaging)",
+              "x": 0.648,
+              "y": 0.826,
+              "w": 0.28,
+              "h": 0.08
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Document Done Status Bar (Messaging)",
+              "x": 0.028,
+              "y": 0.92,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 2,
+          "year": 1998,
+          "label": "1998 Dot-Com 3-Col Table Portal",
+          "engine": "Nested HTML Tables",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Portal Banner & Search Table Row (Messaging)",
+              "x": 0.028,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.11
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Left Category Directory Table (Messaging)",
+              "x": 0.028,
+              "y": 0.146,
+              "w": 0.2,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "breadcrumb",
+              "label": "Yahoo-Style Category Breadcrumb (Messaging)",
+              "x": 0.248,
+              "y": 0.146,
+              "w": 0.52,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "data-table",
+              "label": "Center Portal Headlines & Links (Messaging)",
+              "x": 0.248,
+              "y": 0.236,
+              "w": 0.52,
+              "h": 0.36
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Nested Promo Sub-Table (Messaging)",
+              "x": 0.248,
+              "y": 0.616,
+              "w": 0.52,
+              "h": 0.27
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "Right Member Login & Poll Box (Messaging)",
+              "x": 0.788,
+              "y": 0.146,
+              "w": 0.2,
+              "h": 0.34
+            },
+            {
+              "slot": 7,
+              "type": "tag-cloud",
+              "label": "Right Ticker & Webring Links (Messaging)",
+              "x": 0.788,
+              "y": 0.506,
+              "w": 0.2,
+              "h": 0.38
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "800x600 Table Footer (Messaging)",
+              "x": 0.028,
+              "y": 0.906,
+              "w": 0.96,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 3,
+          "year": 2005,
+          "label": "2005 Web 2.0 Ajax Split Workspace",
+          "engine": "CSS Floats + XHR",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "tab-strip",
+              "label": "Web 2.0 Glossy Top Tab Strip (Messaging)",
+              "x": 0.028,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Ajax Folder & Label Tree (Messaging)",
+              "x": 0.028,
+              "y": 0.126,
+              "w": 0.22,
+              "h": 0.52
+            },
+            {
+              "slot": 3,
+              "type": "tag-cloud",
+              "label": "Weighted Folksonomy Tag Cloud (Messaging)",
+              "x": 0.028,
+              "y": 0.666,
+              "w": 0.22,
+              "h": 0.23
+            },
+            {
+              "slot": 4,
+              "type": "toolbar",
+              "label": "XHR Action Bar (Archive / Report / Tag) (Messaging)",
+              "x": 0.268,
+              "y": 0.126,
+              "w": 0.72,
+              "h": 0.07
+            },
+            {
+              "slot": 5,
+              "type": "data-table",
+              "label": "Live Ajax Conversation / Item List (Messaging)",
+              "x": 0.268,
+              "y": 0.216,
+              "w": 0.44,
+              "h": 0.68
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Asynchronous Inline Preview Pane (Messaging)",
+              "x": 0.728,
+              "y": 0.216,
+              "w": 0.26,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "form-group",
+              "label": "Inline Quick-Reply / Ajax Editor (Messaging)",
+              "x": 0.728,
+              "y": 0.676,
+              "w": 0.26,
+              "h": 0.22
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "RSS & XMLHttpRequest Sync Bar (Messaging)",
+              "x": 0.028,
+              "y": 0.916,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 4,
+          "year": 2013,
+          "label": "2013 Responsive 12-Col Flat Grid",
+          "engine": "Bootstrap / Flexbox",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Fixed Top Flat Navbar + Hamburger (Messaging)",
+              "x": 0.028,
+              "y": 0.016,
+              "w": 0.96,
+              "h": 0.08
+            },
+            {
+              "slot": 2,
+              "type": "carousel",
+              "label": "Full-Bleed 12-Col Flat Hero Banner (Messaging)",
+              "x": 0.048,
+              "y": 0.116,
+              "w": 0.92,
+              "h": 0.24
+            },
+            {
+              "slot": 3,
+              "type": "segmented-control",
+              "label": "Filter Pills & Responsive Breakpoint Toggle (Messaging)",
+              "x": 0.048,
+              "y": 0.376,
+              "w": 0.6,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Elevation Card Column 1 (4-Col) (Messaging)",
+              "x": 0.048,
+              "y": 0.466,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Elevation Card Column 2 (4-Col) (Messaging)",
+              "x": 0.363,
+              "y": 0.466,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 6,
+              "type": "card-grid",
+              "label": "Elevation Card Column 3 (4-Col) (Messaging)",
+              "x": 0.678,
+              "y": 0.466,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 7,
+              "type": "floating-action-btn",
+              "label": "Material Floating Action Button (+) (Messaging)",
+              "x": 0.888,
+              "y": 0.776,
+              "w": 0.07,
+              "h": 0.09
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Minimal Flat Footer (Messaging)",
+              "x": 0.048,
+              "y": 0.876,
+              "w": 0.92,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 5,
+          "year": 2020,
+          "label": "2020 Dark Token Bento + \u2318K Omnibox",
+          "engine": "CSS Grid + Custom Props",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "sidebar-nav",
+              "label": "Compact Icon + Workspace Rail (Messaging)",
+              "x": 0.028,
+              "y": 0.016,
+              "w": 0.15,
+              "h": 0.94
+            },
+            {
+              "slot": 2,
+              "type": "bento-tile",
+              "label": "Primary Bento Feature Span (2x2) (Messaging)",
+              "x": 0.198,
+              "y": 0.036,
+              "w": 0.48,
+              "h": 0.44
+            },
+            {
+              "slot": 3,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile A (Messaging)",
+              "x": 0.698,
+              "y": 0.036,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 4,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile B (Messaging)",
+              "x": 0.698,
+              "y": 0.266,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 5,
+              "type": "kanban-lane",
+              "label": "Keyboard-Triage Issue Stream (Messaging)",
+              "x": 0.198,
+              "y": 0.496,
+              "w": 0.52,
+              "h": 0.44
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Design Token & Context Inspector (Messaging)",
+              "x": 0.738,
+              "y": 0.496,
+              "w": 0.25,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "command-palette",
+              "label": "Floating \u2318K Command Palette Overlay (Messaging)",
+              "x": 0.308,
+              "y": 0.176,
+              "w": 0.44,
+              "h": 0.28
+            },
+            {
+              "slot": 8,
+              "type": "toast-stack",
+              "label": "Non-Blocking Realtime Sync Toast (Messaging)",
+              "x": 0.768,
+              "y": 0.856,
+              "w": 0.2,
+              "h": 0.08
+            }
+          ]
+        },
+        {
+          "stage": 6,
+          "year": 2026,
+          "label": "2026 Agentic Spatial Canvas & Ledger",
+          "engine": "Generative DOM + Spatial",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "spatial-ornament",
+              "label": "Floating Gaze & Mode Ornament (Messaging)",
+              "x": 0.028,
+              "y": 0.156,
+              "w": 0.06,
+              "h": 0.68
+            },
+            {
+              "slot": 2,
+              "type": "chat-stream",
+              "label": "Multi-Agent Intent & Thought Stream (Messaging)",
+              "x": 0.108,
+              "y": 0.036,
+              "w": 0.28,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "command-palette",
+              "label": "Multimodal Intent Composer Bar (Messaging)",
+              "x": 0.108,
+              "y": 0.796,
+              "w": 0.28,
+              "h": 0.14
+            },
+            {
+              "slot": 4,
+              "type": "infinite-canvas",
+              "label": "Generative Ephemeral UI Sandbox (Messaging)",
+              "x": 0.408,
+              "y": 0.036,
+              "w": 0.58,
+              "h": 0.56
+            },
+            {
+              "slot": 5,
+              "type": "agent-trace-ledger",
+              "label": "Cryptographic Verification & Proof Ledger (Messaging)",
+              "x": 0.408,
+              "y": 0.616,
+              "w": 0.36,
+              "h": 0.32
+            },
+            {
+              "slot": 6,
+              "type": "bento-tile",
+              "label": "Live Diff & Rollback Control Tile (Messaging)",
+              "x": 0.788,
+              "y": 0.616,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 7,
+              "type": "minimap",
+              "label": "Topology & Constellation Radar (Messaging)",
+              "x": 0.788,
+              "y": 0.786,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Autonomous Verification Gate: PROVEN (Messaging)",
+              "x": 0.108,
+              "y": 0.92,
+              "w": 0.88,
+              "h": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MORPH_DEV_ANALYTICS",
+      "name": "Developer & SaaS Analytics",
+      "description": "From CGI log tables to Stripe/Grafana dark grids and verification studios",
+      "stages": [
+        {
+          "stage": 1,
+          "year": 1993,
+          "label": "1993 Web 1.0 Linear Document Flow",
+          "engine": "HTML 2.0 Flow",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "toolbar",
+              "label": "URL & Navigation Bar (Developer)",
+              "x": 0.012,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "hypertext-body",
+              "label": "H1 Document Title & Anchor Index (Developer)",
+              "x": 0.072,
+              "y": 0.134,
+              "w": 0.84,
+              "h": 0.14
+            },
+            {
+              "slot": 3,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block A (Developer)",
+              "x": 0.072,
+              "y": 0.294,
+              "w": 0.84,
+              "h": 0.2
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Inline GIF Image Map (Developer)",
+              "x": 0.152,
+              "y": 0.514,
+              "w": 0.68,
+              "h": 0.16
+            },
+            {
+              "slot": 5,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block B (Developer)",
+              "x": 0.072,
+              "y": 0.694,
+              "w": 0.84,
+              "h": 0.12
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "CGI Submit Form & Text Input (Developer)",
+              "x": 0.072,
+              "y": 0.834,
+              "w": 0.54,
+              "h": 0.08
+            },
+            {
+              "slot": 7,
+              "type": "tree-view",
+              "label": "Bottom Bullet Link Directory (Developer)",
+              "x": 0.632,
+              "y": 0.834,
+              "w": 0.28,
+              "h": 0.08
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Document Done Status Bar (Developer)",
+              "x": 0.012,
+              "y": 0.92,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 2,
+          "year": 1998,
+          "label": "1998 Dot-Com 3-Col Table Portal",
+          "engine": "Nested HTML Tables",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Portal Banner & Search Table Row (Developer)",
+              "x": 0.012,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.11
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Left Category Directory Table (Developer)",
+              "x": 0.012,
+              "y": 0.154,
+              "w": 0.2,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "breadcrumb",
+              "label": "Yahoo-Style Category Breadcrumb (Developer)",
+              "x": 0.232,
+              "y": 0.154,
+              "w": 0.52,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "data-table",
+              "label": "Center Portal Headlines & Links (Developer)",
+              "x": 0.232,
+              "y": 0.244,
+              "w": 0.52,
+              "h": 0.36
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Nested Promo Sub-Table (Developer)",
+              "x": 0.232,
+              "y": 0.624,
+              "w": 0.52,
+              "h": 0.27
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "Right Member Login & Poll Box (Developer)",
+              "x": 0.772,
+              "y": 0.154,
+              "w": 0.2,
+              "h": 0.34
+            },
+            {
+              "slot": 7,
+              "type": "tag-cloud",
+              "label": "Right Ticker & Webring Links (Developer)",
+              "x": 0.772,
+              "y": 0.514,
+              "w": 0.2,
+              "h": 0.38
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "800x600 Table Footer (Developer)",
+              "x": 0.012,
+              "y": 0.914,
+              "w": 0.96,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 3,
+          "year": 2005,
+          "label": "2005 Web 2.0 Ajax Split Workspace",
+          "engine": "CSS Floats + XHR",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "tab-strip",
+              "label": "Web 2.0 Glossy Top Tab Strip (Developer)",
+              "x": 0.012,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Ajax Folder & Label Tree (Developer)",
+              "x": 0.012,
+              "y": 0.134,
+              "w": 0.22,
+              "h": 0.52
+            },
+            {
+              "slot": 3,
+              "type": "tag-cloud",
+              "label": "Weighted Folksonomy Tag Cloud (Developer)",
+              "x": 0.012,
+              "y": 0.674,
+              "w": 0.22,
+              "h": 0.23
+            },
+            {
+              "slot": 4,
+              "type": "toolbar",
+              "label": "XHR Action Bar (Archive / Report / Tag) (Developer)",
+              "x": 0.252,
+              "y": 0.134,
+              "w": 0.72,
+              "h": 0.07
+            },
+            {
+              "slot": 5,
+              "type": "data-table",
+              "label": "Live Ajax Conversation / Item List (Developer)",
+              "x": 0.252,
+              "y": 0.224,
+              "w": 0.44,
+              "h": 0.68
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Asynchronous Inline Preview Pane (Developer)",
+              "x": 0.712,
+              "y": 0.224,
+              "w": 0.26,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "form-group",
+              "label": "Inline Quick-Reply / Ajax Editor (Developer)",
+              "x": 0.712,
+              "y": 0.684,
+              "w": 0.26,
+              "h": 0.22
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "RSS & XMLHttpRequest Sync Bar (Developer)",
+              "x": 0.012,
+              "y": 0.92,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 4,
+          "year": 2013,
+          "label": "2013 Responsive 12-Col Flat Grid",
+          "engine": "Bootstrap / Flexbox",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Fixed Top Flat Navbar + Hamburger (Developer)",
+              "x": 0.012,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.08
+            },
+            {
+              "slot": 2,
+              "type": "carousel",
+              "label": "Full-Bleed 12-Col Flat Hero Banner (Developer)",
+              "x": 0.032,
+              "y": 0.124,
+              "w": 0.92,
+              "h": 0.24
+            },
+            {
+              "slot": 3,
+              "type": "segmented-control",
+              "label": "Filter Pills & Responsive Breakpoint Toggle (Developer)",
+              "x": 0.032,
+              "y": 0.384,
+              "w": 0.6,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Elevation Card Column 1 (4-Col) (Developer)",
+              "x": 0.032,
+              "y": 0.474,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Elevation Card Column 2 (4-Col) (Developer)",
+              "x": 0.347,
+              "y": 0.474,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 6,
+              "type": "card-grid",
+              "label": "Elevation Card Column 3 (4-Col) (Developer)",
+              "x": 0.662,
+              "y": 0.474,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 7,
+              "type": "floating-action-btn",
+              "label": "Material Floating Action Button (+) (Developer)",
+              "x": 0.872,
+              "y": 0.784,
+              "w": 0.07,
+              "h": 0.09
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Minimal Flat Footer (Developer)",
+              "x": 0.032,
+              "y": 0.884,
+              "w": 0.92,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 5,
+          "year": 2020,
+          "label": "2020 Dark Token Bento + \u2318K Omnibox",
+          "engine": "CSS Grid + Custom Props",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "sidebar-nav",
+              "label": "Compact Icon + Workspace Rail (Developer)",
+              "x": 0.012,
+              "y": 0.024,
+              "w": 0.15,
+              "h": 0.94
+            },
+            {
+              "slot": 2,
+              "type": "bento-tile",
+              "label": "Primary Bento Feature Span (2x2) (Developer)",
+              "x": 0.182,
+              "y": 0.044,
+              "w": 0.48,
+              "h": 0.44
+            },
+            {
+              "slot": 3,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile A (Developer)",
+              "x": 0.682,
+              "y": 0.044,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 4,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile B (Developer)",
+              "x": 0.682,
+              "y": 0.274,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 5,
+              "type": "kanban-lane",
+              "label": "Keyboard-Triage Issue Stream (Developer)",
+              "x": 0.182,
+              "y": 0.504,
+              "w": 0.52,
+              "h": 0.44
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Design Token & Context Inspector (Developer)",
+              "x": 0.722,
+              "y": 0.504,
+              "w": 0.25,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "command-palette",
+              "label": "Floating \u2318K Command Palette Overlay (Developer)",
+              "x": 0.292,
+              "y": 0.184,
+              "w": 0.44,
+              "h": 0.28
+            },
+            {
+              "slot": 8,
+              "type": "toast-stack",
+              "label": "Non-Blocking Realtime Sync Toast (Developer)",
+              "x": 0.752,
+              "y": 0.864,
+              "w": 0.2,
+              "h": 0.08
+            }
+          ]
+        },
+        {
+          "stage": 6,
+          "year": 2026,
+          "label": "2026 Agentic Spatial Canvas & Ledger",
+          "engine": "Generative DOM + Spatial",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "spatial-ornament",
+              "label": "Floating Gaze & Mode Ornament (Developer)",
+              "x": 0.012,
+              "y": 0.164,
+              "w": 0.06,
+              "h": 0.68
+            },
+            {
+              "slot": 2,
+              "type": "chat-stream",
+              "label": "Multi-Agent Intent & Thought Stream (Developer)",
+              "x": 0.092,
+              "y": 0.044,
+              "w": 0.28,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "command-palette",
+              "label": "Multimodal Intent Composer Bar (Developer)",
+              "x": 0.092,
+              "y": 0.804,
+              "w": 0.28,
+              "h": 0.14
+            },
+            {
+              "slot": 4,
+              "type": "infinite-canvas",
+              "label": "Generative Ephemeral UI Sandbox (Developer)",
+              "x": 0.392,
+              "y": 0.044,
+              "w": 0.58,
+              "h": 0.56
+            },
+            {
+              "slot": 5,
+              "type": "agent-trace-ledger",
+              "label": "Cryptographic Verification & Proof Ledger (Developer)",
+              "x": 0.392,
+              "y": 0.624,
+              "w": 0.36,
+              "h": 0.32
+            },
+            {
+              "slot": 6,
+              "type": "bento-tile",
+              "label": "Live Diff & Rollback Control Tile (Developer)",
+              "x": 0.772,
+              "y": 0.624,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 7,
+              "type": "minimap",
+              "label": "Topology & Constellation Radar (Developer)",
+              "x": 0.772,
+              "y": 0.794,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Autonomous Verification Gate: PROVEN (Developer)",
+              "x": 0.092,
+              "y": 0.92,
+              "w": 0.88,
+              "h": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MORPH_CREATIVE_MEDIA",
+      "name": "Media & Creative Studio",
+      "description": "From Flash microsites & Web 2.0 photostreams to Figma WebGL and generative canvases",
+      "stages": [
+        {
+          "stage": 1,
+          "year": 1993,
+          "label": "1993 Web 1.0 Linear Document Flow",
+          "engine": "HTML 2.0 Flow",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "toolbar",
+              "label": "URL & Navigation Bar (Media)",
+              "x": 0.02,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "hypertext-body",
+              "label": "H1 Document Title & Anchor Index (Media)",
+              "x": 0.08,
+              "y": 0.134,
+              "w": 0.84,
+              "h": 0.14
+            },
+            {
+              "slot": 3,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block A (Media)",
+              "x": 0.08,
+              "y": 0.294,
+              "w": 0.84,
+              "h": 0.2
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Inline GIF Image Map (Media)",
+              "x": 0.16,
+              "y": 0.514,
+              "w": 0.68,
+              "h": 0.16
+            },
+            {
+              "slot": 5,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block B (Media)",
+              "x": 0.08,
+              "y": 0.694,
+              "w": 0.84,
+              "h": 0.12
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "CGI Submit Form & Text Input (Media)",
+              "x": 0.08,
+              "y": 0.834,
+              "w": 0.54,
+              "h": 0.08
+            },
+            {
+              "slot": 7,
+              "type": "tree-view",
+              "label": "Bottom Bullet Link Directory (Media)",
+              "x": 0.64,
+              "y": 0.834,
+              "w": 0.28,
+              "h": 0.08
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Document Done Status Bar (Media)",
+              "x": 0.02,
+              "y": 0.92,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 2,
+          "year": 1998,
+          "label": "1998 Dot-Com 3-Col Table Portal",
+          "engine": "Nested HTML Tables",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Portal Banner & Search Table Row (Media)",
+              "x": 0.02,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.11
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Left Category Directory Table (Media)",
+              "x": 0.02,
+              "y": 0.154,
+              "w": 0.2,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "breadcrumb",
+              "label": "Yahoo-Style Category Breadcrumb (Media)",
+              "x": 0.24,
+              "y": 0.154,
+              "w": 0.52,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "data-table",
+              "label": "Center Portal Headlines & Links (Media)",
+              "x": 0.24,
+              "y": 0.244,
+              "w": 0.52,
+              "h": 0.36
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Nested Promo Sub-Table (Media)",
+              "x": 0.24,
+              "y": 0.624,
+              "w": 0.52,
+              "h": 0.27
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "Right Member Login & Poll Box (Media)",
+              "x": 0.78,
+              "y": 0.154,
+              "w": 0.2,
+              "h": 0.34
+            },
+            {
+              "slot": 7,
+              "type": "tag-cloud",
+              "label": "Right Ticker & Webring Links (Media)",
+              "x": 0.78,
+              "y": 0.514,
+              "w": 0.2,
+              "h": 0.38
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "800x600 Table Footer (Media)",
+              "x": 0.02,
+              "y": 0.914,
+              "w": 0.96,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 3,
+          "year": 2005,
+          "label": "2005 Web 2.0 Ajax Split Workspace",
+          "engine": "CSS Floats + XHR",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "tab-strip",
+              "label": "Web 2.0 Glossy Top Tab Strip (Media)",
+              "x": 0.02,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Ajax Folder & Label Tree (Media)",
+              "x": 0.02,
+              "y": 0.134,
+              "w": 0.22,
+              "h": 0.52
+            },
+            {
+              "slot": 3,
+              "type": "tag-cloud",
+              "label": "Weighted Folksonomy Tag Cloud (Media)",
+              "x": 0.02,
+              "y": 0.674,
+              "w": 0.22,
+              "h": 0.23
+            },
+            {
+              "slot": 4,
+              "type": "toolbar",
+              "label": "XHR Action Bar (Archive / Report / Tag) (Media)",
+              "x": 0.26,
+              "y": 0.134,
+              "w": 0.72,
+              "h": 0.07
+            },
+            {
+              "slot": 5,
+              "type": "data-table",
+              "label": "Live Ajax Conversation / Item List (Media)",
+              "x": 0.26,
+              "y": 0.224,
+              "w": 0.44,
+              "h": 0.68
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Asynchronous Inline Preview Pane (Media)",
+              "x": 0.72,
+              "y": 0.224,
+              "w": 0.26,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "form-group",
+              "label": "Inline Quick-Reply / Ajax Editor (Media)",
+              "x": 0.72,
+              "y": 0.684,
+              "w": 0.26,
+              "h": 0.22
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "RSS & XMLHttpRequest Sync Bar (Media)",
+              "x": 0.02,
+              "y": 0.92,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 4,
+          "year": 2013,
+          "label": "2013 Responsive 12-Col Flat Grid",
+          "engine": "Bootstrap / Flexbox",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Fixed Top Flat Navbar + Hamburger (Media)",
+              "x": 0.02,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.08
+            },
+            {
+              "slot": 2,
+              "type": "carousel",
+              "label": "Full-Bleed 12-Col Flat Hero Banner (Media)",
+              "x": 0.04,
+              "y": 0.124,
+              "w": 0.92,
+              "h": 0.24
+            },
+            {
+              "slot": 3,
+              "type": "segmented-control",
+              "label": "Filter Pills & Responsive Breakpoint Toggle (Media)",
+              "x": 0.04,
+              "y": 0.384,
+              "w": 0.6,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Elevation Card Column 1 (4-Col) (Media)",
+              "x": 0.04,
+              "y": 0.474,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Elevation Card Column 2 (4-Col) (Media)",
+              "x": 0.355,
+              "y": 0.474,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 6,
+              "type": "card-grid",
+              "label": "Elevation Card Column 3 (4-Col) (Media)",
+              "x": 0.67,
+              "y": 0.474,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 7,
+              "type": "floating-action-btn",
+              "label": "Material Floating Action Button (+) (Media)",
+              "x": 0.88,
+              "y": 0.784,
+              "w": 0.07,
+              "h": 0.09
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Minimal Flat Footer (Media)",
+              "x": 0.04,
+              "y": 0.884,
+              "w": 0.92,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 5,
+          "year": 2020,
+          "label": "2020 Dark Token Bento + \u2318K Omnibox",
+          "engine": "CSS Grid + Custom Props",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "sidebar-nav",
+              "label": "Compact Icon + Workspace Rail (Media)",
+              "x": 0.02,
+              "y": 0.024,
+              "w": 0.15,
+              "h": 0.94
+            },
+            {
+              "slot": 2,
+              "type": "bento-tile",
+              "label": "Primary Bento Feature Span (2x2) (Media)",
+              "x": 0.19,
+              "y": 0.044,
+              "w": 0.48,
+              "h": 0.44
+            },
+            {
+              "slot": 3,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile A (Media)",
+              "x": 0.69,
+              "y": 0.044,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 4,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile B (Media)",
+              "x": 0.69,
+              "y": 0.274,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 5,
+              "type": "kanban-lane",
+              "label": "Keyboard-Triage Issue Stream (Media)",
+              "x": 0.19,
+              "y": 0.504,
+              "w": 0.52,
+              "h": 0.44
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Design Token & Context Inspector (Media)",
+              "x": 0.73,
+              "y": 0.504,
+              "w": 0.25,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "command-palette",
+              "label": "Floating \u2318K Command Palette Overlay (Media)",
+              "x": 0.3,
+              "y": 0.184,
+              "w": 0.44,
+              "h": 0.28
+            },
+            {
+              "slot": 8,
+              "type": "toast-stack",
+              "label": "Non-Blocking Realtime Sync Toast (Media)",
+              "x": 0.76,
+              "y": 0.864,
+              "w": 0.2,
+              "h": 0.08
+            }
+          ]
+        },
+        {
+          "stage": 6,
+          "year": 2026,
+          "label": "2026 Agentic Spatial Canvas & Ledger",
+          "engine": "Generative DOM + Spatial",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "spatial-ornament",
+              "label": "Floating Gaze & Mode Ornament (Media)",
+              "x": 0.02,
+              "y": 0.164,
+              "w": 0.06,
+              "h": 0.68
+            },
+            {
+              "slot": 2,
+              "type": "chat-stream",
+              "label": "Multi-Agent Intent & Thought Stream (Media)",
+              "x": 0.1,
+              "y": 0.044,
+              "w": 0.28,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "command-palette",
+              "label": "Multimodal Intent Composer Bar (Media)",
+              "x": 0.1,
+              "y": 0.804,
+              "w": 0.28,
+              "h": 0.14
+            },
+            {
+              "slot": 4,
+              "type": "infinite-canvas",
+              "label": "Generative Ephemeral UI Sandbox (Media)",
+              "x": 0.4,
+              "y": 0.044,
+              "w": 0.58,
+              "h": 0.56
+            },
+            {
+              "slot": 5,
+              "type": "agent-trace-ledger",
+              "label": "Cryptographic Verification & Proof Ledger (Media)",
+              "x": 0.4,
+              "y": 0.624,
+              "w": 0.36,
+              "h": 0.32
+            },
+            {
+              "slot": 6,
+              "type": "bento-tile",
+              "label": "Live Diff & Rollback Control Tile (Media)",
+              "x": 0.78,
+              "y": 0.624,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 7,
+              "type": "minimap",
+              "label": "Topology & Constellation Radar (Media)",
+              "x": 0.78,
+              "y": 0.794,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Autonomous Verification Gate: PROVEN (Media)",
+              "x": 0.1,
+              "y": 0.92,
+              "w": 0.88,
+              "h": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MORPH_OS_SHELL",
+      "name": "Web Application Shell & Navigation",
+      "description": "From top browser bars & framesets to hamburger drawers, \u2318K omniboxes, and spatial ornaments",
+      "stages": [
+        {
+          "stage": 1,
+          "year": 1993,
+          "label": "1993 Web 1.0 Linear Document Flow",
+          "engine": "HTML 2.0 Flow",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "toolbar",
+              "label": "URL & Navigation Bar (Web)",
+              "x": 0.028,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "hypertext-body",
+              "label": "H1 Document Title & Anchor Index (Web)",
+              "x": 0.088,
+              "y": 0.134,
+              "w": 0.84,
+              "h": 0.14
+            },
+            {
+              "slot": 3,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block A (Web)",
+              "x": 0.088,
+              "y": 0.294,
+              "w": 0.84,
+              "h": 0.2
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Inline GIF Image Map (Web)",
+              "x": 0.168,
+              "y": 0.514,
+              "w": 0.68,
+              "h": 0.16
+            },
+            {
+              "slot": 5,
+              "type": "hypertext-body",
+              "label": "Linear Hypertext Paragraph Block B (Web)",
+              "x": 0.088,
+              "y": 0.694,
+              "w": 0.84,
+              "h": 0.12
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "CGI Submit Form & Text Input (Web)",
+              "x": 0.088,
+              "y": 0.834,
+              "w": 0.54,
+              "h": 0.08
+            },
+            {
+              "slot": 7,
+              "type": "tree-view",
+              "label": "Bottom Bullet Link Directory (Web)",
+              "x": 0.648,
+              "y": 0.834,
+              "w": 0.28,
+              "h": 0.08
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Document Done Status Bar (Web)",
+              "x": 0.028,
+              "y": 0.92,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 2,
+          "year": 1998,
+          "label": "1998 Dot-Com 3-Col Table Portal",
+          "engine": "Nested HTML Tables",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Portal Banner & Search Table Row (Web)",
+              "x": 0.028,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.11
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Left Category Directory Table (Web)",
+              "x": 0.028,
+              "y": 0.154,
+              "w": 0.2,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "breadcrumb",
+              "label": "Yahoo-Style Category Breadcrumb (Web)",
+              "x": 0.248,
+              "y": 0.154,
+              "w": 0.52,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "data-table",
+              "label": "Center Portal Headlines & Links (Web)",
+              "x": 0.248,
+              "y": 0.244,
+              "w": 0.52,
+              "h": 0.36
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Nested Promo Sub-Table (Web)",
+              "x": 0.248,
+              "y": 0.624,
+              "w": 0.52,
+              "h": 0.27
+            },
+            {
+              "slot": 6,
+              "type": "form-group",
+              "label": "Right Member Login & Poll Box (Web)",
+              "x": 0.788,
+              "y": 0.154,
+              "w": 0.2,
+              "h": 0.34
+            },
+            {
+              "slot": 7,
+              "type": "tag-cloud",
+              "label": "Right Ticker & Webring Links (Web)",
+              "x": 0.788,
+              "y": 0.514,
+              "w": 0.2,
+              "h": 0.38
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "800x600 Table Footer (Web)",
+              "x": 0.028,
+              "y": 0.914,
+              "w": 0.96,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 3,
+          "year": 2005,
+          "label": "2005 Web 2.0 Ajax Split Workspace",
+          "engine": "CSS Floats + XHR",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "tab-strip",
+              "label": "Web 2.0 Glossy Top Tab Strip (Web)",
+              "x": 0.028,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.09
+            },
+            {
+              "slot": 2,
+              "type": "sidebar-nav",
+              "label": "Ajax Folder & Label Tree (Web)",
+              "x": 0.028,
+              "y": 0.134,
+              "w": 0.22,
+              "h": 0.52
+            },
+            {
+              "slot": 3,
+              "type": "tag-cloud",
+              "label": "Weighted Folksonomy Tag Cloud (Web)",
+              "x": 0.028,
+              "y": 0.674,
+              "w": 0.22,
+              "h": 0.23
+            },
+            {
+              "slot": 4,
+              "type": "toolbar",
+              "label": "XHR Action Bar (Archive / Report / Tag) (Web)",
+              "x": 0.268,
+              "y": 0.134,
+              "w": 0.72,
+              "h": 0.07
+            },
+            {
+              "slot": 5,
+              "type": "data-table",
+              "label": "Live Ajax Conversation / Item List (Web)",
+              "x": 0.268,
+              "y": 0.224,
+              "w": 0.44,
+              "h": 0.68
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Asynchronous Inline Preview Pane (Web)",
+              "x": 0.728,
+              "y": 0.224,
+              "w": 0.26,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "form-group",
+              "label": "Inline Quick-Reply / Ajax Editor (Web)",
+              "x": 0.728,
+              "y": 0.684,
+              "w": 0.26,
+              "h": 0.22
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "RSS & XMLHttpRequest Sync Bar (Web)",
+              "x": 0.028,
+              "y": 0.92,
+              "w": 0.96,
+              "h": 0.05
+            }
+          ]
+        },
+        {
+          "stage": 4,
+          "year": 2013,
+          "label": "2013 Responsive 12-Col Flat Grid",
+          "engine": "Bootstrap / Flexbox",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "menubar",
+              "label": "Fixed Top Flat Navbar + Hamburger (Web)",
+              "x": 0.028,
+              "y": 0.024,
+              "w": 0.96,
+              "h": 0.08
+            },
+            {
+              "slot": 2,
+              "type": "carousel",
+              "label": "Full-Bleed 12-Col Flat Hero Banner (Web)",
+              "x": 0.048,
+              "y": 0.124,
+              "w": 0.92,
+              "h": 0.24
+            },
+            {
+              "slot": 3,
+              "type": "segmented-control",
+              "label": "Filter Pills & Responsive Breakpoint Toggle (Web)",
+              "x": 0.048,
+              "y": 0.384,
+              "w": 0.6,
+              "h": 0.07
+            },
+            {
+              "slot": 4,
+              "type": "card-grid",
+              "label": "Elevation Card Column 1 (4-Col) (Web)",
+              "x": 0.048,
+              "y": 0.474,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 5,
+              "type": "card-grid",
+              "label": "Elevation Card Column 2 (4-Col) (Web)",
+              "x": 0.363,
+              "y": 0.474,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 6,
+              "type": "card-grid",
+              "label": "Elevation Card Column 3 (4-Col) (Web)",
+              "x": 0.678,
+              "y": 0.474,
+              "w": 0.29,
+              "h": 0.38
+            },
+            {
+              "slot": 7,
+              "type": "floating-action-btn",
+              "label": "Material Floating Action Button (+) (Web)",
+              "x": 0.888,
+              "y": 0.784,
+              "w": 0.07,
+              "h": 0.09
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Minimal Flat Footer (Web)",
+              "x": 0.048,
+              "y": 0.884,
+              "w": 0.92,
+              "h": 0.06
+            }
+          ]
+        },
+        {
+          "stage": 5,
+          "year": 2020,
+          "label": "2020 Dark Token Bento + \u2318K Omnibox",
+          "engine": "CSS Grid + Custom Props",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "sidebar-nav",
+              "label": "Compact Icon + Workspace Rail (Web)",
+              "x": 0.028,
+              "y": 0.024,
+              "w": 0.15,
+              "h": 0.94
+            },
+            {
+              "slot": 2,
+              "type": "bento-tile",
+              "label": "Primary Bento Feature Span (2x2) (Web)",
+              "x": 0.198,
+              "y": 0.044,
+              "w": 0.48,
+              "h": 0.44
+            },
+            {
+              "slot": 3,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile A (Web)",
+              "x": 0.698,
+              "y": 0.044,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 4,
+              "type": "bento-tile",
+              "label": "Realtime Metric Bento Tile B (Web)",
+              "x": 0.698,
+              "y": 0.274,
+              "w": 0.29,
+              "h": 0.21
+            },
+            {
+              "slot": 5,
+              "type": "kanban-lane",
+              "label": "Keyboard-Triage Issue Stream (Web)",
+              "x": 0.198,
+              "y": 0.504,
+              "w": 0.52,
+              "h": 0.44
+            },
+            {
+              "slot": 6,
+              "type": "inspector-panel",
+              "label": "Design Token & Context Inspector (Web)",
+              "x": 0.738,
+              "y": 0.504,
+              "w": 0.25,
+              "h": 0.44
+            },
+            {
+              "slot": 7,
+              "type": "command-palette",
+              "label": "Floating \u2318K Command Palette Overlay (Web)",
+              "x": 0.308,
+              "y": 0.184,
+              "w": 0.44,
+              "h": 0.28
+            },
+            {
+              "slot": 8,
+              "type": "toast-stack",
+              "label": "Non-Blocking Realtime Sync Toast (Web)",
+              "x": 0.768,
+              "y": 0.864,
+              "w": 0.2,
+              "h": 0.08
+            }
+          ]
+        },
+        {
+          "stage": 6,
+          "year": 2026,
+          "label": "2026 Agentic Spatial Canvas & Ledger",
+          "engine": "Generative DOM + Spatial",
+          "nodes": [
+            {
+              "slot": 1,
+              "type": "spatial-ornament",
+              "label": "Floating Gaze & Mode Ornament (Web)",
+              "x": 0.028,
+              "y": 0.164,
+              "w": 0.06,
+              "h": 0.68
+            },
+            {
+              "slot": 2,
+              "type": "chat-stream",
+              "label": "Multi-Agent Intent & Thought Stream (Web)",
+              "x": 0.108,
+              "y": 0.044,
+              "w": 0.28,
+              "h": 0.74
+            },
+            {
+              "slot": 3,
+              "type": "command-palette",
+              "label": "Multimodal Intent Composer Bar (Web)",
+              "x": 0.108,
+              "y": 0.804,
+              "w": 0.28,
+              "h": 0.14
+            },
+            {
+              "slot": 4,
+              "type": "infinite-canvas",
+              "label": "Generative Ephemeral UI Sandbox (Web)",
+              "x": 0.408,
+              "y": 0.044,
+              "w": 0.58,
+              "h": 0.56
+            },
+            {
+              "slot": 5,
+              "type": "agent-trace-ledger",
+              "label": "Cryptographic Verification & Proof Ledger (Web)",
+              "x": 0.408,
+              "y": 0.624,
+              "w": 0.36,
+              "h": 0.32
+            },
+            {
+              "slot": 6,
+              "type": "bento-tile",
+              "label": "Live Diff & Rollback Control Tile (Web)",
+              "x": 0.788,
+              "y": 0.624,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 7,
+              "type": "minimap",
+              "label": "Topology & Constellation Radar (Web)",
+              "x": 0.788,
+              "y": 0.794,
+              "w": 0.2,
+              "h": 0.15
+            },
+            {
+              "slot": 8,
+              "type": "status-bar",
+              "label": "Autonomous Verification Gate: PROVEN (Web)",
+              "x": 0.108,
+              "y": 0.92,
+              "w": 0.88,
+              "h": 0.04
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "componentEvolution": [
+    {
+      "componentType": "menubar",
+      "totalOccurrences": 536,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 102
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 102
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 80
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 80
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 64
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 54
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 54
+        }
+      ]
+    },
+    {
+      "componentType": "toolbar",
+      "totalOccurrences": 587,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 72
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 42
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 102
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 102
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 102
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 85
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 82
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "command-line",
+      "totalOccurrences": 256,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 57
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 91
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 72
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 36
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "tree-view",
+      "totalOccurrences": 262,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 42
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 39
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 30
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 66
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 36
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 25
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 24
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "data-table",
+      "totalOccurrences": 599,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 56
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 91
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 95
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 60
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 66
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 85
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 61
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 55
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 30
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "form-group",
+      "totalOccurrences": 598,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 102
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 119
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 72
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 63
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 95
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 60
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 38
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 25
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 24
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "crt-vector-viewport",
+      "totalOccurrences": 137,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 82
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 55
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "status-bar",
+      "totalOccurrences": 826,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 102
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 119
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 102
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 102
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 102
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 71
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 42
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 42
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 47
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 34
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 28
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 35
+        }
+      ]
+    },
+    {
+      "componentType": "modal-dialog",
+      "totalOccurrences": 178,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 36
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 59
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 32
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 26
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 25
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "tab-strip",
+      "totalOccurrences": 284,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 31
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 30
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 31
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 49
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 37
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 64
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 42
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "breadcrumb",
+      "totalOccurrences": 173,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 66
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 60
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 47
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "tag-cloud",
+      "totalOccurrences": 141,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 24
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 69
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 48
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "carousel",
+      "totalOccurrences": 144,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 24
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 19
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 33
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 40
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 28
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "card-grid",
+      "totalOccurrences": 355,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 66
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 85
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 82
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 80
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 42
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "sidebar-nav",
+      "totalOccurrences": 353,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 98
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 85
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 61
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 61
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 48
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "floating-action-btn",
+      "totalOccurrences": 48,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 23
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 25
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "command-palette",
+      "totalOccurrences": 179,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 25
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 46
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 54
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 54
+        }
+      ]
+    },
+    {
+      "componentType": "kanban-lane",
+      "totalOccurrences": 185,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 27
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 41
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 44
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 43
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 30
+        }
+      ]
+    },
+    {
+      "componentType": "infinite-canvas",
+      "totalOccurrences": 148,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 18
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 25
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 31
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 32
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 42
+        }
+      ]
+    },
+    {
+      "componentType": "chat-stream",
+      "totalOccurrences": 94,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 26
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 27
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 41
+        }
+      ]
+    },
+    {
+      "componentType": "agent-trace-ledger",
+      "totalOccurrences": 92,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 18
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 32
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 42
+        }
+      ]
+    },
+    {
+      "componentType": "bento-tile",
+      "totalOccurrences": 142,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 25
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 43
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 42
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 32
+        }
+      ]
+    },
+    {
+      "componentType": "spatial-ornament",
+      "totalOccurrences": 95,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 22
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 31
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 42
+        }
+      ]
+    },
+    {
+      "componentType": "split-pane",
+      "totalOccurrences": 275,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 39
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 42
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 61
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 97
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 36
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 0
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 0
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "inspector-panel",
+      "totalOccurrences": 563,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 72
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 42
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 58
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 66
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 36
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 25
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 52
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 80
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 55
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 41
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 20
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 16
+        }
+      ]
+    },
+    {
+      "componentType": "timeline-scrubber",
+      "totalOccurrences": 202,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 84
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 69
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 25
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 24
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "minimap",
+      "totalOccurrences": 201,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 82
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 70
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 0
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 25
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 24
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 0
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "componentType": "toast-stack",
+      "totalOccurrences": 102,
+      "byEra": [
+        {
+          "era": "E01",
+          "yearStart": 1966,
+          "count": 0
+        },
+        {
+          "era": "E02",
+          "yearStart": 1972,
+          "count": 0
+        },
+        {
+          "era": "E03",
+          "yearStart": 1979,
+          "count": 0
+        },
+        {
+          "era": "E04",
+          "yearStart": 1985,
+          "count": 0
+        },
+        {
+          "era": "E05",
+          "yearStart": 1991,
+          "count": 0
+        },
+        {
+          "era": "E06",
+          "yearStart": 1997,
+          "count": 0
+        },
+        {
+          "era": "E07",
+          "yearStart": 2002,
+          "count": 0
+        },
+        {
+          "era": "E08",
+          "yearStart": 2007,
+          "count": 22
+        },
+        {
+          "era": "E09",
+          "yearStart": 2012,
+          "count": 23
+        },
+        {
+          "era": "E10",
+          "yearStart": 2017,
+          "count": 20
+        },
+        {
+          "era": "E11",
+          "yearStart": 2021,
+          "count": 18
+        },
+        {
+          "era": "E12",
+          "yearStart": 2024,
+          "count": 19
+        }
+      ]
+    }
+  ]
+}

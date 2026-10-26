@@ -1,0 +1,15 @@
+{
+  "name": "history-in-ui-development",
+  "version": "1.0.0",
+  "description": "A History in UI Development: 60-Year Software & Web UI Wireframe Dataset (1966-2026), UX Research Dashboard, and Interactive p5.js Web UI Trends Experience",
+  "private": true,
+  "scripts": {
+    "generate": "python3 -I scripts/generate_dataset.py",
+    "start": "python3 -I server.py --port 8080",
+    "verify:dataset": "python3 -I tests/verify_dataset.py",
+    "verify:http": "python3 -I tests/verify_app_http.py",
+    "verify:e2e": "node tests/verify_browser_e2e.mjs",
+    "verify:stewardship": "python3 -I tests/verify_stewardship.py",
+    "test": "python3 -I tests/verify_dataset.py && python3 -I tests/verify_app_http.py && node tests/verify_browser_e2e.mjs"
+  }
+}

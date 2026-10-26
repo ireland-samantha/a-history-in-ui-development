@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A History in UI Development (1966–2026) — Interactive p5.js Web UI Trends & 1,026-Wireframe UX Research Workbench</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%230284c7%22/></svg>" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/vendor/p5.min.js"></script>
+</head>
+<body>
+  <!-- Top Product Bar -->
+  <header class="topbar">
+    <div class="brand-block">
+      <div class="brand-logo" aria-hidden="true">
+        <span class="logo-grid"></span>
+      </div>
+      <div>
+        <div class="brand-eyebrow">UX RESEARCH CORPUS &amp; INTERACTIVE p5.js PRODUCT · 1966–2026</div>
+        <h1 class="brand-title">A History in UI Development</h1>
+      </div>
+    </div>
+
+    <div class="telemetry-strip" id="telemetry-strip">
+      <div class="stat-pill"><span class="stat-val" id="stat-total-wf">1,026</span><span class="stat-lbl">Unique Wireframes</span></div>
+      <div class="stat-pill"><span class="stat-val" id="stat-year-span">60 Yrs</span><span class="stat-lbl">1966–2026 Span</span></div>
+      <div class="stat-pill"><span class="stat-val" id="stat-era-count">12</span><span class="stat-lbl">UI Eras</span></div>
+      <div class="stat-pill"><span class="stat-val" id="stat-comp-count">35</span><span class="stat-lbl">UI Primitives</span></div>
+      <div class="stat-pill"><span class="stat-val" id="stat-hash-verified">100%</span><span class="stat-lbl">Geom Hash Unique</span></div>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="btn btn-secondary" id="btn-export-json" title="Export currently filtered wireframes as JSON">Export JSON</button>
+      <button class="btn btn-secondary" id="btn-export-csv" title="Export currently filtered wireframes as CSV">Export CSV</button>
+    </div>
+  </header>
+
+  <!-- 12-Era Quick Ribbon -->
+  <nav class="era-ribbon" id="era-ribbon" aria-label="Historical UI Eras 1966 to 2026"></nav>
+
+  <!-- Main Product Layout -->
+  <main class="workspace">
+    <!-- SECTION 1: Standalone Interactive p5.js Product Experience -->
+    <section class="p5-product-section" aria-label="Interactive p5.js UI History and Web Trends Experience">
+      <div class="p5-header-bar">
+        <div class="p5-mode-tabs" role="tablist">
+          <button class="p5-mode-btn active" data-p5-mode="chronos" role="tab" aria-selected="true">
+            <span class="mode-num">01</span> Chronos 60-Year Landscape
+          </button>
+          <button class="p5-mode-btn" data-p5-mode="simulator" role="tab" aria-selected="false">
+            <span class="mode-num">02</span> Live p5.js Wireframe Simulator
+          </button>
+          <button class="p5-mode-btn" data-p5-mode="web-morph" role="tab" aria-selected="false">
+            <span class="mode-num">03</span> Web UI Trends Morphing Lab
+          </button>
+          <button class="p5-mode-btn" data-p5-mode="constellation" role="tab" aria-selected="false">
+            <span class="mode-num">04</span> UI Genealogy Constellation
+          </button>
+        </div>
+
+        <!-- Contextual Controls for the Active p5.js Mode -->
+        <div class="p5-controls-bar">
+          <!-- Controls for Mode 1: Chronos -->
+          <div class="p5-ctrl-group" id="p5-ctrl-chronos">
+            <button class="btn btn-accent btn-sm" id="btn-chronos-play">▶ Play 60Y Evolution</button>
+            <label class="ctrl-inline">
+              <span>Scrub Year:</span>
+              <input type="range" id="chronos-year-slider" min="1966" max="2026" value="2026" />
+              <strong id="chronos-year-label">1966–2026 (All)</strong>
+            </label>
+            <label class="ctrl-inline">
+              <span>Y-Axis Metric:</span>
+              <select id="chronos-metric-select">
+                <option value="informationDensity">Information Density</option>
+                <option value="visualChromeRatio">Visual Chrome Ratio</option>
+                <option value="layoutResponsiveness">Layout Responsiveness</option>
+                <option value="fittsLawEfficiency">Fitts's Law Efficiency</option>
+                <option value="cognitiveLoadIndex">Cognitive Load Index</option>
+                <option value="keyboardToPointerBias">Keyboard ↔ Pointer/Touch Bias</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Controls for Mode 2: Simulator -->
+          <div class="p5-ctrl-group hidden" id="p5-ctrl-simulator">
+            <label class="ctrl-inline">
+              <span>Render Fidelity:</span>
+              <select id="sim-fidelity-select">
+                <option value="era-authentic">Era-Authentic Chrome &amp; Shader</option>
+                <option value="blueprint">Architectural Wireframe Blueprint</option>
+                <option value="fitts-heatmap">Fitts's Law &amp; Attention Heatmap</option>
+              </select>
+            </label>
+            <label class="ctrl-inline">
+              <input type="checkbox" id="sim-show-grid" checked />
+              <span>Grid Columns</span>
+            </label>
+            <label class="ctrl-inline">
+              <input type="checkbox" id="sim-show-metrics" checked />
+              <span>HUD Telemetry</span>
+            </label>
+            <button class="btn btn-secondary btn-sm" id="btn-sim-prev">← Prev Year</button>
+            <button class="btn btn-secondary btn-sm" id="btn-sim-next">Next Year →</button>
+          </div>
+
+          <!-- Controls for Mode 3: Web UI Trends Morphing Lab -->
+          <div class="p5-ctrl-group hidden" id="p5-ctrl-web-morph">
+            <button class="btn btn-accent btn-sm" id="btn-morph-play">▶ Auto-Morph Web Eras</button>
+            <label class="ctrl-inline">
+              <span>Web Archetype:</span>
+              <select id="morph-archetype-select"></select>
+            </label>
+            <label class="ctrl-inline">
+              <span>Web Era Morph (1993→2026):</span>
+              <input type="range" id="morph-stage-slider" min="0" max="500" value="0" />
+              <strong id="morph-stage-label">1993 Web 1.0</strong>
+            </label>
+          </div>
+
+          <!-- Controls for Mode 4: Constellation -->
+          <div class="p5-ctrl-group hidden" id="p5-ctrl-constellation">
+            <label class="ctrl-inline">
+              <span>Cluster By:</span>
+              <select id="constellation-group-select">
+                <option value="era">12 Historical Eras Ring</option>
+                <option value="domain">10 Software &amp; Web Domains</option>
+              </select>
+            </label>
+            <label class="ctrl-inline">
+              <input type="checkbox" id="constellation-show-lineage" checked />
+              <span>Show Lineage DAG Edges</span>
+            </label>
+            <button class="btn btn-secondary btn-sm" id="btn-constellation-reset">Reset Camera</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- p5.js Canvas Mount + Active Wireframe Overlay Strip -->
+      <div class="p5-stage-wrapper">
+        <div id="p5-canvas-container" class="p5-canvas-container"></div>
+        <aside class="p5-side-hud" id="p5-side-hud">
+          <div class="hud-card">
+            <div class="hud-eyebrow" id="hud-era-badge">ERA E01 · 1968</div>
+            <h2 class="hud-title" id="hud-wf-title">Loading wireframe...</h2>
+            <p class="hud-subtitle" id="hud-wf-meta"></p>
+            <div class="hud-metrics-mini" id="hud-metrics-mini"></div>
+            <p class="hud-notes" id="hud-wf-notes"></p>
+            <div class="hud-btn-row">
+              <button class="btn btn-accent btn-sm" id="btn-hud-simulate">Open in Simulator</button>
+              <button class="btn btn-secondary btn-sm" id="btn-hud-inspect">Full Blueprint</button>
+              <button class="btn btn-secondary btn-sm" id="btn-hud-compare">+ Compare</button>
+            </div>
+          </div>
+          <div class="hud-card hud-interaction-log">
+            <div class="hud-eyebrow">LIVE p5.js INTERACTION STATE</div>
+            <div id="hud-node-readout" class="hud-node-readout">
+              Hover or click any wireframe node or timeline point in the p5.js canvas to inspect its geometry, UX ergonomics, and historical lineage.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Robust Modern UX Research Dashboard -->
+    <section class="dashboard-section" aria-label="Wireframe Dataset Navigation Dashboard">
+      <!-- Left Multi-Facet Filter Sidebar -->
+      <aside class="filter-sidebar">
+        <div class="filter-header">
+          <h2>Corpus Navigator</h2>
+          <button class="btn-link" id="btn-reset-filters">Reset All</button>
+        </div>
+
+        <div class="filter-Summary-box" id="filter-count-banner">
+          Showing <strong>1,026</strong> of 1,026 wireframes
+        </div>
+
+        <div class="filter-group">
+          <label for="search-input">Search Wireframes (Title, Notes, ID, Component)</label>
+          <input type="search" id="search-input" placeholder="e.g. Sketchpad, Mosaic, Gmail, ⌘K, bento..." />
+        </div>
+
+        <div class="filter-row-2col">
+          <div class="filter-group">
+            <label for="filter-year-min">From Year</label>
+            <input type="number" id="filter-year-min" min="1966" max="2026" value="1966" />
+          </div>
+          <div class="filter-group">
+            <label for="filter-year-max">To Year</label>
+            <input type="number" id="filter-year-max" min="1966" max="2026" value="2026" />
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-era">Historical UI Era (12)</label>
+          <select id="filter-era">
+            <option value="ALL">All 12 Historical UI Eras (1966–2026)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-decade">Decade</label>
+          <select id="filter-decade">
+            <option value="ALL">All Decades (1960s–2020s)</option>
+            <option value="1960s">1960s (1966–1969)</option>
+            <option value="1970s">1970s (1970–1979)</option>
+            <option value="1980s">1980s (1980–1989)</option>
+            <option value="1990s">1990s (1990–1999)</option>
+            <option value="2000s">2000s (2000–2009)</option>
+            <option value="2010s">2010s (2010–2019)</option>
+            <option value="2020s">2020s (2020–2026)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-domain">Application Domain (10)</label>
+          <select id="filter-domain">
+            <option value="ALL">All 10 Domains</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-platform">Platform Class (10)</label>
+          <select id="filter-platform">
+            <option value="ALL">All 10 Platforms</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-engine">Layout Engine / Paradigm</label>
+          <select id="filter-engine">
+            <option value="ALL">All Layout Engines</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-component">UI Component Primitive (35)</label>
+          <select id="filter-component">
+            <option value="ALL">All 35 Component Primitives</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="sort-by">Sort Corpus By</label>
+          <select id="sort-by">
+            <option value="year-asc">Chronological (1966 → 2026)</option>
+            <option value="year-desc">Reverse Chronological (2026 → 1966)</option>
+            <option value="density-desc">Information Density (High → Low)</option>
+            <option value="chrome-desc">Visual Chrome Ratio (High → Low)</option>
+            <option value="responsive-desc">Layout Responsiveness (High → Low)</option>
+            <option value="fitts-desc">Fitts's Law Efficiency (High → Low)</option>
+            <option value="cogload-asc">Cognitive Load (Low → High)</option>
+          </select>
+        </div>
+
+        <div class="filter-checks">
+          <label class="check-row">
+            <input type="checkbox" id="filter-landmarks-only" />
+            <span>Iconic Historical Landmarks Only (122)</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" id="filter-web-only" />
+            <span>Web-Era Wireframes Only (1991–2026)</span>
+          </label>
+        </div>
+      </aside>
+
+      <!-- Right Main Dashboard Content -->
+      <div class="dashboard-main">
+        <!-- Dashboard View Switcher -->
+        <div class="dash-tabs-bar">
+          <div class="dash-tabs" role="tablist">
+            <button class="dash-tab active" data-dash-tab="gallery" role="tab">
+              Wireframe Gallery Grid (<span id="tab-count-gallery">1,026</span>)
+            </button>
+            <button class="dash-tab" data-dash-tab="inspector" role="tab">
+              Deep Blueprint Inspector
+            </button>
+            <button class="dash-tab" data-dash-tab="compare" role="tab">
+              Side-by-Side Era Comparator (<span id="tab-count-compare">3</span>)
+            </button>
+            <button class="dash-tab" data-dash-tab="analytics" role="tab">
+              60-Year UX &amp; Web Trend Analytics
+            </button>
+          </div>
+
+          <div class="pagination-controls" id="gallery-pagination">
+            <button class="btn btn-secondary btn-sm" id="btn-page-prev">← Prev</button>
+            <span id="page-indicator">Page 1 of 43</span>
+            <button class="btn btn-secondary btn-sm" id="btn-page-next">Next →</button>
+            <select id="page-size-select" aria-label="Items per page">
+              <option value="24" selected>24 / page</option>
+              <option value="48">48 / page</option>
+              <option value="96">96 / page</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- TAB 1: Wireframe Gallery Grid -->
+        <div class="dash-view" id="view-gallery">
+          <div class="wireframe-grid" id="wireframe-grid"></div>
+        </div>
+
+        <!-- TAB 2: Deep Blueprint Inspector -->
+        <div class="dash-view hidden" id="view-inspector">
+          <div class="inspector-layout" id="inspector-content"></div>
+        </div>
+
+        <!-- TAB 3: Side-by-Side Era Comparator -->
+        <div class="dash-view hidden" id="view-compare">
+          <div class="compare-header-bar">
+            <div>
+              <h3>Multi-Era Wireframe Blueprint &amp; Metric Comparator</h3>
+              <p class="text-muted">Compare structural layout evolution, component primitives, and UX metrics across up to 3 wireframes spanning 1966–2026.</p>
+            </div>
+            <div class="compare-preset-btns">
+              <button class="btn btn-secondary btn-sm" data-compare-preset="triad-classic">Preset: 1968 NLS vs 1995 Amazon vs 2026 Agentic</button>
+              <button class="btn btn-secondary btn-sm" data-compare-preset="triad-web">Preset: 1993 Mosaic vs 2004 Gmail vs 2020 Notion/Bento</button>
+              <button class="btn btn-secondary btn-sm" data-compare-preset="triad-dev">Preset: 1976 vi TUI vs 1989 NeXTSTEP vs 2024 Cursor AI</button>
+            </div>
+          </div>
+          <div class="compare-columns" id="compare-columns"></div>
+        </div>
+
+        <!-- TAB 4: 60-Year UX & Web Trend Analytics -->
+        <div class="dash-view hidden" id="view-analytics">
+          <div class="analytics-layout" id="analytics-content"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/p5-experience.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
