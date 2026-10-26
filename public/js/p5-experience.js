@@ -1,10 +1,10 @@
 /* global p5 */
 /**
- * A History in UI Development (1966–2026) — Interactive p5.js Experience
+ * A History in UI Development (1966–2026) — Interactive p5.js Experience & Direct-Manipulation Studio
  *
  * Implements 4 interactive p5.js modes:
  *   1. "chronos"       — 60-Year Macro Timeline, Era Stream Landscape & Scrubber (1966–2026)
- *   2. "simulator"     — Live Interactive Wireframe Simulator & Era Shader (Blueprint / Authentic Chrome / Fitts Heatmap)
+ *   2. "simulator"     — Live Interactive Wireframe Simulator, Era Shader & Direct-Manipulation Studio Creator
  *   3. "web-morph"     — Web Development UI Trends Morphing Lab (Smooth p5.js geometric interpolation across 1993–2026 web eras)
  *   4. "constellation" — Force/Radial UI Genealogy & Component DNA Network
  */
@@ -15,6 +15,7 @@ window.UIHistoryState = {
   trends: null,
   activeWireframe: null,
   selectedNodeId: null,
+  hoveredNodeId: null,
   hoveredWireframe: null,
   p5Mode: "chronos",
   chronosMetric: "informationDensity",
@@ -23,6 +24,9 @@ window.UIHistoryState = {
   simFidelity: "era-authentic",
   simShowGrid: true,
   simShowMetrics: true,
+  simSnapGrid: true,
+  simStageRect: null,
+  dragState: null,
   morphArchetypeId: "MORPH_KNOWLEDGE_PORTAL",
   morphProgress: 0.0, // 0.0 to 5.0 across the 6 web stages
   morphPlaying: false,
@@ -72,6 +76,25 @@ function withClipRect(p, x, y, w, h, drawFn) {
   } finally {
     ctx.restore();
   }
+}
+
+function getResizeHandlesForNode(n, stageX, stageY, scale) {
+  const nx = stageX + n.x * scale;
+  const ny = stageY + n.y * scale;
+  const nw = n.w * scale;
+  const nh = n.h * scale;
+  const mx = nx + nw / 2;
+  const my = ny + nh / 2;
+  return [
+    { id: "nw", x: nx, y: ny, cursor: "nwse-resize" },
+    { id: "n", x: mx, y: ny, cursor: "ns-resize" },
+    { id: "ne", x: nx + nw, y: ny, cursor: "nesw-resize" },
+    { id: "e", x: nx + nw, y: my, cursor: "ew-resize" },
+    { id: "se", x: nx + nw, y: ny + nh, cursor: "nwse-resize" },
+    { id: "s", x: mx, y: ny + nh, cursor: "ns-resize" },
+    { id: "sw", x: nx, y: ny + nh, cursor: "nesw-resize" },
+    { id: "w", x: nx, y: my, cursor: "ew-resize" },
+  ];
 }
 
 function initP5Experience() {
@@ -175,6 +198,22 @@ function initP5Experience() {
       if (p.mouseX < 0 || p.mouseX > width || p.mouseY < 0 || p.mouseY > height) return;
       handleClick(p, width, height);
     };
+
+    p.mouseDragged = () => {
+      const st = window.UIHistoryState;
+      if (!st.dragState && (p.mouseX < 0 || p.mouseX > width || p.mouseY < 0 || p.mouseY > height)) return;
+      handleDrag(p, width, height);
+    };
+
+    p.mouseReleased = () => {
+      const st = window.UIHistoryState;
+      if (st.dragState) {
+        st.dragState = null;
+        if (window.onStudioGeometryChanged) {
+          window.onStudioGeometryChanged();
+        }
+      }
+    };
   };
 
   window.p5Instance = new p5(sketch);
@@ -192,7 +231,6 @@ function drawChronosMode(p, w, h, st) {
   const plotH = Math.max(120, h - padT - padB);
   const metric = st.chronosMetric || "informationDensity";
 
-  // Draw 12 Era vertical bands
   const eras = (st.trends && st.trends.eras) || [];
   eras.forEach((era, idx) => {
     const x1 = padL + ((era.startYear - 1966) / 60) * plotW;
@@ -211,7 +249,6 @@ function drawChronosMode(p, w, h, st) {
     }
   });
 
-  // Web Birth Divider (1991)
   const webX = padL + ((1991 - 1966) / 60) * plotW;
   p.stroke(56, 189, 248, 150);
   p.strokeWeight(1.5);
@@ -222,7 +259,6 @@ function drawChronosMode(p, w, h, st) {
   p.textAlign(p.LEFT, p.BOTTOM);
   p.text(fitText("1991: World Wide Web Era Begins →", Math.max(80, padL + plotW - webX - 8), 6.2), webX + 5, padT + plotH - 6);
 
-  // Horizontal grid lines
   p.stroke(35, 47, 70);
   p.strokeWeight(1);
   for (let i = 0; i <= 4; i++) {
@@ -244,7 +280,6 @@ function drawChronosMode(p, w, h, st) {
     p.stroke(35, 47, 70);
   }
 
-  // Draw Yearly Trend Curve
   if (st.trends && st.trends.yearlySeries) {
     p.noFill();
     p.stroke(56, 189, 248, 200);
@@ -260,7 +295,6 @@ function drawChronosMode(p, w, h, st) {
     p.endShape();
   }
 
-  // Plot all filtered wireframes up to chronosYearCap
   const sourceList = st.filteredWireframes.length > 0 ? st.filteredWireframes : st.wireframes;
   st.pointsCache = [];
 
@@ -268,7 +302,7 @@ function drawChronosMode(p, w, h, st) {
     const wf = sourceList[i];
     if (wf.year > st.chronosYearCap) continue;
     const jitterX = ((wf.index * 19) % 11 - 5) * 0.65;
-    const x = padL + ((wf.year - 1966) / 60) * plotW + jitterX;
+    const x = padL + ((Math.min(2026, Math.max(1966, wf.year)) - 1966) / 60) * plotW + jitterX;
     const rawVal = wf.uxMetrics[metric];
     const normY = normalizeMetricValue(rawVal, metric);
     const y = padT + (1 - normY) * plotH;
@@ -295,7 +329,6 @@ function drawChronosMode(p, w, h, st) {
     st.pointsCache.push({ x, y, wf });
   }
 
-  // Draw lineage edges for activeWireframe
   if (st.activeWireframe) {
     const actPt = st.pointsCache.find((pt) => pt.wf.id === st.activeWireframe.id);
     if (actPt) {
@@ -313,7 +346,6 @@ function drawChronosMode(p, w, h, st) {
     }
   }
 
-  // X-Axis Year Ticks
   p.noStroke();
   p.fill(203, 213, 225);
   p.textSize(10.5);
@@ -324,14 +356,12 @@ function drawChronosMode(p, w, h, st) {
     p.text(String(yr), x, padT + plotH + 10);
   }
 
-  // Top Header Title inside Canvas
   p.fill(241, 245, 249);
   p.textSize(12.5);
   p.textAlign(p.LEFT, p.TOP);
   const headerStr = `CHRONOS 60-YEAR UI LANDSCAPE (1966–${st.chronosYearCap}) · Metric: ${metric} · ${st.pointsCache.length} Wireframes`;
   p.text(fitText(headerStr, w - padL - 16, 7.2), padL, 14);
 
-  // Hover mini-wireframe preview card inside p5 canvas (placed opposite the selected point's side so it never obscures the point or E10-E12 headers)
   const targetWf = st.hoveredWireframe || st.activeWireframe;
   if (targetWf && w >= 520) {
     const cardW = 196;
@@ -392,14 +422,14 @@ function drawMiniWireframeOverlay(p, wf, ox, oy, ow, oh) {
 }
 
 /* ==========================================================================
-   MODE 2: LIVE INTERACTIVE WIREFRAME SIMULATOR & ERA SHADER
+   MODE 2: LIVE INTERACTIVE WIREFRAME SIMULATOR & STUDIO CREATOR
    ========================================================================== */
 function drawSimulatorMode(p, w, h, st) {
   const wf = st.activeWireframe || st.wireframes[0];
   if (!wf) return;
 
   const spec = wf.layoutSpec;
-  const pal = spec.colorPalette;
+  const pal = spec.colorPalette || { bg: "#0d131f", surface: "#172135", border: "#38bdf8", accent: "#38bdf8", text: "#f1f5f9", muted: "#94a3b8" };
   const fidelity = st.simFidelity || "era-authentic";
 
   const pad = 28;
@@ -411,15 +441,23 @@ function drawSimulatorMode(p, w, h, st) {
   const stageX = (w - stageW) / 2;
   const stageY = pad + 16 + (availH - stageH) / 2;
 
-  // Header Banner
+  st.simStageRect = {
+    stageX,
+    stageY,
+    stageW,
+    stageH,
+    scale,
+    vw: spec.viewportWidth,
+    vh: spec.viewportHeight,
+  };
+
   p.noStroke();
   p.fill(241, 245, 249);
   p.textSize(12);
   p.textAlign(p.LEFT, p.TOP);
-  const hdrText = `SIMULATOR · [${wf.id}] ${wf.title} · ${spec.chromeStyle} (${spec.viewportWidth}×${spec.viewportHeight})`;
-  p.text(fitText(hdrText, w - 36, 6.8), 18, 12);
+  const hdrText = `STUDIO SIMULATOR · [${wf.id}] ${wf.title} · ${spec.chromeStyle} (${spec.viewportWidth}×${spec.viewportHeight}) · Drag nodes to move/resize`;
+  p.text(fitText(hdrText, w - 36, 6.6), 18, 12);
 
-  // Outer Device / Viewport Frame
   p.push();
   if (fidelity === "blueprint") {
     p.fill(10, 25, 48);
@@ -433,7 +471,6 @@ function drawSimulatorMode(p, w, h, st) {
     p.rect(stageX, stageY, stageW, stageH, spec.chromeStyle === "glass-spatial" ? 14 : 4);
   }
 
-  // Optional Grid Overlay
   if (st.simShowGrid) {
     const cols = spec.gridColumns || 12;
     const colW = stageW / cols;
@@ -444,10 +481,10 @@ function drawSimulatorMode(p, w, h, st) {
     }
   }
 
-  // Sort nodes by zIndex and render each UI component primitive with strict hardware clipping
   const sortedNodes = [...spec.nodes].sort((a, b) => (a.zIndex || 1) - (b.zIndex || 1));
   const centerX = stageX + stageW / 2;
   const centerY = stageY + stageH / 2;
+  let selectedNodeObj = null;
 
   sortedNodes.forEach((n) => {
     const nx = stageX + n.x * scale;
@@ -455,11 +492,13 @@ function drawSimulatorMode(p, w, h, st) {
     const nw = n.w * scale;
     const nh = n.h * scale;
     const isSel = st.selectedNodeId === n.id;
+    const isHov = st.hoveredNodeId === n.id;
+    if (isSel) selectedNodeObj = n;
 
     if (fidelity === "blueprint") {
-      p.fill(16, 40, 74, 210);
-      p.stroke(isSel ? "#34d399" : "#38bdf8");
-      p.strokeWeight(isSel ? 2.2 : 1);
+      p.fill(isSel ? [20, 62, 96, 230] : [16, 40, 74, 210]);
+      p.stroke(isSel ? "#34d399" : isHov ? "#fde68a" : "#38bdf8");
+      p.strokeWeight(isSel ? 2.4 : isHov ? 1.6 : 1);
       p.rect(nx, ny, nw, nh);
       if (n.type.includes("canvas") || n.type.includes("viewport") || n.type.includes("carousel")) {
         p.line(nx, ny, nx + nw, ny + nh);
@@ -481,8 +520,8 @@ function drawSimulatorMode(p, w, h, st) {
       }
     } else if (fidelity === "fitts-heatmap") {
       p.fill(20, 28, 44, 215);
-      p.stroke(isSel ? "#34d399" : "#465a78");
-      p.strokeWeight(isSel ? 2 : 1);
+      p.stroke(isSel ? "#34d399" : isHov ? "#fde68a" : "#465a78");
+      p.strokeWeight(isSel ? 2.2 : 1);
       p.rect(nx, ny, nw, nh, 3);
 
       const targetX = nx + nw / 2;
@@ -511,10 +550,9 @@ function drawSimulatorMode(p, w, h, st) {
         });
       }
     } else {
-      // Era-Authentic Chrome & Shader
-      p.fill(n.interactiveState === "focused" || isSel ? pal.accent : pal.surface);
-      p.stroke(isSel ? "#34d399" : pal.border);
-      p.strokeWeight(isSel ? 2.4 : 1.2);
+      p.fill(n.interactiveState === "focused" || n.interactiveState === "active" ? pal.accent : pal.surface);
+      p.stroke(isSel ? "#34d399" : isHov ? "#38bdf8" : pal.border);
+      p.strokeWeight(isSel ? 2.4 : isHov ? 1.8 : 1.2);
       const radius = spec.chromeStyle === "glass-spatial" || spec.chromeStyle === "aqua-gloss" ? 6 : 1;
       p.rect(nx, ny, nw, nh, radius);
 
@@ -543,7 +581,7 @@ function drawSimulatorMode(p, w, h, st) {
           const lblY = nh > 26 ? ny + barH + 2 : ny + 2;
           p.text(fitText(n.label, nw - 8, 5.8), nx + 4, lblY);
           if (nh > 38) {
-            p.fill(pal.muted);
+            p.fill(pal.muted || "#94a3b8");
             p.textSize(8.5);
             p.text(fitText(`<${n.type}>`, nw - 8, 5.4), nx + 4, lblY + 13);
           }
@@ -559,6 +597,32 @@ function drawSimulatorMode(p, w, h, st) {
     for (let sy = stageY; sy < stageY + stageH; sy += 3) {
       p.line(stageX, sy, stageX + stageW, sy);
     }
+  }
+
+  // Draw Direct-Manipulation 8 Resize Handles & Live Dimension Callout for Selected Node
+  if (selectedNodeObj) {
+    const handles = getResizeHandlesForNode(selectedNodeObj, stageX, stageY, scale);
+    p.stroke(5, 8, 15);
+    p.strokeWeight(1.2);
+    p.fill(52, 211, 153);
+    handles.forEach((hnd) => {
+      p.rect(hnd.x - 4, hnd.y - 4, 8, 8, 1.5);
+    });
+
+    const sx = stageX + selectedNodeObj.x * scale;
+    const sy = stageY + selectedNodeObj.y * scale;
+    const pillText = `${selectedNodeObj.type} (${Math.round(selectedNodeObj.x)},${Math.round(selectedNodeObj.y)} · ${Math.round(selectedNodeObj.w)}×${Math.round(selectedNodeObj.h)})`;
+    const pillW = Math.min(stageW, pillText.length * 6.0 + 12);
+    const pillY = sy >= stageY + 20 ? sy - 18 : sy + 4;
+    p.fill(6, 18, 14, 235);
+    p.stroke(52, 211, 153);
+    p.strokeWeight(1);
+    p.rect(Math.max(stageX, Math.min(stageX + stageW - pillW, sx)), pillY, pillW, 16, 3);
+    p.noStroke();
+    p.fill(167, 243, 208);
+    p.textSize(9.5);
+    p.textAlign(p.LEFT, p.MIDDLE);
+    p.text(fitText(pillText, pillW - 8, 5.8), Math.max(stageX, Math.min(stageX + stageW - pillW, sx)) + 5, pillY + 8);
   }
 
   // Optional HUD Telemetry overlay inside Simulator
@@ -616,7 +680,6 @@ function drawWebMorphMode(p, w, h, st) {
   const morphTitle = `WEB UI TRENDS MORPHING LAB · ${arch.name} · ~${interpYear} (${stageA.engine} → ${stageB.engine})`;
   p.text(fitText(morphTitle, w - padX * 2, 6.8), padX, 13);
 
-  // Left: Live Morphing Wireframe Stage
   p.fill(13, 19, 31);
   p.stroke(56, 189, 248, 180);
   p.strokeWeight(1.5);
@@ -669,7 +732,6 @@ function drawWebMorphMode(p, w, h, st) {
     }
   }
 
-  // Right: Web Era Stage Timeline & Metric Curves (1991–2026)
   p.fill(13, 19, 31);
   p.stroke(35, 47, 70);
   p.strokeWeight(1);
@@ -711,7 +773,6 @@ function drawWebMorphMode(p, w, h, st) {
     });
   });
 
-  // Mini Web Responsiveness vs Chrome Ratio chart at bottom right
   const chartTop = listStartY + arch.stages.length * boxPitch + 22;
   const chartH = stageY + stageH - chartTop - 14;
   if (chartH > 45 && st.trends && st.trends.yearlySeries) {
@@ -728,7 +789,6 @@ function drawWebMorphMode(p, w, h, st) {
     const chartX = rightX + 12;
     const chartW = Math.max(40, rightW - 24);
 
-    // Subtle chart frame
     p.fill(9, 13, 22);
     p.stroke(30, 41, 59);
     p.strokeWeight(1);
@@ -755,7 +815,6 @@ function drawWebMorphMode(p, w, h, st) {
     });
     p.endShape();
 
-    // Active interpolated year marker line
     const yearFrac = Math.max(0, Math.min(1, (interpYear - 1991) / (2026 - 1991)));
     const markerX = chartX + 4 + yearFrac * (chartW - 8);
     p.stroke(52, 211, 153, 200);
@@ -807,13 +866,11 @@ function drawConstellationMode(p, w, h, st) {
   const panX = st.constellationPanX || 0;
   const panY = st.constellationPanY || 0;
 
-  // Update transformed screen positions for hit-testing
   st.constellationNodes.forEach((cn) => {
     cn.x = cx + (cn.baseX - cx) * zoom + panX;
     cn.y = cy + (cn.baseY - cy) * zoom + panY;
   });
 
-  // Subtle concentric guide rings
   p.noFill();
   p.stroke(30, 41, 59, 140);
   p.strokeWeight(1);
@@ -825,7 +882,6 @@ function drawConstellationMode(p, w, h, st) {
   const byId = new Map();
   st.constellationNodes.forEach((cn) => byId.set(cn.wf.id, cn));
 
-  // Sampled lineage edges + active wireframe full neighborhood
   if (st.constellationShowLineage) {
     p.stroke(56, 189, 248, 26);
     p.strokeWeight(1);
@@ -851,7 +907,6 @@ function drawConstellationMode(p, w, h, st) {
     }
   }
 
-  // Draw constellation nodes
   st.constellationNodes.forEach((cn) => {
     const rgb = getEraRGB(cn.wf.eraCode);
     const isSel = st.activeWireframe && st.activeWireframe.id === cn.wf.id;
@@ -866,12 +921,11 @@ function drawConstellationMode(p, w, h, st) {
     p.circle(cn.x, cn.y, isSel ? 11 : isHov ? 9.5 : cn.wf.isLandmark ? 6 : 4);
   });
 
-  // Top Header Title
   p.noStroke();
   p.fill(241, 245, 249);
   p.textSize(12.5);
   p.textAlign(p.LEFT, p.TOP);
-  const constHdr = `UI GENEALOGY CONSTELLATION (1,026 Nodes · Radial 60-Year Lineage Graph · Group: ${st.constellationGroup.toUpperCase()})`;
+  const constHdr = `UI GENEALOGY CONSTELLATION (${st.constellationNodes.length} Nodes · Radial 60-Year Lineage Graph · Group: ${st.constellationGroup.toUpperCase()})`;
   p.text(fitText(constHdr, w - 36, 6.8), 18, 14);
 
   if (focusWf && w >= 520) {
@@ -880,7 +934,7 @@ function drawConstellationMode(p, w, h, st) {
 }
 
 /* ==========================================================================
-   INTERACTION HANDLERS (HOVER & CLICK)
+   INTERACTION HANDLERS (HOVER, CLICK & DIRECT-MANIPULATION DRAG/RESIZE)
    ========================================================================== */
 function handleHover(p, w, h) {
   const st = window.UIHistoryState;
@@ -900,6 +954,29 @@ function handleHover(p, w, h) {
     if (best) {
       updateHudReadout(`Hovering [${best.id}] ${best.title} (${best.year}) · Density: ${best.uxMetrics.informationDensity}`);
     }
+  } else if (st.p5Mode === "simulator" && st.activeWireframe && st.simStageRect) {
+    const wf = st.activeWireframe;
+    const { stageX, stageY, scale } = st.simStageRect;
+    const selNode = wf.layoutSpec.nodes.find((n) => n.id === st.selectedNodeId);
+    if (selNode) {
+      const handles = getResizeHandlesForNode(selNode, stageX, stageY, scale);
+      const hitH = handles.find((hnd) => Math.hypot(p.mouseX - hnd.x, p.mouseY - hnd.y) <= 7);
+      if (hitH) {
+        p.cursor(hitH.cursor);
+        return;
+      }
+    }
+    const hovered = [...wf.layoutSpec.nodes]
+      .sort((a, b) => (b.zIndex || 1) - (a.zIndex || 1))
+      .find((n) => {
+        const nx = stageX + n.x * scale;
+        const ny = stageY + n.y * scale;
+        const nw = n.w * scale;
+        const nh = n.h * scale;
+        return p.mouseX >= nx && p.mouseX <= nx + nw && p.mouseY >= ny && p.mouseY <= ny + nh;
+      });
+    st.hoveredNodeId = hovered ? hovered.id : null;
+    p.cursor(hovered ? "move" : p.ARROW);
   } else if (st.p5Mode === "constellation") {
     let best = null;
     let bestDist = 12;
@@ -932,18 +1009,33 @@ function handleClick(p, w, h) {
     if (window.selectActiveWireframe) {
       window.selectActiveWireframe(st.hoveredWireframe.id, false);
     }
-  } else if (st.p5Mode === "simulator" && st.activeWireframe) {
+  } else if (st.p5Mode === "simulator" && st.activeWireframe && st.simStageRect) {
     const wf = st.activeWireframe;
     const spec = wf.layoutSpec;
-    const pad = 28;
-    const availW = Math.max(200, w - pad * 2);
-    const availH = Math.max(200, h - pad * 2 - 20);
-    const scale = Math.min(availW / spec.viewportWidth, availH / spec.viewportHeight);
-    const stageW = spec.viewportWidth * scale;
-    const stageH = spec.viewportHeight * scale;
-    const stageX = (w - stageW) / 2;
-    const stageY = pad + 16 + (availH - stageH) / 2;
+    const { stageX, stageY, scale } = st.simStageRect;
 
+    // 1. Check 8 resize handles on currently selected node first
+    const selNode = spec.nodes.find((n) => n.id === st.selectedNodeId);
+    if (selNode) {
+      const handles = getResizeHandlesForNode(selNode, stageX, stageY, scale);
+      const hitH = handles.find((hnd) => Math.hypot(p.mouseX - hnd.x, p.mouseY - hnd.y) <= 8);
+      if (hitH) {
+        st.dragState = {
+          mode: "resize",
+          handle: hitH.id,
+          nodeId: selNode.id,
+          startMouseX: p.mouseX,
+          startMouseY: p.mouseY,
+          origX: selNode.x,
+          origY: selNode.y,
+          origW: selNode.w,
+          origH: selNode.h,
+        };
+        return;
+      }
+    }
+
+    // 2. Otherwise check node body click (topmost zIndex first)
     const clicked = [...spec.nodes]
       .sort((a, b) => (b.zIndex || 1) - (a.zIndex || 1))
       .find((n) => {
@@ -955,9 +1047,22 @@ function handleClick(p, w, h) {
       });
     if (clicked) {
       st.selectedNodeId = clicked.id;
+      st.dragState = {
+        mode: "move",
+        nodeId: clicked.id,
+        startMouseX: p.mouseX,
+        startMouseY: p.mouseY,
+        origX: clicked.x,
+        origY: clicked.y,
+        origW: clicked.w,
+        origH: clicked.h,
+      };
       updateHudReadout(
-        `Selected Node [${clicked.id}] <${clicked.type}> "${clicked.label}" at (${clicked.x}, ${clicked.y}, ${clicked.w}×${clicked.h})`
+        `Selected Node [${clicked.id}] <${clicked.type}> "${clicked.label}" at (${Math.round(clicked.x)}, ${Math.round(clicked.y)}, ${Math.round(clicked.w)}×${Math.round(clicked.h)}) — Drag to move or drag handles to resize.`
       );
+      if (window.syncStudioInspector) {
+        window.syncStudioInspector();
+      }
     }
   } else if (st.p5Mode === "web-morph") {
     const hitStage = (st.morphStageBoxes || []).find(
@@ -985,6 +1090,65 @@ function handleClick(p, w, h) {
   }
 }
 
+function handleDrag(p, w, h) {
+  const st = window.UIHistoryState;
+  if (st.p5Mode !== "simulator" || !st.dragState || !st.activeWireframe || !st.simStageRect) return;
+
+  const wf = st.activeWireframe;
+  const spec = wf.layoutSpec;
+  const node = spec.nodes.find((n) => n.id === st.dragState.nodeId);
+  if (!node) return;
+
+  const { scale, vw, vh } = st.simStageRect;
+  const dx = (p.mouseX - st.dragState.startMouseX) / scale;
+  const dy = (p.mouseY - st.dragState.startMouseY) / scale;
+  const snap = st.simSnapGrid ? 8 : 1;
+  const snapVal = (v) => Math.round(v / snap) * snap;
+
+  if (st.dragState.mode === "move") {
+    const nx = snapVal(st.dragState.origX + dx);
+    const ny = snapVal(st.dragState.origY + dy);
+    node.x = Math.max(0, Math.min(vw - node.w, nx));
+    node.y = Math.max(0, Math.min(vh - node.h, ny));
+  } else if (st.dragState.mode === "resize") {
+    const hnd = st.dragState.handle;
+    let rx = st.dragState.origX;
+    let ry = st.dragState.origY;
+    let rw = st.dragState.origW;
+    let rh = st.dragState.origH;
+
+    if (hnd.includes("e")) {
+      rw = Math.max(24, Math.min(vw - rx, snapVal(st.dragState.origW + dx)));
+    }
+    if (hnd.includes("s")) {
+      rh = Math.max(18, Math.min(vh - ry, snapVal(st.dragState.origH + dy)));
+    }
+    if (hnd.includes("w")) {
+      const maxDeltaX = st.dragState.origW - 24;
+      const clampedDx = Math.max(-st.dragState.origX, Math.min(maxDeltaX, snapVal(dx)));
+      rx = st.dragState.origX + clampedDx;
+      rw = st.dragState.origW - clampedDx;
+    }
+    if (hnd.includes("n")) {
+      const maxDeltaY = st.dragState.origH - 18;
+      const clampedDy = Math.max(-st.dragState.origY, Math.min(maxDeltaY, snapVal(dy)));
+      ry = st.dragState.origY + clampedDy;
+      rh = st.dragState.origH - clampedDy;
+    }
+    node.x = Math.round(rx * 10) / 10;
+    node.y = Math.round(ry * 10) / 10;
+    node.w = Math.round(rw * 10) / 10;
+    node.h = Math.round(rh * 10) / 10;
+  }
+
+  updateHudReadout(
+    `Studio Editing [${node.id}] <${node.type}> "${node.label}" → (${Math.round(node.x)}, ${Math.round(node.y)}, ${Math.round(node.w)}×${Math.round(node.h)})`
+  );
+  if (window.onStudioGeometryChanged) {
+    window.onStudioGeometryChanged();
+  }
+}
+
 function updateHudReadout(msg) {
   const el = document.getElementById("hud-node-readout");
   if (el) el.textContent = msg;
@@ -1005,3 +1169,4 @@ function updateMorphStageLabel() {
 window.initP5Experience = initP5Experience;
 window.rebuildConstellationLayout = rebuildConstellationLayout;
 window.updateMorphStageLabel = updateMorphStageLabel;
+window.updateHudReadout = updateHudReadout;

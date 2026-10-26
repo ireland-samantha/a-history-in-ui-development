@@ -23,12 +23,15 @@ It pairs an interactive **4-mode p5.js visual laboratory** with a **1,026-wirefr
   - Plots all 1,026 wireframes across `1966–2026` against any selectable Y-axis UX metric (*Information Density*, *Visual Chrome Ratio*, *Layout Responsiveness*, *Fitts's Law Efficiency*, *Cognitive Load Index*, or *Keyboard ↔ Pointer/Touch Bias*).
   - **Hover** any dot (gold = curated historical landmark; colored = era) to preview its mini schematic on the canvas. **Click** any dot to select it and reveal green directed lineage edges to its predecessors and successors.
   - Click **`▶ Play 60Y Evolution`** or drag the **Scrub Year** slider to animate the 60-year progression.
-- **Mode 02 — Live p5.js Wireframe Simulator (`02 Live p5.js Wireframe Simulator`)**:
+- **Mode 02 — Live p5.js Wireframe Simulator & Prototype Creator Studio (`02 Live p5.js Wireframe Simulator`)**:
   - Renders the active wireframe at full scale with three switchable inspection shaders:
     1. *Era-Authentic Chrome & Shader*: Simulates CRT scanlines and phosphor glow (`1966–1978`), 1-bit classic Mac drop shadows (`1979–1984`), 3D raised Win95/Motif bevels (`1985–1996`), Web 2.0 gloss, flat cards, and spatial glass.
     2. *Architectural Wireframe Blueprint*: Cyan-on-navy technical schematics with media diagonals and pixel dimension callouts (`w×h`).
     3. *Fitts's Law & Attention Heatmap*: Draws target acquisition rings and traversal vectors from viewport center, scoring each UI element in bits (`ID = log2(D/W + 1)`).
-  - **Click any component box** inside the simulator canvas to inspect its exact bounding-box coordinates (`x, y, w×h`) in the right HUD. Use **`Grid Columns`**, **`HUD Telemetry`**, and **`← Prev Year` / `Next Year →`** to step through the corpus.
+  - **Direct-Manipulation Studio Creator**:
+    - **Drag any component box** directly on the p5.js canvas to move it, or **drag any of its 8 emerald resize handles** to resize it in real time (with optional **Snap Grid**).
+    - **Live UX Metric & Hash Recomputation**: Moving, resizing, adding, or deleting nodes immediately recomputes *Information Density*, *Visual Chrome Ratio*, *Layout Responsiveness*, *Fitts's Law Efficiency*, *Cognitive Load Index*, *Input Bias*, and the geometric `structuralHash`.
+    - **Create, Remix & Synthesize Hybrid UIs**: Click **`+ New Screen`** to build from scratch, **`Remix / Fork`** to clone any historical wireframe into an editable prototype, **`⚡ Hybrid UI`** to fuse any two historical eras (`Era A × Era B`), or click any chip in the **35-Primitive Quick-Drop Palette** to spawn new components. Click **`💾 Save to Corpus & Compare`** to persist your prototype and benchmark it side-by-side against historical landmarks.
 - **Mode 03 — Web UI Trends Morphing Lab (`03 Web UI Trends Morphing Lab`)**:
   - Smoothly interpolates bounding-box geometry across 6 web layout eras (`1993 HTML 2.0 Flow` → `1998 3-Col Table Portal` → `2005 Web 2.0 Ajax Split` → `2013 Responsive 12-Col Flat` → `2020 Dark Token Bento + ⌘K` → `2026 Agentic Spatial Canvas`) across 6 web application archetypes.
   - Drag the **Web Era Morph** slider, click **`▶ Auto-Morph Web Eras`**, or **click any of the 6 stage cards** on the right of the canvas to jump directly to that layout engine.

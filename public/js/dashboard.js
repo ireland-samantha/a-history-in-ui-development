@@ -47,8 +47,12 @@
       st.wireframes.forEach((w) => dashState.byId.set(w.id, w));
 
       // Default active wireframe: 1968 SRI NLS or first landmark
+      loadSavedCustomPrototypes();
+
       st.activeWireframe =
         st.wireframes.find((w) => w.year === 1968 && w.isLandmark) || st.wireframes[0];
+      st.selectedNodeId = st.activeWireframe?.layoutSpec?.nodes?.[0]?.id || null;
+      snapshotOriginalWireframe(st.activeWireframe);
 
       // Default 3-era comparison triad (1968, 1995, 2026)
       const wf1968 = st.wireframes.find((w) => w.year === 1968 && w.isLandmark) || st.wireframes[0];
@@ -61,6 +65,7 @@
       bindEvents();
       applyFiltersAndRender();
       updateSideHud(st.activeWireframe);
+      syncStudioInspector();
       renderInspectorView();
       renderCompareView();
       renderAnalyticsView();
@@ -161,6 +166,34 @@
         morphSel.appendChild(opt);
       });
     }
+
+    // Populate UI Prototype Studio controls
+    const nodeTypeSel = document.getElementById("studio-node-type");
+    const primPalette = document.getElementById("studio-primitive-palette");
+    if (trData.componentPrimitives) {
+      if (nodeTypeSel) {
+        nodeTypeSel.innerHTML = trData.componentPrimitives
+          .map((c) => `<option value="${c}">${c}</option>`)
+          .join("");
+      }
+      if (primPalette) {
+        primPalette.innerHTML = trData.componentPrimitives
+          .map((c) => `<button class="prim-chip" data-spawn-prim="${c}" title="Click to spawn <${c}> on the Simulator stage">+ ${c}</button>`)
+          .join("");
+      }
+    }
+
+    const hybA = document.getElementById("studio-hybrid-era-a");
+    const hybB = document.getElementById("studio-hybrid-era-b");
+    if (trData.eras && hybA && hybB) {
+      const opts = trData.eras
+        .map((e) => `<option value="${e.id}">${e.code} (${e.startYear}–${String(e.endYear).slice(2)}) ${e.name.slice(0, 22)}</option>`)
+        .join("");
+      hybA.innerHTML = opts;
+      hybB.innerHTML = opts;
+      hybA.value = "E01_BATCH_VECTOR_CRT";
+      hybB.value = "E12_AGENTIC_GENERATIVE_SPATIAL";
+    }
   }
 
   function bindEvents() {
@@ -236,6 +269,34 @@
         st.simShowMetrics = metricsChk.checked;
       });
     }
+
+    const snapChk = document.getElementById("sim-snap-grid");
+    if (snapChk) {
+      snapChk.addEventListener("change", () => {
+        st.simSnapGrid = snapChk.checked;
+      });
+    }
+
+    document.getElementById("btn-sim-new-screen")?.addEventListener("click", () => createNewBlankPrototype());
+    document.getElementById("btn-sim-fork-screen")?.addEventListener("click", () => forkActiveWireframe());
+    document.getElementById("btn-hud-fork")?.addEventListener("click", () => forkActiveWireframe());
+    document.getElementById("btn-sim-hybrid")?.addEventListener("click", () => synthesizeHybridPrototype());
+    document.getElementById("btn-studio-synthesize")?.addEventListener("click", () => synthesizeHybridPrototype());
+    document.getElementById("btn-studio-add-node")?.addEventListener("click", () => addPrimitiveNodeToStage());
+    document.getElementById("btn-studio-dup-node")?.addEventListener("click", () => duplicateSelectedNode());
+    document.getElementById("btn-studio-align-grid")?.addEventListener("click", () => snapAllNodesToGrid());
+    document.getElementById("btn-studio-del-node")?.addEventListener("click", () => deleteSelectedNode());
+    document.getElementById("btn-studio-save-corpus")?.addEventListener("click", () => saveActivePrototypeToCorpus());
+    document.getElementById("btn-studio-export-proto")?.addEventListener("click", () => exportActivePrototypeJson());
+    document.getElementById("btn-studio-reset-wf")?.addEventListener("click", () => resetActiveWireframeToSnapshot());
+
+    document.getElementById("studio-primitive-palette")?.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-spawn-prim]");
+      if (!btn) return;
+      addPrimitiveNodeToStage(btn.getAttribute("data-spawn-prim"));
+    });
+
+    bindStudioInspectorInputs();
 
     const prevSim = document.getElementById("btn-sim-prev");
     const nextSim = document.getElementById("btn-sim-next");
@@ -650,7 +711,9 @@
     const st = window.UIHistoryState;
     st.activeWireframe = wf;
     st.selectedNodeId = wf.layoutSpec.nodes[0]?.id || null;
+    snapshotOriginalWireframe(wf);
     updateSideHud(wf);
+    syncStudioInspector();
     if (openSimulator) {
       switchP5Mode("simulator");
     }
@@ -1182,10 +1245,598 @@
     });
   }
 
+  /* ==========================================================================
+     UI PROTOTYPE STUDIO CREATOR ENGINE
+     ========================================================================== */
+  const originalSnapshots = new Map();
+
+  function snapshotOriginalWireframe(wf) {
+    if (!wf || originalSnapshots.has(wf.id)) return;
+    originalSnapshots.set(wf.id, JSON.parse(JSON.stringify(wf)));
+  }
+
+  function computeLiveStructuralHash(wf) {
+    const spec = wf.layoutSpec;
+    const vw = Math.max(1, Number(spec.viewportWidth) || 1024);
+    const vh = Math.max(1, Number(spec.viewportHeight) || 768);
+    const canon = spec.nodes.map((n) => `${n.type}:${(n.x / vw).toFixed(3)},${(n.y / vh).toFixed(3)},${(n.w / vw).toFixed(3)},${(n.h / vh).toFixed(3)},${n.zIndex || 1}`).join("|");
+    const raw = `${wf.era}|${spec.chromeStyle}|${spec.gridColumns}|${canon}`;
+    let h1 = 0xdeadbeef ^ raw.length;
+    let h2 = 0x41c6ce57 ^ raw.length;
+    for (let i = 0; i < raw.length; i++) {
+      const ch = raw.charCodeAt(i);
+      h1 = Math.imul(h1 ^ ch, 2654435761);
+      h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    const hex1 = (h1 >>> 0).toString(16).padStart(8, "0");
+    const hex2 = (h2 >>> 0).toString(16).padStart(8, "0");
+    return `${hex1}${hex2}${hex1}${hex2}${hex1}${hex2}${hex1}${hex2}`;
+  }
+
+  function recomputeActiveWireframeMetrics() {
+    const st = window.UIHistoryState;
+    const wf = st.activeWireframe;
+    if (!wf || !wf.layoutSpec) return;
+    const spec = wf.layoutSpec;
+    const vw = Math.max(320, Number(spec.viewportWidth) || 1280);
+    const vh = Math.max(200, Number(spec.viewportHeight) || 800);
+    const totalArea = vw * vh;
+    const nodes = spec.nodes || [];
+
+    let sumArea = 0;
+    let fittsSum = 0;
+    let chromeNodes = 0;
+    let keyScore = 0;
+    let ptrScore = 0;
+    let respScore = 0;
+    const cx = vw / 2;
+    const cy = vh / 2;
+
+    const chromeSet = new Set(["menubar", "toolbar", "status-bar", "ribbon-bar", "dock", "tab-strip", "breadcrumb", "sidebar-nav", "function-key-strip"]);
+    const keySet = new Set(["command-line", "command-palette", "function-key-strip", "data-table", "form-group", "agent-trace-ledger"]);
+    const ptrSet = new Set(["carousel", "floating-action-btn", "bottom-sheet", "spatial-ornament", "dock", "infinite-canvas", "card-grid"]);
+    const respSet = new Set(["bento-tile", "card-grid", "segmented-control", "bottom-sheet", "floating-action-btn", "kanban-lane", "chat-stream"]);
+
+    nodes.forEach((n) => {
+      const area = Math.max(0, Number(n.w) * Number(n.h));
+      sumArea += area;
+      const ncx = Number(n.x) + Number(n.w) / 2;
+      const ncy = Number(n.y) + Number(n.h) / 2;
+      const dist = Math.hypot(ncx - cx, ncy - cy);
+      const targetW = Math.max(8, Math.min(Number(n.w), Number(n.h)));
+      const idBits = Math.log2(dist / targetW + 1);
+      const eff = Math.max(0.18, Math.min(0.99, 1 - idBits / 6.2));
+      fittsSum += eff;
+      if (chromeSet.has(n.type)) chromeNodes++;
+      if (keySet.has(n.type)) keyScore++;
+      if (ptrSet.has(n.type)) ptrScore++;
+      if (respSet.has(n.type)) respScore++;
+    });
+
+    const count = Math.max(1, nodes.length);
+    const rawCoverage = sumArea / totalArea;
+    const infoDensity = Number(Math.max(0.12, Math.min(0.98, rawCoverage * 0.72)).toFixed(3));
+
+    const chromeBaseMap = {
+      "vector-crt": 0.28,
+      "tui-box": 0.32,
+      "classic-mac": 0.42,
+      "bevel-win95": 0.58,
+      "web1-browser": 0.74,
+      "aqua-gloss": 0.78,
+      "mobile-bezel": 0.62,
+      "flat-minimal": 0.24,
+      "glass-spatial": 0.22,
+    };
+    const cBase = chromeBaseMap[spec.chromeStyle] ?? 0.35;
+    const visualChromeRatio = Number(Math.max(0.08, Math.min(0.96, cBase * 0.65 + (chromeNodes / count) * 0.55)).toFixed(3));
+    const fittsLawEfficiency = Number(Math.max(0.22, Math.min(0.98, fittsSum / count)).toFixed(3));
+    const yearFactor = Math.max(0, Math.min(1, (wf.year - 1966) / 60));
+    const layoutResponsiveness = Number(Math.max(0.06, Math.min(0.99, yearFactor * 0.55 + (respScore / count) * 0.65)).toFixed(3));
+    const interactionComplexity = Number(Math.max(0.15, Math.min(0.98, 0.26 + count * 0.032)).toFixed(3));
+    const keyboardToPointerBias = Number(Math.max(-1.0, Math.min(1.0, (ptrScore - keyScore) / Math.max(2, ptrScore + keyScore))).toFixed(3));
+    const cognitiveLoadIndex = Number(Math.max(1.1, Math.min(9.9, 2.8 + infoDensity * 4.1 + visualChromeRatio * 1.9 - fittsLawEfficiency * 1.3)).toFixed(2));
+
+    wf.uxMetrics = {
+      informationDensity: infoDensity,
+      interactionComplexity,
+      visualChromeRatio,
+      keyboardToPointerBias,
+      layoutResponsiveness,
+      fittsLawEfficiency,
+      cognitiveLoadIndex,
+    };
+    wf.nodeCount = nodes.length;
+    wf.componentTypes = [...new Set(nodes.map((n) => n.type))].sort();
+    wf.structuralHash = computeLiveStructuralHash(wf);
+  }
+
+  function syncStudioInspector() {
+    const st = window.UIHistoryState;
+    const wf = st.activeWireframe;
+    if (!wf) return;
+    const spec = wf.layoutSpec;
+
+    const setVal = (id, v) => {
+      const el = document.getElementById(id);
+      if (el && document.activeElement !== el) el.value = String(v ?? "");
+    };
+    setVal("studio-wf-title", wf.title);
+    setVal("studio-wf-year", wf.year);
+    setVal("studio-chrome-style", spec.chromeStyle);
+    setVal("studio-grid-cols", spec.gridColumns || 12);
+
+    const vpPreset = document.getElementById("studio-viewport-preset");
+    if (vpPreset) {
+      const vpKey = `${spec.viewportWidth}x${spec.viewportHeight}`;
+      if ([...vpPreset.options].some((o) => o.value === vpKey)) {
+        vpPreset.value = vpKey;
+      }
+    }
+
+    const selNode = spec.nodes.find((n) => n.id === st.selectedNodeId) || spec.nodes[0];
+    if (selNode) {
+      st.selectedNodeId = selNode.id;
+      const badge = document.getElementById("studio-node-id-badge");
+      if (badge) badge.textContent = `${selNode.id} (${spec.nodes.length} nodes)`;
+      setVal("studio-node-label", selNode.label);
+      setVal("studio-node-type", selNode.type);
+      setVal("studio-node-state", selNode.interactiveState || "default");
+      setVal("studio-node-x", Math.round(selNode.x));
+      setVal("studio-node-y", Math.round(selNode.y));
+      setVal("studio-node-w", Math.round(selNode.w));
+      setVal("studio-node-h", Math.round(selNode.h));
+      setVal("studio-node-z", selNode.zIndex || 1);
+    }
+
+    const telem = document.getElementById("studio-live-telemetry");
+    if (telem && wf.uxMetrics) {
+      const m = wf.uxMetrics;
+      telem.innerHTML = `
+        <div><strong>LIVE PROTOTYPE TELEMETRY</strong> · <code>${wf.id}</code> · Nodes: <strong>${wf.nodeCount}</strong></div>
+        <div>Density: <strong>${(m.informationDensity * 100).toFixed(1)}%</strong> · Chrome: <strong>${(m.visualChromeRatio * 100).toFixed(1)}%</strong> · Resp: <strong>${(m.layoutResponsiveness * 100).toFixed(1)}%</strong></div>
+        <div>Fitts Eff: <strong>${(m.fittsLawEfficiency * 100).toFixed(1)}%</strong> · CogLoad: <strong>${m.cognitiveLoadIndex}/10</strong> · Bias: <strong>${m.keyboardToPointerBias}</strong></div>
+        <div>Geom Hash: <code>${(wf.structuralHash || "").slice(0, 24)}…</code></div>
+      `;
+    }
+  }
+
+  function onStudioGeometryChanged() {
+    const st = window.UIHistoryState;
+    if (!st.activeWireframe) return;
+    recomputeActiveWireframeMetrics();
+    updateSideHud(st.activeWireframe);
+    syncStudioInspector();
+    if (dashState.activeTab === "inspector") renderInspectorView();
+    if (dashState.activeTab === "compare") renderCompareView();
+  }
+
+  function bindStudioInspectorInputs() {
+    const st = window.UIHistoryState;
+    document.getElementById("studio-wf-title")?.addEventListener("input", (e) => {
+      if (!st.activeWireframe) return;
+      st.activeWireframe.title = e.target.value || "Untitled Studio Prototype";
+      updateSideHud(st.activeWireframe);
+      renderGalleryPage();
+    });
+
+    document.getElementById("studio-wf-year")?.addEventListener("change", (e) => {
+      if (!st.activeWireframe) return;
+      const yr = Math.max(1966, Math.min(2035, Number(e.target.value) || 2026));
+      st.activeWireframe.year = yr;
+      st.activeWireframe.decade = `${Math.floor(yr / 10) * 10}s`;
+      st.activeWireframe.isWebNative = yr >= 1991;
+      onStudioGeometryChanged();
+    });
+
+    document.getElementById("studio-chrome-style")?.addEventListener("change", (e) => {
+      if (!st.activeWireframe) return;
+      const style = e.target.value;
+      st.activeWireframe.layoutSpec.chromeStyle = style;
+      const palMap = {
+        "vector-crt": { bg: "#061109", surface: "#0b1e10", border: "#28d160", accent: "#52ff8c", text: "#8affb2", muted: "#1e6b38" },
+        "tui-box": { bg: "#0d0f0a", surface: "#151a10", border: "#ffb000", accent: "#ffd04d", text: "#ffbe2e", muted: "#7a5900" },
+        "classic-mac": { bg: "#dcdcdc", surface: "#ffffff", border: "#111111", accent: "#000000", text: "#111111", muted: "#6e6e6e" },
+        "bevel-win95": { bg: "#556270", surface: "#c0c0c0", border: "#ffffff", accent: "#000080", text: "#000000", muted: "#7f7f7f" },
+        "web1-browser": { bg: "#bfbfbf", surface: "#dfdfdf", border: "#808080", accent: "#0000ee", text: "#000000", muted: "#551a8b" },
+        "aqua-gloss": { bg: "#f2f6fa", surface: "#ffffff", border: "#bdd0e4", accent: "#0077cc", text: "#222b34", muted: "#687b8c" },
+        "mobile-bezel": { bg: "#1e242b", surface: "#f5f5f7", border: "#8c96a3", accent: "#1d62f0", text: "#1c1e21", muted: "#6b7480" },
+        "flat-minimal": { bg: "#0f1117", surface: "#181b24", border: "#2a3040", accent: "#6366f1", text: "#f1f5f9", muted: "#94a3b8" },
+        "glass-spatial": { bg: "#07090e", surface: "#101520", border: "#28354f", accent: "#38bdf8", text: "#f0f9ff", muted: "#7dd3fc" },
+      };
+      if (palMap[style]) st.activeWireframe.layoutSpec.colorPalette = palMap[style];
+      onStudioGeometryChanged();
+    });
+
+    document.getElementById("studio-viewport-preset")?.addEventListener("change", (e) => {
+      if (!st.activeWireframe) return;
+      const [wStr, hStr] = e.target.value.split("x");
+      const newW = Number(wStr) || 1440;
+      const newH = Number(hStr) || 900;
+      const spec = st.activeWireframe.layoutSpec;
+      const rx = newW / (spec.viewportWidth || newW);
+      const ry = newH / (spec.viewportHeight || newH);
+      spec.viewportWidth = newW;
+      spec.viewportHeight = newH;
+      spec.nodes.forEach((n) => {
+        n.x = Math.round(n.x * rx);
+        n.y = Math.round(n.y * ry);
+        n.w = Math.max(24, Math.round(n.w * rx));
+        n.h = Math.max(18, Math.round(n.h * ry));
+      });
+      onStudioGeometryChanged();
+    });
+
+    document.getElementById("studio-grid-cols")?.addEventListener("input", (e) => {
+      if (!st.activeWireframe) return;
+      st.activeWireframe.layoutSpec.gridColumns = Math.max(2, Math.min(24, Number(e.target.value) || 12));
+      onStudioGeometryChanged();
+    });
+
+    const updateSelNode = (fn) => {
+      if (!st.activeWireframe) return;
+      const node = st.activeWireframe.layoutSpec.nodes.find((n) => n.id === st.selectedNodeId);
+      if (!node) return;
+      fn(node, st.activeWireframe.layoutSpec);
+      onStudioGeometryChanged();
+    };
+
+    document.getElementById("studio-node-label")?.addEventListener("input", (e) => {
+      updateSelNode((n) => { n.label = e.target.value; });
+    });
+    document.getElementById("studio-node-type")?.addEventListener("change", (e) => {
+      updateSelNode((n) => { n.type = e.target.value; });
+    });
+    document.getElementById("studio-node-state")?.addEventListener("change", (e) => {
+      updateSelNode((n) => { n.interactiveState = e.target.value; });
+    });
+    ["x", "y", "w", "h", "z"].forEach((k) => {
+      document.getElementById(`studio-node-${k}`)?.addEventListener("input", (e) => {
+        const val = Number(e.target.value);
+        if (Number.isNaN(val)) return;
+        updateSelNode((n, spec) => {
+          if (k === "x") n.x = Math.max(0, Math.min(spec.viewportWidth - n.w, val));
+          if (k === "y") n.y = Math.max(0, Math.min(spec.viewportHeight - n.h, val));
+          if (k === "w") n.w = Math.max(16, Math.min(spec.viewportWidth - n.x, val));
+          if (k === "h") n.h = Math.max(14, Math.min(spec.viewportHeight - n.y, val));
+          if (k === "z") n.zIndex = Math.max(1, Math.min(20, Math.round(val)));
+        });
+      });
+    });
+  }
+
+  function addPrimitiveNodeToStage(primitiveType) {
+    const st = window.UIHistoryState;
+    const wf = st.activeWireframe;
+    if (!wf) return;
+    switchP5Mode("simulator");
+    const spec = wf.layoutSpec;
+    const ptype = primitiveType || document.getElementById("studio-node-type")?.value || "bento-tile";
+    const idx = spec.nodes.length + 1;
+    const offset = ((idx * 28) % 180);
+    const nw = Math.round(spec.viewportWidth * 0.26);
+    const nh = Math.round(spec.viewportHeight * 0.16);
+    const nx = Math.min(spec.viewportWidth - nw - 16, 48 + offset);
+    const ny = Math.min(spec.viewportHeight - nh - 16, 72 + offset);
+    const newNode = {
+      id: `n-studio-${idx.toString().padStart(2, "0")}-${ptype.slice(0, 6)}`,
+      type: ptype,
+      label: `Studio ${ptype.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} #${idx}`,
+      x: nx,
+      y: ny,
+      w: nw,
+      h: nh,
+      zIndex: Math.min(12, Math.max(2, ...spec.nodes.map((n) => n.zIndex || 1)) + 1),
+      interactiveState: "focused",
+      props: { studioCreated: true },
+    };
+    spec.nodes.push(newNode);
+    st.selectedNodeId = newNode.id;
+    onStudioGeometryChanged();
+    if (window.updateHudReadout) {
+      window.updateHudReadout(`Spawned <${ptype}> [${newNode.id}] on stage — drag to position or resize handles.`);
+    }
+  }
+
+  function duplicateSelectedNode() {
+    const st = window.UIHistoryState;
+    const wf = st.activeWireframe;
+    if (!wf) return;
+    const spec = wf.layoutSpec;
+    const src = spec.nodes.find((n) => n.id === st.selectedNodeId);
+    if (!src) return;
+    const copy = JSON.parse(JSON.stringify(src));
+    copy.id = `${src.id}-copy-${spec.nodes.length + 1}`;
+    copy.x = Math.min(spec.viewportWidth - copy.w, src.x + 24);
+    copy.y = Math.min(spec.viewportHeight - copy.h, src.y + 24);
+    copy.zIndex = (src.zIndex || 1) + 1;
+    spec.nodes.push(copy);
+    st.selectedNodeId = copy.id;
+    onStudioGeometryChanged();
+  }
+
+  function snapAllNodesToGrid() {
+    const st = window.UIHistoryState;
+    const wf = st.activeWireframe;
+    if (!wf) return;
+    const spec = wf.layoutSpec;
+    const cols = spec.gridColumns || 12;
+    const colW = spec.viewportWidth / cols;
+    spec.nodes.forEach((n) => {
+      const snappedX = Math.round(n.x / (colW / 2)) * (colW / 2);
+      const snappedY = Math.round(n.y / 16) * 16;
+      const snappedW = Math.max(32, Math.round(n.w / (colW / 2)) * (colW / 2));
+      const snappedH = Math.max(24, Math.round(n.h / 16) * 16);
+      n.x = Math.max(0, Math.min(spec.viewportWidth - 32, Math.round(snappedX)));
+      n.y = Math.max(0, Math.min(spec.viewportHeight - 24, Math.round(snappedY)));
+      n.w = Math.min(spec.viewportWidth - n.x, Math.round(snappedW));
+      n.h = Math.min(spec.viewportHeight - n.y, Math.round(snappedH));
+    });
+    onStudioGeometryChanged();
+  }
+
+  function deleteSelectedNode() {
+    const st = window.UIHistoryState;
+    const wf = st.activeWireframe;
+    if (!wf || wf.layoutSpec.nodes.length <= 1) return;
+    const spec = wf.layoutSpec;
+    spec.nodes = spec.nodes.filter((n) => n.id !== st.selectedNodeId);
+    st.selectedNodeId = spec.nodes[0]?.id || null;
+    onStudioGeometryChanged();
+  }
+
+  function resetActiveWireframeToSnapshot() {
+    const st = window.UIHistoryState;
+    const wf = st.activeWireframe;
+    if (!wf || !originalSnapshots.has(wf.id)) return;
+    const snap = JSON.parse(JSON.stringify(originalSnapshots.get(wf.id)));
+    Object.assign(wf, snap);
+    st.selectedNodeId = wf.layoutSpec.nodes[0]?.id || null;
+    onStudioGeometryChanged();
+  }
+
+  function createNewBlankPrototype() {
+    const st = window.UIHistoryState;
+    const newId = `wf-studio-${Date.now().toString().slice(-4)}`;
+    const vw = 1440;
+    const vh = 900;
+    const proto = {
+      id: newId,
+      index: st.wireframes.length + 1,
+      title: `Studio Custom Prototype #${st.wireframes.length - 1025} (2026)`,
+      year: 2026,
+      decade: "2020s",
+      era: "E12_AGENTIC_GENERATIVE_SPATIAL",
+      eraCode: "E12",
+      eraName: "Agentic Workflows, Malleable UI & Spatial Glass",
+      platform: "Spatial / Agentic Web Canvas",
+      domain: "AI, Scientific & Research Workbenches",
+      webLayoutEngine: "Studio Custom Direct-Manipulation Grid",
+      webTrendCategory: "Studio Custom Prototype",
+      isLandmark: true,
+      isWebNative: true,
+      dominantInput: "Direct Manipulation, ⌘K Intent & Multi-Modal Canvas",
+      componentTypes: [],
+      nodeCount: 4,
+      layoutSpec: {
+        aspectRatio: "16:10 Studio Canvas",
+        viewportWidth: vw,
+        viewportHeight: vh,
+        gridColumns: 12,
+        gridRows: 12,
+        chromeStyle: "glass-spatial",
+        archetypeCode: "ARCH_STUDIO_CUSTOM",
+        archetypeDescription: "Custom Studio-Built Interactive Wireframe Prototype",
+        colorPalette: { bg: "#07090e", surface: "#101520", border: "#28354f", accent: "#38bdf8", text: "#f0f9ff", muted: "#7dd3fc" },
+        nodes: [
+          { id: "n-stu-01-hdr", type: "menubar", label: "Studio Prototype Shell · [⌘K Omnibox]", x: 16, y: 16, w: 1408, h: 56, zIndex: 3, interactiveState: "default", props: {} },
+          { id: "n-stu-02-nav", type: "sidebar-nav", label: "Left Context & Tool Rail", x: 16, y: 88, w: 260, h: 736, zIndex: 2, interactiveState: "default", props: {} },
+          { id: "n-stu-03-stage", type: "infinite-canvas", label: "Primary Interactive Workspace Canvas", x: 292, y: 88, w: 760, h: 736, zIndex: 1, interactiveState: "active", props: {} },
+          { id: "n-stu-04-insp", type: "agent-trace-ledger", label: "Right Telemetry & Verification Ledger", x: 1068, y: 88, w: 356, h: 736, zIndex: 2, interactiveState: "focused", props: {} },
+          { id: "n-stu-05-stat", type: "status-bar", label: "Ready · Studio Custom Prototype", x: 16, y: 840, w: 1408, h: 44, zIndex: 3, interactiveState: "default", props: {} },
+        ],
+      },
+      uxMetrics: {},
+      uxResearchNotes: {
+        paradigmSummary: "Custom UI prototype designed interactively in the A History in UI Development Prototype Studio.",
+        keyInnovations: "Combines direct-manipulation spatial canvas layout with real-time Fitts's Law and chrome-ratio telemetry.",
+        usabilityTradeoffs: "Evaluated live in the Studio Creator against 60 years of historical UI benchmarks.",
+        webTrendConnection: "Bridges historical layout archetypes with custom experimental component hierarchies.",
+      },
+      predecessorIds: st.activeWireframe ? [st.activeWireframe.id] : [],
+      successorIds: [],
+      structuralHash: "",
+    };
+    st.activeWireframe = proto;
+    st.selectedNodeId = proto.layoutSpec.nodes[2].id;
+    recomputeActiveWireframeMetrics();
+    snapshotOriginalWireframe(proto);
+    dashState.byId.set(proto.id, proto);
+    switchP5Mode("simulator");
+    updateSideHud(proto);
+    syncStudioInspector();
+    if (window.updateHudReadout) {
+      window.updateHudReadout(`Created blank prototype [${proto.id}] — drag/resize nodes on stage or click any primitive chip below to build.`);
+    }
+  }
+
+  function forkActiveWireframe() {
+    const st = window.UIHistoryState;
+    const src = st.activeWireframe;
+    if (!src) return;
+    const clone = JSON.parse(JSON.stringify(src));
+    clone.id = `wf-remix-${src.year}-${Date.now().toString().slice(-4)}`;
+    clone.title = `${src.title.replace(/\s*\(Studio Remix\)$/i, "")} (Studio Remix)`;
+    clone.isLandmark = true;
+    clone.predecessorIds = [src.id];
+    clone.successorIds = [];
+    st.activeWireframe = clone;
+    st.selectedNodeId = clone.layoutSpec.nodes[0]?.id || null;
+    recomputeActiveWireframeMetrics();
+    snapshotOriginalWireframe(clone);
+    dashState.byId.set(clone.id, clone);
+    switchP5Mode("simulator");
+    updateSideHud(clone);
+    syncStudioInspector();
+    if (window.updateHudReadout) {
+      window.updateHudReadout(`Forked [${src.id}] into editable prototype [${clone.id}] — drag or resize any node on the canvas.`);
+    }
+  }
+
+  function synthesizeHybridPrototype() {
+    const st = window.UIHistoryState;
+    const eraAId = document.getElementById("studio-hybrid-era-a")?.value || "E01_BATCH_VECTOR_CRT";
+    const eraBId = document.getElementById("studio-hybrid-era-b")?.value || "E12_AGENTIC_GENERATIVE_SPATIAL";
+    const wfA = st.wireframes.find((w) => w.era === eraAId && w.isLandmark) || st.wireframes[0];
+    const wfB = st.wireframes.find((w) => w.era === eraBId && w.isLandmark) || st.wireframes[st.wireframes.length - 1];
+    if (!wfA || !wfB) return;
+
+    const vw = wfB.layoutSpec.viewportWidth;
+    const vh = wfB.layoutSpec.viewportHeight;
+    const rx = vw / wfA.layoutSpec.viewportWidth;
+    const ry = vh / wfA.layoutSpec.viewportHeight;
+
+    const nodesA = wfA.layoutSpec.nodes.slice(0, Math.ceil(wfA.layoutSpec.nodes.length / 2)).map((n, i) => ({
+      ...JSON.parse(JSON.stringify(n)),
+      id: `n-hybA-${i + 1}`,
+      label: `[${wfA.eraCode}] ${n.label}`,
+      x: Math.round(n.x * rx),
+      y: Math.round(n.y * ry),
+      w: Math.max(28, Math.round(n.w * rx)),
+      h: Math.max(20, Math.round(n.h * ry)),
+    }));
+    const nodesB = wfB.layoutSpec.nodes.slice(Math.floor(wfB.layoutSpec.nodes.length / 2)).map((n, i) => ({
+      ...JSON.parse(JSON.stringify(n)),
+      id: `n-hybB-${i + 1}`,
+      label: `[${wfB.eraCode}] ${n.label}`,
+    }));
+
+    const hybridId = `wf-hybrid-${wfA.eraCode}-${wfB.eraCode}-${Date.now().toString().slice(-3)}`;
+    const hybrid = {
+      id: hybridId,
+      index: st.wireframes.length + 1,
+      title: `Hybrid Synthesis: ${wfA.eraCode} (${wfA.year}) × ${wfB.eraCode} (${wfB.year})`,
+      year: Math.round((wfA.year + wfB.year) / 2),
+      decade: wfB.decade,
+      era: wfB.era,
+      eraCode: wfB.eraCode,
+      eraName: `${wfA.eraCode}×${wfB.eraCode} Cross-Era Hybrid`,
+      platform: wfB.platform,
+      domain: wfB.domain,
+      webLayoutEngine: `${wfA.webLayoutEngine} + ${wfB.webLayoutEngine}`,
+      webTrendCategory: "Cross-Era Hybrid Synthesis",
+      isLandmark: true,
+      isWebNative: true,
+      dominantInput: `${wfA.dominantInput} + ${wfB.dominantInput}`,
+      componentTypes: [],
+      nodeCount: nodesA.length + nodesB.length,
+      layoutSpec: {
+        aspectRatio: wfB.layoutSpec.aspectRatio,
+        viewportWidth: vw,
+        viewportHeight: vh,
+        gridColumns: wfB.layoutSpec.gridColumns,
+        gridRows: wfB.layoutSpec.gridRows,
+        chromeStyle: wfB.layoutSpec.chromeStyle,
+        archetypeCode: "ARCH_HYBRID_SYNTHESIS",
+        archetypeDescription: `Cross-Era Fusion of ${wfA.title} and ${wfB.title}`,
+        colorPalette: JSON.parse(JSON.stringify(wfA.layoutSpec.colorPalette)),
+        nodes: [...nodesA, ...nodesB],
+      },
+      uxMetrics: {},
+      uxResearchNotes: {
+        paradigmSummary: `Synthesized cross-era prototype fusing ${wfA.title} (${wfA.eraCode}) with ${wfB.title} (${wfB.eraCode}).`,
+        keyInnovations: `Combines ${wfA.eraCode} input/palette aesthetics with ${wfB.eraCode} spatial component primitives.`,
+        usabilityTradeoffs: `Balances historical ${wfA.eraCode} density against modern ${wfB.eraCode} responsiveness.`,
+        webTrendConnection: `Experimental cross-era synthesis linking ${wfA.year} and ${wfB.year}.`,
+      },
+      predecessorIds: [wfA.id, wfB.id],
+      successorIds: [],
+      structuralHash: "",
+    };
+
+    st.activeWireframe = hybrid;
+    st.selectedNodeId = hybrid.layoutSpec.nodes[0]?.id || null;
+    recomputeActiveWireframeMetrics();
+    snapshotOriginalWireframe(hybrid);
+    dashState.byId.set(hybrid.id, hybrid);
+    switchP5Mode("simulator");
+    updateSideHud(hybrid);
+    syncStudioInspector();
+    if (window.updateHudReadout) {
+      window.updateHudReadout(`Synthesized Cross-Era Hybrid [${hybrid.id}] fusing ${wfA.eraCode} (${wfA.year}) × ${wfB.eraCode} (${wfB.year}).`);
+    }
+  }
+
+  function saveActivePrototypeToCorpus() {
+    const st = window.UIHistoryState;
+    const wf = st.activeWireframe;
+    if (!wf) return;
+    recomputeActiveWireframeMetrics();
+    dashState.byId.set(wf.id, wf);
+    if (!st.wireframes.some((w) => w.id === wf.id)) {
+      st.wireframes.unshift(wf);
+    }
+    try {
+      const saved = JSON.parse(localStorage.getItem("ui_history_custom_prototypes_v1") || "[]");
+      const filteredSaved = saved.filter((x) => x.id !== wf.id);
+      filteredSaved.unshift(wf);
+      localStorage.setItem("ui_history_custom_prototypes_v1", JSON.stringify(filteredSaved.slice(0, 30)));
+    } catch (_) {
+      // Ignore storage quota / sandbox restrictions
+    }
+    if (!dashState.compareIds.includes(wf.id)) {
+      if (dashState.compareIds.length >= 3) dashState.compareIds.shift();
+      dashState.compareIds.push(wf.id);
+    }
+    document.getElementById("stat-total-wf").textContent = st.wireframes.length.toLocaleString();
+    applyFiltersAndRender();
+    renderCompareView();
+    if (window.updateHudReadout) {
+      window.updateHudReadout(`Saved [${wf.id}] "${wf.title}" to live corpus (${st.wireframes.length} total) & added to 3-Era Comparator!`);
+    }
+  }
+
+  function loadSavedCustomPrototypes() {
+    const st = window.UIHistoryState;
+    try {
+      const saved = JSON.parse(localStorage.getItem("ui_history_custom_prototypes_v1") || "[]");
+      if (Array.isArray(saved)) {
+        saved.forEach((proto) => {
+          if (proto && proto.id && !dashState.byId.has(proto.id)) {
+            st.wireframes.unshift(proto);
+            dashState.byId.set(proto.id, proto);
+          }
+        });
+      }
+    } catch (_) {
+      // Ignore storage access errors
+    }
+  }
+
+  function exportActivePrototypeJson() {
+    const st = window.UIHistoryState;
+    const wf = st.activeWireframe;
+    if (!wf) return;
+    recomputeActiveWireframeMetrics();
+    const payload = JSON.stringify(wf, null, 2);
+    window.lastExportedPrototype = { id: wf.id, nodeCount: wf.nodeCount, bytes: payload.length };
+    triggerDownload(payload, `${wf.id}-prototype.json`, "application/json");
+  }
+
   window.selectActiveWireframe = selectActiveWireframe;
   window.switchP5Mode = switchP5Mode;
   window.switchDashTab = switchDashTab;
   window.launchGuidedLesson = launchGuidedLesson;
+  window.syncStudioInspector = syncStudioInspector;
+  window.onStudioGeometryChanged = onStudioGeometryChanged;
+  window.recomputeActiveWireframeMetrics = recomputeActiveWireframeMetrics;
+  window.createNewBlankPrototype = createNewBlankPrototype;
+  window.forkActiveWireframe = forkActiveWireframe;
+  window.synthesizeHybridPrototype = synthesizeHybridPrototype;
+  window.addPrimitiveNodeToStage = addPrimitiveNodeToStage;
+  window.saveActivePrototypeToCorpus = saveActivePrototypeToCorpus;
 
   document.addEventListener("DOMContentLoaded", bootApp);
 })();

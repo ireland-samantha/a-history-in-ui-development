@@ -98,7 +98,7 @@
             </label>
           </div>
 
-          <!-- Controls for Mode 2: Simulator -->
+          <!-- Controls for Mode 2: Simulator & Studio -->
           <div class="p5-ctrl-group hidden" id="p5-ctrl-simulator">
             <label class="ctrl-inline">
               <span>Render Fidelity:</span>
@@ -116,8 +116,15 @@
               <input type="checkbox" id="sim-show-metrics" checked />
               <span>HUD Telemetry</span>
             </label>
-            <button class="btn btn-secondary btn-sm" id="btn-sim-prev">← Prev Year</button>
-            <button class="btn btn-secondary btn-sm" id="btn-sim-next">Next Year →</button>
+            <label class="ctrl-inline">
+              <input type="checkbox" id="sim-snap-grid" checked />
+              <span>Snap Grid</span>
+            </label>
+            <button class="btn btn-accent btn-sm" id="btn-sim-new-screen" title="Create a new blank prototype screen in Studio">+ New Screen</button>
+            <button class="btn btn-secondary btn-sm" id="btn-sim-fork-screen" title="Clone current wireframe into a custom editable prototype">Remix / Fork</button>
+            <button class="btn btn-secondary btn-sm" id="btn-sim-hybrid" title="Synthesize a cross-era hybrid UI prototype">⚡ Hybrid UI</button>
+            <button class="btn btn-secondary btn-sm" id="btn-sim-prev">← Prev</button>
+            <button class="btn btn-secondary btn-sm" id="btn-sim-next">Next →</button>
           </div>
 
           <!-- Controls for Mode 3: Web UI Trends Morphing Lab -->
@@ -163,18 +170,156 @@
             <div class="hud-metrics-mini" id="hud-metrics-mini"></div>
             <p class="hud-notes" id="hud-wf-notes"></p>
             <div class="hud-btn-row">
-              <button class="btn btn-accent btn-sm" id="btn-hud-simulate">Open in Simulator</button>
-              <button class="btn btn-secondary btn-sm" id="btn-hud-inspect">Full Blueprint</button>
+              <button class="btn btn-accent btn-sm" id="btn-hud-simulate">Simulate &amp; Edit in Studio</button>
+              <button class="btn btn-secondary btn-sm" id="btn-hud-fork">Remix Copy</button>
+              <button class="btn btn-secondary btn-sm" id="btn-hud-inspect">Blueprint</button>
               <button class="btn btn-secondary btn-sm" id="btn-hud-compare">+ Compare</button>
             </div>
           </div>
           <div class="hud-card hud-interaction-log">
-            <div class="hud-eyebrow">LIVE p5.js INTERACTION STATE</div>
+            <div class="hud-eyebrow">LIVE p5.js INTERACTION &amp; STUDIO STATE</div>
             <div id="hud-node-readout" class="hud-node-readout">
-              Hover or click any wireframe node or timeline point in the p5.js canvas to inspect its geometry, UX ergonomics, and historical lineage.
+              Hover or click any wireframe node or timeline point in the p5.js canvas. In Mode 02 (Simulator), drag any node to move it or drag its 8 handles to resize live.
             </div>
           </div>
         </aside>
+      </div>
+
+      <!-- Interactive UI Prototype Creator Studio Dock (Directly Below p5.js Stage) -->
+      <div class="studio-dock" id="studio-creator-dock" aria-label="Interactive UI Prototype Studio Creator">
+        <div class="studio-dock-header">
+          <div class="studio-dock-title-group">
+            <span class="curriculum-tag">UI PROTOTYPE STUDIO</span>
+            <strong>Direct-Manipulation Wireframe &amp; Screen Creator</strong>
+            <span class="text-muted" style="font-size:11.5px">— Drag &amp; resize components directly in Mode 02 above, drop primitives below, or synthesize cross-era hybrid UIs.</span>
+          </div>
+          <div class="studio-dock-actions">
+            <button class="btn btn-accent btn-sm" id="btn-studio-save-corpus" title="Save this prototype into the live 1,026+ corpus and add to 3-Era Comparator">💾 Save to Corpus &amp; Compare</button>
+            <button class="btn btn-secondary btn-sm" id="btn-studio-export-proto" title="Download this prototype's JSON specification">⬇ Export Prototype JSON</button>
+            <button class="btn btn-secondary btn-sm" id="btn-studio-reset-wf" title="Revert changes to active screen">↩ Reset Screen</button>
+          </div>
+        </div>
+
+        <div class="studio-dock-grid">
+          <!-- Column 1: Screen & Era Chrome Architect + Hybrid Synthesizer -->
+          <div class="studio-panel">
+            <div class="hud-eyebrow">1 · SCREEN ARCHITECT &amp; HYBRID SYNTHESIZER</div>
+            <div class="studio-form-grid">
+              <div class="filter-group" style="grid-column: 1 / -1">
+                <label for="studio-wf-title">Prototype Screen Title</label>
+                <input type="text" id="studio-wf-title" placeholder="e.g. 2026 Spatial Command Workbench" />
+              </div>
+              <div class="filter-group">
+                <label for="studio-wf-year">Target Year</label>
+                <input type="number" id="studio-wf-year" min="1966" max="2035" value="2026" />
+              </div>
+              <div class="filter-group">
+                <label for="studio-chrome-style">Chrome / Shader Style</label>
+                <select id="studio-chrome-style">
+                  <option value="glass-spatial">glass-spatial (Spatial Glass)</option>
+                  <option value="flat-minimal">flat-minimal (Flat / Bento)</option>
+                  <option value="mobile-bezel">mobile-bezel (Touch Viewport)</option>
+                  <option value="aqua-gloss">aqua-gloss (Web 2.0 / Aqua)</option>
+                  <option value="web1-browser">web1-browser (Web 1.0 / Table)</option>
+                  <option value="bevel-win95">bevel-win95 (3D Raised Bevel)</option>
+                  <option value="classic-mac">classic-mac (1-Bit Dithered WIMP)</option>
+                  <option value="tui-box">tui-box (80×24 Amber Terminal)</option>
+                  <option value="vector-crt">vector-crt (Green Vector CRT)</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="studio-viewport-preset">Viewport Dimensions</label>
+                <select id="studio-viewport-preset">
+                  <option value="1600x960">1600×960 (16:10 Spatial Studio)</option>
+                  <option value="1440x900">1440×900 (16:10 SaaS / Bento)</option>
+                  <option value="1366x768">1366×768 (16:9 HD Responsive)</option>
+                  <option value="1280x800">1280×800 (16:10 Web 2.0)</option>
+                  <option value="1120x760">1120×760 (Touch Hybrid)</option>
+                  <option value="1024x768">1024×768 (4:3 Desktop / Web 1.0)</option>
+                  <option value="1024x684">1024×684 (3:2 1-Bit Bitmap)</option>
+                  <option value="960x600">960×600 (80×24 Character Matrix)</option>
+                  <option value="1024x1024">1024×1024 (1:1 Vector CRT Scope)</option>
+                  <option value="430x932">430×932 (Mobile Portrait Viewport)</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="studio-grid-cols">Grid Columns</label>
+                <input type="number" id="studio-grid-cols" min="2" max="24" value="12" />
+              </div>
+            </div>
+
+            <div class="studio-subbox">
+              <div class="hud-eyebrow" style="color:var(--accent-emerald)">⚡ CROSS-ERA HYBRID UI SYNTHESIZER</div>
+              <div class="studio-hybrid-row">
+                <select id="studio-hybrid-era-a" aria-label="First Era to Fuse"></select>
+                <span>×</span>
+                <select id="studio-hybrid-era-b" aria-label="Second Era to Fuse"></select>
+                <button class="btn btn-accent btn-sm" id="btn-studio-synthesize">Synthesize</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Selected Component Node Precision Inspector -->
+          <div class="studio-panel">
+            <div class="studio-panel-hdr">
+              <div class="hud-eyebrow">2 · SELECTED COMPONENT INSPECTOR</div>
+              <span class="badge" id="studio-node-id-badge">No node selected</span>
+            </div>
+            <div class="studio-form-grid">
+              <div class="filter-group" style="grid-column: 1 / -1">
+                <label for="studio-node-label">Component Label / Caption</label>
+                <input type="text" id="studio-node-label" placeholder="Component label..." />
+              </div>
+              <div class="filter-group">
+                <label for="studio-node-type">UI Primitive Type (35)</label>
+                <select id="studio-node-type"></select>
+              </div>
+              <div class="filter-group">
+                <label for="studio-node-state">Interactive State</label>
+                <select id="studio-node-state">
+                  <option value="default">default (Surface)</option>
+                  <option value="focused">focused (Accent Highlight)</option>
+                  <option value="active">active (Primary Active)</option>
+                </select>
+              </div>
+            </div>
+            <div class="studio-geom-grid">
+              <div class="filter-group">
+                <label for="studio-node-x">X (px)</label>
+                <input type="number" id="studio-node-x" step="4" />
+              </div>
+              <div class="filter-group">
+                <label for="studio-node-y">Y (px)</label>
+                <input type="number" id="studio-node-y" step="4" />
+              </div>
+              <div class="filter-group">
+                <label for="studio-node-w">W (px)</label>
+                <input type="number" id="studio-node-w" min="12" step="4" />
+              </div>
+              <div class="filter-group">
+                <label for="studio-node-h">H (px)</label>
+                <input type="number" id="studio-node-h" min="12" step="4" />
+              </div>
+              <div class="filter-group">
+                <label for="studio-node-z">Z-Layer</label>
+                <input type="number" id="studio-node-z" min="1" max="20" step="1" />
+              </div>
+            </div>
+            <div class="hud-btn-row" style="margin-top:auto">
+              <button class="btn btn-accent btn-sm" id="btn-studio-add-node">+ Add Primitive</button>
+              <button class="btn btn-secondary btn-sm" id="btn-studio-dup-node">Duplicate</button>
+              <button class="btn btn-secondary btn-sm" id="btn-studio-align-grid">Snap All to Grid</button>
+              <button class="btn btn-secondary btn-sm" id="btn-studio-del-node" style="border-color:var(--accent-rose);color:var(--accent-rose)">Delete Node</button>
+            </div>
+          </div>
+
+          <!-- Column 3: Quick-Drop 35 UI Primitive Palette & Live Ergonomics Benchmark -->
+          <div class="studio-panel">
+            <div class="hud-eyebrow">3 · QUICK-DROP PRIMITIVE PALETTE (CLICK TO SPAWN ON STAGE)</div>
+            <div class="studio-primitive-palette" id="studio-primitive-palette"></div>
+            <div class="studio-live-telemetry" id="studio-live-telemetry"></div>
+          </div>
+        </div>
       </div>
     </section>
 
