@@ -12,7 +12,7 @@ import sys
 import time
 import urllib.request
 
-ROOT = "/mnt/c2r/repos/history-in-ui-development"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SERVER_PY = os.path.join(ROOT, "server.py")
 
 

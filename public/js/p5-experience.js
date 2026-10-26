@@ -33,21 +33,7 @@ window.UIHistoryState = {
   constellationPanY: 0,
   pointsCache: [],
   constellationNodes: [],
-};
-
-const ERA_COLORS = {
-  E01: [40, 209, 96],
-  E02: [255, 176, 0],
-  E03: [220, 228, 240],
-  E04: [168, 185, 255],
-  E05: [74, 158, 255],
-  E06: [255, 118, 38],
-  E07: [0, 194, 255],
-  E08: [59, 130, 246],
-  E09: [16, 185, 129],
-  E10: [139, 92, 246],
-  E11: [236, 72, 153],
-  E12: [56, 189, 248],
+  morphStageBoxes: [],
 };
 
 function getEraRGB(eraCode) {
@@ -68,6 +54,26 @@ function getEraRGB(eraCode) {
   return map[eraCode] || [56, 189, 248];
 }
 
+function fitText(str, maxPx, charWidthPx) {
+  const s = String(str || "");
+  const maxChars = Math.max(4, Math.floor(maxPx / (charWidthPx || 6.4)));
+  if (s.length <= maxChars) return s;
+  return s.slice(0, Math.max(1, maxChars - 1)) + "…";
+}
+
+function withClipRect(p, x, y, w, h, drawFn) {
+  const ctx = p.drawingContext;
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(x, y, Math.max(0, w), Math.max(0, h));
+  ctx.clip();
+  try {
+    drawFn();
+  } finally {
+    ctx.restore();
+  }
+}
+
 function initP5Experience() {
   const container = document.getElementById("p5-canvas-container");
   if (!container || typeof p5 === "undefined") return;
@@ -76,21 +82,44 @@ function initP5Experience() {
     let width = 900;
     let height = 500;
 
+    function measureContainer() {
+      const rect = container.getBoundingClientRect();
+      const measuredW = Math.floor(rect.width || container.clientWidth || 900);
+      const measuredH = Math.floor(rect.height || container.clientHeight || 500);
+      return {
+        w: Math.max(320, measuredW),
+        h: Math.max(460, measuredH),
+      };
+    }
+
+    function syncCanvasSize() {
+      const dim = measureContainer();
+      if (Math.abs(dim.w - width) > 1 || Math.abs(dim.h - height) > 1) {
+        width = dim.w;
+        height = dim.h;
+        p.resizeCanvas(width, height);
+        rebuildConstellationLayout(width, height);
+      }
+    }
+
     p.setup = () => {
-      width = Math.max(640, container.clientWidth || 900);
-      height = Math.max(460, container.clientHeight || 500);
+      const dim = measureContainer();
+      width = dim.w;
+      height = dim.h;
       const cnv = p.createCanvas(width, height);
       cnv.parent("p5-canvas-container");
       p.pixelDensity(1);
       p.textFont("monospace");
       rebuildConstellationLayout(width, height);
+
+      if (typeof ResizeObserver !== "undefined") {
+        const ro = new ResizeObserver(() => syncCanvasSize());
+        ro.observe(container);
+      }
     };
 
     p.windowResized = () => {
-      width = Math.max(640, container.clientWidth || 900);
-      height = Math.max(460, container.clientHeight || 500);
-      p.resizeCanvas(width, height);
-      rebuildConstellationLayout(width, height);
+      syncCanvasSize();
     };
 
     p.draw = () => {
@@ -135,7 +164,10 @@ function initP5Experience() {
     };
 
     p.mouseMoved = () => {
-      if (p.mouseX < 0 || p.mouseX > width || p.mouseY < 0 || p.mouseY > height) return;
+      if (p.mouseX < 0 || p.mouseX > width || p.mouseY < 0 || p.mouseY > height) {
+        p.cursor(p.ARROW);
+        return;
+      }
       handleHover(p, width, height);
     };
 
@@ -152,12 +184,12 @@ function initP5Experience() {
    MODE 1: CHRONOS 60-YEAR MACRO TIMELINE & STREAM LANDSCAPE (1966–2026)
    ========================================================================== */
 function drawChronosMode(p, w, h, st) {
-  const padL = 62;
-  const padR = 26;
-  const padT = 46;
-  const padB = 54;
-  const plotW = w - padL - padR;
-  const plotH = h - padT - padB;
+  const padL = 56;
+  const padR = 20;
+  const padT = 44;
+  const padB = 48;
+  const plotW = Math.max(120, w - padL - padR);
+  const plotH = Math.max(120, h - padT - padB);
   const metric = st.chronosMetric || "informationDensity";
 
   // Draw 12 Era vertical bands
@@ -165,16 +197,18 @@ function drawChronosMode(p, w, h, st) {
   eras.forEach((era, idx) => {
     const x1 = padL + ((era.startYear - 1966) / 60) * plotW;
     const x2 = padL + ((era.endYear + 1 - 1966) / 60) * plotW;
+    const bandW = Math.max(2, x2 - x1);
     const rgb = getEraRGB(era.code);
     p.noStroke();
     p.fill(rgb[0], rgb[1], rgb[2], idx % 2 === 0 ? 18 : 10);
-    p.rect(x1, padT, Math.max(2, x2 - x1), plotH);
+    p.rect(x1, padT, bandW, plotH);
 
-    // Era label at top
-    p.fill(rgb[0], rgb[1], rgb[2], 210);
-    p.textSize(10);
-    p.textAlign(p.LEFT, p.TOP);
-    p.text(era.code, x1 + 3, padT + 4);
+    if (bandW >= 24) {
+      p.fill(rgb[0], rgb[1], rgb[2], 215);
+      p.textSize(9.5);
+      p.textAlign(p.LEFT, p.TOP);
+      p.text(era.code, x1 + 3, padT + 4);
+    }
   });
 
   // Web Birth Divider (1991)
@@ -186,7 +220,7 @@ function drawChronosMode(p, w, h, st) {
   p.fill(56, 189, 248);
   p.textSize(10);
   p.textAlign(p.LEFT, p.BOTTOM);
-  p.text("1991: World Wide Web Era Begins →", webX + 5, padT + plotH - 6);
+  p.text(fitText("1991: World Wide Web Era Begins →", Math.max(80, padL + plotW - webX - 8), 6.2), webX + 5, padT + plotH - 6);
 
   // Horizontal grid lines
   p.stroke(35, 47, 70);
@@ -206,7 +240,7 @@ function drawChronosMode(p, w, h, st) {
     } else {
       valLbl = (1 - i / 4).toFixed(2);
     }
-    p.text(valLbl, padL - 8, gy);
+    p.text(valLbl, padL - 7, gy);
     p.stroke(35, 47, 70);
   }
 
@@ -282,27 +316,29 @@ function drawChronosMode(p, w, h, st) {
   // X-Axis Year Ticks
   p.noStroke();
   p.fill(203, 213, 225);
-  p.textSize(11);
+  p.textSize(10.5);
   p.textAlign(p.CENTER, p.TOP);
-  for (let yr = 1966; yr <= 2026; yr += 5) {
+  const yearStep = w < 640 ? 10 : 5;
+  for (let yr = 1966; yr <= 2026; yr += yearStep) {
     const x = padL + ((yr - 1966) / 60) * plotW;
     p.text(String(yr), x, padT + plotH + 10);
   }
 
   // Top Header Title inside Canvas
   p.fill(241, 245, 249);
-  p.textSize(13);
+  p.textSize(12.5);
   p.textAlign(p.LEFT, p.TOP);
-  p.text(
-    `CHRONOS 60-YEAR UI LANDSCAPE (1966–${st.chronosYearCap}) · Metric: ${metric} · Showing ${st.pointsCache.length} Wireframes`,
-    padL,
-    14
-  );
+  const headerStr = `CHRONOS 60-YEAR UI LANDSCAPE (1966–${st.chronosYearCap}) · Metric: ${metric} · ${st.pointsCache.length} Wireframes`;
+  p.text(fitText(headerStr, w - padL - 16, 7.2), padL, 14);
 
-  // Hover mini-wireframe preview card inside p5 canvas
+  // Hover mini-wireframe preview card inside p5 canvas (placed opposite the selected point's side so it never obscures the point or E10-E12 headers)
   const targetWf = st.hoveredWireframe || st.activeWireframe;
-  if (targetWf) {
-    drawMiniWireframeOverlay(p, targetWf, w - 235, padT + 10, 200, 125);
+  if (targetWf && w >= 520) {
+    const cardW = 196;
+    const cardH = 122;
+    const cardX = targetWf.year > 1996 ? padL + 10 : w - cardW - padR - 8;
+    const cardY = padT + 20;
+    drawMiniWireframeOverlay(p, targetWf, cardX, cardY, cardW, cardH);
   }
 }
 
@@ -319,7 +355,7 @@ function normalizeMetricValue(val, metric) {
 function drawMiniWireframeOverlay(p, wf, ox, oy, ow, oh) {
   const pal = wf.layoutSpec.colorPalette || { bg: "#0f172a", surface: "#1e293b", border: "#38bdf8", accent: "#38bdf8" };
   p.push();
-  p.fill(12, 18, 30, 235);
+  p.fill(12, 18, 30, 238);
   p.stroke(56, 189, 248);
   p.strokeWeight(1.2);
   p.rect(ox, oy, ow, oh, 6);
@@ -351,8 +387,7 @@ function drawMiniWireframeOverlay(p, wf, ox, oy, ow, oh) {
   p.fill(255);
   p.textSize(10);
   p.textAlign(p.LEFT, p.TOP);
-  const shortTitle = wf.title.length > 28 ? wf.title.slice(0, 26) + "…" : wf.title;
-  p.text(`${wf.year} · ${shortTitle}`, ox + 8, oy + 6);
+  p.text(fitText(`${wf.year} · ${wf.title}`, ow - 14, 6.1), ox + 8, oy + 6);
   p.pop();
 }
 
@@ -367,26 +402,22 @@ function drawSimulatorMode(p, w, h, st) {
   const pal = spec.colorPalette;
   const fidelity = st.simFidelity || "era-authentic";
 
-  const pad = 38;
-  const availW = w - pad * 2;
-  const availH = h - pad * 2 - 18;
+  const pad = 28;
+  const availW = Math.max(200, w - pad * 2);
+  const availH = Math.max(200, h - pad * 2 - 20);
   const scale = Math.min(availW / spec.viewportWidth, availH / spec.viewportHeight);
   const stageW = spec.viewportWidth * scale;
   const stageH = spec.viewportHeight * scale;
   const stageX = (w - stageW) / 2;
-  const stageY = pad + 14 + (availH - stageH) / 2;
+  const stageY = pad + 16 + (availH - stageH) / 2;
 
   // Header Banner
   p.noStroke();
   p.fill(241, 245, 249);
   p.textSize(12);
   p.textAlign(p.LEFT, p.TOP);
-  const simTitle = wf.title.length > 52 ? wf.title.slice(0, 50) + "…" : wf.title;
-  p.text(
-    `SIMULATOR · [${wf.id}] ${simTitle} · ${spec.chromeStyle} (${spec.viewportWidth}×${spec.viewportHeight})`,
-    20,
-    12
-  );
+  const hdrText = `SIMULATOR · [${wf.id}] ${wf.title} · ${spec.chromeStyle} (${spec.viewportWidth}×${spec.viewportHeight})`;
+  p.text(fitText(hdrText, w - 36, 6.8), 18, 12);
 
   // Outer Device / Viewport Frame
   p.push();
@@ -409,16 +440,16 @@ function drawSimulatorMode(p, w, h, st) {
     p.noStroke();
     p.fill(56, 189, 248, fidelity === "blueprint" ? 22 : 12);
     for (let c = 0; c < cols; c++) {
-      p.rect(stageX + c * colW + 3, stageY, colW - 6, stageH);
+      p.rect(stageX + c * colW + 2, stageY, Math.max(1, colW - 4), stageH);
     }
   }
 
-  // Sort nodes by zIndex and render each UI component primitive
+  // Sort nodes by zIndex and render each UI component primitive with strict hardware clipping
   const sortedNodes = [...spec.nodes].sort((a, b) => (a.zIndex || 1) - (b.zIndex || 1));
   const centerX = stageX + stageW / 2;
   const centerY = stageY + stageH / 2;
 
-  sortedNodes.forEach((n, idx) => {
+  sortedNodes.forEach((n) => {
     const nx = stageX + n.x * scale;
     const ny = stageY + n.y * scale;
     const nw = n.w * scale;
@@ -426,26 +457,32 @@ function drawSimulatorMode(p, w, h, st) {
     const isSel = st.selectedNodeId === n.id;
 
     if (fidelity === "blueprint") {
-      p.fill(16, 40, 74, 200);
+      p.fill(16, 40, 74, 210);
       p.stroke(isSel ? "#34d399" : "#38bdf8");
       p.strokeWeight(isSel ? 2.2 : 1);
       p.rect(nx, ny, nw, nh);
-      // Crossed diagonal lines for media/canvas primitives
       if (n.type.includes("canvas") || n.type.includes("viewport") || n.type.includes("carousel")) {
         p.line(nx, ny, nx + nw, ny + nh);
         p.line(nx + nw, ny, nx, ny + nh);
       }
-      p.noStroke();
-      p.fill(186, 230, 253);
-      p.textSize(10);
-      p.textAlign(p.LEFT, p.TOP);
-      p.text(`[${n.type}] ${n.label.slice(0, 26)}`, nx + 4, ny + 4);
-      p.fill(125, 211, 252);
-      p.text(`${Math.round(n.w)}×${Math.round(n.h)}`, nx + 4, ny + Math.min(nh - 12, 18));
+      if (nw > 28 && nh > 13) {
+        withClipRect(p, nx + 2, ny + 2, nw - 4, nh - 4, () => {
+          p.noStroke();
+          p.fill(186, 230, 253);
+          p.textSize(9.5);
+          p.textAlign(p.LEFT, p.TOP);
+          p.text(fitText(`[${n.type}] ${n.label}`, nw - 8, 5.8), nx + 4, ny + 3);
+          if (nh > 26) {
+            p.fill(125, 211, 252);
+            p.textSize(9);
+            p.text(`${Math.round(n.w)}×${Math.round(n.h)}`, nx + 4, ny + 16);
+          }
+        });
+      }
     } else if (fidelity === "fitts-heatmap") {
-      p.fill(20, 28, 44, 210);
-      p.stroke(70, 90, 120);
-      p.strokeWeight(1);
+      p.fill(20, 28, 44, 215);
+      p.stroke(isSel ? "#34d399" : "#465a78");
+      p.strokeWeight(isSel ? 2 : 1);
       p.rect(nx, ny, nw, nh, 3);
 
       const targetX = nx + nw / 2;
@@ -454,21 +491,25 @@ function drawSimulatorMode(p, w, h, st) {
       const widthScore = Math.min(nw, nh);
       const idScore = Math.log2(dist / Math.max(8, widthScore) + 1);
 
-      // Fitts acquisition heat circle
       p.noStroke();
       const rCol = Math.min(255, Math.round(idScore * 75));
       const gCol = Math.max(40, 240 - rCol);
       p.fill(rCol, gCol, 90, 95);
-      p.circle(targetX, targetY, Math.min(nw, nh) * 0.85);
+      p.circle(targetX, targetY, Math.min(nw, nh) * 0.82);
 
-      p.stroke(rCol, gCol, 120, 150);
+      p.stroke(rCol, gCol, 120, 145);
+      p.strokeWeight(1);
       p.line(centerX, centerY, targetX, targetY);
 
-      p.noStroke();
-      p.fill(255);
-      p.textSize(9.5);
-      p.textAlign(p.CENTER, p.CENTER);
-      p.text(`${n.type} (ID:${idScore.toFixed(1)}b)`, targetX, targetY);
+      if (nw > 34 && nh > 13) {
+        withClipRect(p, nx + 2, ny + 2, nw - 4, nh - 4, () => {
+          p.noStroke();
+          p.fill(255);
+          p.textSize(9);
+          p.textAlign(p.CENTER, p.CENTER);
+          p.text(fitText(`${n.type} (${idScore.toFixed(1)}b)`, nw - 6, 5.5), targetX, targetY);
+        });
+      }
     } else {
       // Era-Authentic Chrome & Shader
       p.fill(n.interactiveState === "focused" || isSel ? pal.accent : pal.surface);
@@ -477,30 +518,37 @@ function drawSimulatorMode(p, w, h, st) {
       const radius = spec.chromeStyle === "glass-spatial" || spec.chromeStyle === "aqua-gloss" ? 6 : 1;
       p.rect(nx, ny, nw, nh, radius);
 
-      // Era-specific visual chrome details
       if (spec.chromeStyle === "bevel-win95") {
         p.stroke(255, 255, 255, 190);
         p.line(nx + 1, ny + 1, nx + nw - 1, ny + 1);
         p.line(nx + 1, ny + 1, nx + 1, ny + nh - 1);
       } else if (spec.chromeStyle === "classic-mac") {
+        p.noStroke();
         p.fill(0);
         p.rect(nx + 3, ny + nh, nw, 2);
         p.rect(nx + nw, ny + 3, 2, nh);
       }
 
-      // Component header strip
+      const barH = Math.min(14, nh * 0.24);
       p.noStroke();
       p.fill(pal.border);
-      p.rect(nx, ny, nw, Math.min(16, nh * 0.25), radius);
+      p.rect(nx, ny, nw, barH, radius);
 
-      p.fill(pal.text);
-      p.textSize(10);
-      p.textAlign(p.LEFT, p.TOP);
-      const maxChars = Math.max(6, Math.floor(nw / 6.5));
-      p.text(n.label.slice(0, maxChars), nx + 5, ny + Math.min(18, nh * 0.3));
-      p.fill(pal.muted);
-      p.textSize(9);
-      p.text(`<${n.type}>`, nx + 5, ny + Math.min(32, nh * 0.58));
+      if (nw > 28 && nh > 14) {
+        withClipRect(p, nx + 2, ny + 2, nw - 4, nh - 4, () => {
+          p.noStroke();
+          p.fill(pal.text);
+          p.textSize(9.5);
+          p.textAlign(p.LEFT, p.TOP);
+          const lblY = nh > 26 ? ny + barH + 2 : ny + 2;
+          p.text(fitText(n.label, nw - 8, 5.8), nx + 4, lblY);
+          if (nh > 38) {
+            p.fill(pal.muted);
+            p.textSize(8.5);
+            p.text(fitText(`<${n.type}>`, nw - 8, 5.4), nx + 4, lblY + 13);
+          }
+        });
+      }
     }
   });
 
@@ -511,6 +559,27 @@ function drawSimulatorMode(p, w, h, st) {
     for (let sy = stageY; sy < stageY + stageH; sy += 3) {
       p.line(stageX, sy, stageX + stageW, sy);
     }
+  }
+
+  // Optional HUD Telemetry overlay inside Simulator
+  if (st.simShowMetrics && wf.uxMetrics && stageW > 240) {
+    const m = wf.uxMetrics;
+    const hudW = Math.min(218, stageW - 16);
+    const hudH = 64;
+    const hudX = stageX + stageW - hudW - 8;
+    const hudY = stageY + stageH - hudH - 8;
+    p.fill(7, 10, 16, 228);
+    p.stroke(56, 189, 248, 190);
+    p.strokeWeight(1);
+    p.rect(hudX, hudY, hudW, hudH, 5);
+    p.noStroke();
+    p.fill(56, 189, 248);
+    p.textSize(9.5);
+    p.textAlign(p.LEFT, p.TOP);
+    p.text(`HUD TELEMETRY · ${wf.eraCode} (${wf.year})`, hudX + 8, hudY + 6);
+    p.fill(226, 232, 240);
+    p.text(`Density: ${Math.round(m.informationDensity * 100)}%   Chrome: ${Math.round(m.visualChromeRatio * 100)}%`, hudX + 8, hudY + 23);
+    p.text(`Resp: ${Math.round(m.layoutResponsiveness * 100)}%      Fitts: ${Math.round(m.fittsLawEfficiency * 100)}%`, hudX + 8, hudY + 40);
   }
   p.pop();
 }
@@ -532,22 +601,22 @@ function drawWebMorphMode(p, w, h, st) {
   const stageB = arch.stages[idxB];
   const interpYear = Math.round(stageA.year + (stageB.year - stageA.year) * t);
 
-  // Left 58%: Live Morphing Wireframe Stage
-  const stageX = 24;
-  const stageY = 52;
-  const stageW = Math.floor(w * 0.56);
-  const stageH = h - 76;
+  const padX = 16;
+  const stageY = 44;
+  const stageH = h - stageY - 16;
+  const stageX = padX;
+  const stageW = Math.max(180, Math.floor((w - padX * 3) * 0.56));
+  const rightX = stageX + stageW + padX;
+  const rightW = Math.max(150, w - rightX - padX);
 
   p.noStroke();
   p.fill(241, 245, 249);
-  p.textSize(13);
+  p.textSize(12);
   p.textAlign(p.LEFT, p.TOP);
-  p.text(
-    `WEB UI TRENDS MORPHING LAB · ${arch.name} · Year ~${interpYear} (${stageA.engine} → ${stageB.engine})`,
-    24,
-    14
-  );
+  const morphTitle = `WEB UI TRENDS MORPHING LAB · ${arch.name} · ~${interpYear} (${stageA.engine} → ${stageB.engine})`;
+  p.text(fitText(morphTitle, w - padX * 2, 6.8), padX, 13);
 
+  // Left: Live Morphing Wireframe Stage
   p.fill(13, 19, 31);
   p.stroke(56, 189, 248, 180);
   p.strokeWeight(1.5);
@@ -584,52 +653,86 @@ function drawWebMorphMode(p, w, h, st) {
     p.rect(rx, ry, rw, rh, 5);
 
     const activeNode = t < 0.5 ? na : nb;
-    p.noStroke();
-    p.fill(255);
-    p.textSize(10.5);
-    p.textAlign(p.LEFT, p.TOP);
-    p.text(`[${activeNode.type}]`, rx + 6, ry + 5);
-    p.fill(203, 213, 225);
-    p.textSize(9.5);
-    p.text(activeNode.label.slice(0, Math.max(10, Math.floor(rw / 6.5))), rx + 6, ry + 20);
+    if (rw > 34 && rh > 15) {
+      withClipRect(p, rx + 2, ry + 2, rw - 4, rh - 4, () => {
+        p.noStroke();
+        p.fill(255);
+        p.textSize(10);
+        p.textAlign(p.LEFT, p.TOP);
+        p.text(fitText(`[${activeNode.type}]`, rw - 10, 6.0), rx + 5, ry + 4);
+        if (rh > 28) {
+          p.fill(203, 213, 225);
+          p.textSize(9);
+          p.text(fitText(activeNode.label, rw - 10, 5.5), rx + 5, ry + 18);
+        }
+      });
+    }
   }
 
-  // Right 38%: Web Era Stage Timeline & Metric Curves (1991–2026)
-  const rightX = stageX + stageW + 22;
-  const rightW = w - rightX - 20;
+  // Right: Web Era Stage Timeline & Metric Curves (1991–2026)
   p.fill(13, 19, 31);
   p.stroke(35, 47, 70);
+  p.strokeWeight(1);
   p.rect(rightX, stageY, rightW, stageH, 8);
 
   p.noStroke();
   p.fill(56, 189, 248);
-  p.textSize(11);
-  p.text("WEB LAYOUT ENGINE STAGES (CLICK TO JUMP)", rightX + 12, stageY + 12);
+  p.textSize(10.5);
+  p.textAlign(p.LEFT, p.TOP);
+  p.text(fitText("WEB LAYOUT ENGINE STAGES (CLICK TO JUMP)", rightW - 20, 6.2), rightX + 10, stageY + 10);
+
+  st.morphStageBoxes = [];
+  const boxPitch = 34;
+  const boxH = 29;
+  const listStartY = stageY + 30;
 
   arch.stages.forEach((stItem, sIdx) => {
-    const sy = stageY + 38 + sIdx * 42;
+    const sy = listStartY + sIdx * boxPitch;
+    const bx = rightX + 10;
+    const bw = rightW - 20;
     const isNear = Math.abs(prog - sIdx) < 0.55;
+
+    st.morphStageBoxes.push({ idx: sIdx, x: bx, y: sy, w: bw, h: boxH });
+
     p.fill(isNear ? [30, 58, 95] : [19, 26, 40]);
     p.stroke(isNear ? [56, 189, 248] : [45, 58, 84]);
-    p.rect(rightX + 12, sy, rightW - 24, 34, 5);
+    p.strokeWeight(isNear ? 1.5 : 1);
+    p.rect(bx, sy, bw, boxH, 5);
 
-    p.noStroke();
-    p.fill(isNear ? 255 : 200);
-    p.textSize(11);
-    p.text(`${stItem.stage}. ${stItem.label}`, rightX + 20, sy + 6);
-    p.fill(125, 211, 252);
-    p.textSize(9.5);
-    p.text(`Engine: ${stItem.engine}`, rightX + 20, sy + 20);
+    withClipRect(p, bx + 2, sy + 1, bw - 4, boxH - 2, () => {
+      p.noStroke();
+      p.fill(isNear ? 255 : 210);
+      p.textSize(10);
+      p.textAlign(p.LEFT, p.TOP);
+      p.text(fitText(`${stItem.stage}. ${stItem.label}`, bw - 14, 6.0), bx + 8, sy + 4);
+      p.fill(125, 211, 252);
+      p.textSize(8.8);
+      p.text(fitText(`Engine: ${stItem.engine}`, bw - 14, 5.3), bx + 8, sy + 16);
+    });
   });
 
   // Mini Web Responsiveness vs Chrome Ratio chart at bottom right
-  const chartY = stageY + 305;
-  const chartH = stageH - 320;
-  if (chartH > 50 && st.trends && st.trends.yearlySeries) {
+  const chartTop = listStartY + arch.stages.length * boxPitch + 22;
+  const chartH = stageY + stageH - chartTop - 14;
+  if (chartH > 45 && st.trends && st.trends.yearlySeries) {
     p.noStroke();
     p.fill(203, 213, 225);
-    p.textSize(10);
-    p.text("Web Responsiveness (Cyan) vs Chrome Overhead (Amber) 1991–2026", rightX + 12, chartY - 14);
+    p.textSize(9.5);
+    p.textAlign(p.LEFT, p.TOP);
+    p.text(
+      fitText("Responsiveness (Cyan) vs Chrome (Amber) 1991–2026", rightW - 20, 5.7),
+      rightX + 10,
+      chartTop - 16
+    );
+
+    const chartX = rightX + 12;
+    const chartW = Math.max(40, rightW - 24);
+
+    // Subtle chart frame
+    p.fill(9, 13, 22);
+    p.stroke(30, 41, 59);
+    p.strokeWeight(1);
+    p.rect(chartX, chartTop, chartW, chartH, 4);
 
     const webSeries = st.trends.yearlySeries.filter((y) => y.year >= 1991);
     p.noFill();
@@ -637,8 +740,8 @@ function drawWebMorphMode(p, w, h, st) {
     p.strokeWeight(2);
     p.beginShape();
     webSeries.forEach((ys, i) => {
-      const cx = rightX + 14 + (i / (webSeries.length - 1)) * (rightW - 28);
-      const cy = chartY + (1 - ys.avgMetrics.layoutResponsiveness) * chartH;
+      const cx = chartX + 4 + (i / (webSeries.length - 1)) * (chartW - 8);
+      const cy = chartTop + 4 + (1 - ys.avgMetrics.layoutResponsiveness) * (chartH - 8);
       p.vertex(cx, cy);
     });
     p.endShape();
@@ -646,11 +749,18 @@ function drawWebMorphMode(p, w, h, st) {
     p.stroke(251, 191, 36);
     p.beginShape();
     webSeries.forEach((ys, i) => {
-      const cx = rightX + 14 + (i / (webSeries.length - 1)) * (rightW - 28);
-      const cy = chartY + (1 - ys.avgMetrics.visualChromeRatio) * chartH;
+      const cx = chartX + 4 + (i / (webSeries.length - 1)) * (chartW - 8);
+      const cy = chartTop + 4 + (1 - ys.avgMetrics.visualChromeRatio) * (chartH - 8);
       p.vertex(cx, cy);
     });
     p.endShape();
+
+    // Active interpolated year marker line
+    const yearFrac = Math.max(0, Math.min(1, (interpYear - 1991) / (2026 - 1991)));
+    const markerX = chartX + 4 + yearFrac * (chartW - 8);
+    p.stroke(52, 211, 153, 200);
+    p.strokeWeight(1.2);
+    p.line(markerX, chartTop + 2, markerX, chartTop + chartH - 2);
   }
 }
 
@@ -661,8 +771,8 @@ function rebuildConstellationLayout(w, h) {
   const st = window.UIHistoryState;
   if (!st.wireframes || st.wireframes.length === 0) return;
   const cx = w / 2;
-  const cy = h / 2 + 10;
-  const maxR = Math.min(w, h) * 0.41;
+  const cy = h / 2 + 12;
+  const maxR = Math.min(w, h) * 0.40;
 
   st.constellationNodes = st.wireframes.map((wf, idx) => {
     let angle = 0;
@@ -677,6 +787,8 @@ function rebuildConstellationLayout(w, h) {
       radius = 55 + (wf.uxMetrics.informationDensity * 0.65 + (idx % 7) * 0.05) * (maxR - 55);
     }
     return {
+      baseX: cx + Math.cos(angle) * radius,
+      baseY: cy + Math.sin(angle) * radius,
       x: cx + Math.cos(angle) * radius,
       y: cy + Math.sin(angle) * radius,
       wf,
@@ -689,15 +801,26 @@ function drawConstellationMode(p, w, h, st) {
     rebuildConstellationLayout(w, h);
   }
 
-  p.noStroke();
-  p.fill(241, 245, 249);
-  p.textSize(13);
-  p.textAlign(p.LEFT, p.TOP);
-  p.text(
-    `UI GENEALOGY CONSTELLATION (1,026 Nodes · Radial 60-Year Lineage Graph · Group: ${st.constellationGroup.toUpperCase()})`,
-    20,
-    14
-  );
+  const cx = w / 2;
+  const cy = h / 2 + 12;
+  const zoom = st.constellationZoom || 1.0;
+  const panX = st.constellationPanX || 0;
+  const panY = st.constellationPanY || 0;
+
+  // Update transformed screen positions for hit-testing
+  st.constellationNodes.forEach((cn) => {
+    cn.x = cx + (cn.baseX - cx) * zoom + panX;
+    cn.y = cy + (cn.baseY - cy) * zoom + panY;
+  });
+
+  // Subtle concentric guide rings
+  p.noFill();
+  p.stroke(30, 41, 59, 140);
+  p.strokeWeight(1);
+  const maxR = Math.min(w, h) * 0.40 * zoom;
+  [0.35, 0.68, 1.0].forEach((f) => {
+    p.circle(cx + panX, cy + panY, maxR * 2 * f);
+  });
 
   const byId = new Map();
   st.constellationNodes.forEach((cn) => byId.set(cn.wf.id, cn));
@@ -715,12 +838,13 @@ function drawConstellationMode(p, w, h, st) {
     }
   }
 
-  if (st.activeWireframe) {
-    const activeCn = byId.get(st.activeWireframe.id);
+  const focusWf = st.hoveredWireframe || st.activeWireframe;
+  if (focusWf) {
+    const activeCn = byId.get(focusWf.id);
     if (activeCn) {
       p.stroke(52, 211, 153, 220);
       p.strokeWeight(2);
-      [...(st.activeWireframe.predecessorIds || []), ...(st.activeWireframe.successorIds || [])].forEach((nid) => {
+      [...(focusWf.predecessorIds || []), ...(focusWf.successorIds || [])].forEach((nid) => {
         const target = byId.get(nid);
         if (target) p.line(activeCn.x, activeCn.y, target.x, target.y);
       });
@@ -731,10 +855,28 @@ function drawConstellationMode(p, w, h, st) {
   st.constellationNodes.forEach((cn) => {
     const rgb = getEraRGB(cn.wf.eraCode);
     const isSel = st.activeWireframe && st.activeWireframe.id === cn.wf.id;
-    p.noStroke();
-    p.fill(rgb[0], rgb[1], rgb[2], isSel ? 255 : 185);
-    p.circle(cn.x, cn.y, isSel ? 11 : cn.wf.isLandmark ? 6 : 4);
+    const isHov = st.hoveredWireframe && st.hoveredWireframe.id === cn.wf.id;
+    if (isSel || isHov) {
+      p.stroke(255);
+      p.strokeWeight(1.8);
+    } else {
+      p.noStroke();
+    }
+    p.fill(rgb[0], rgb[1], rgb[2], isSel || isHov ? 255 : 185);
+    p.circle(cn.x, cn.y, isSel ? 11 : isHov ? 9.5 : cn.wf.isLandmark ? 6 : 4);
   });
+
+  // Top Header Title
+  p.noStroke();
+  p.fill(241, 245, 249);
+  p.textSize(12.5);
+  p.textAlign(p.LEFT, p.TOP);
+  const constHdr = `UI GENEALOGY CONSTELLATION (1,026 Nodes · Radial 60-Year Lineage Graph · Group: ${st.constellationGroup.toUpperCase()})`;
+  p.text(fitText(constHdr, w - 36, 6.8), 18, 14);
+
+  if (focusWf && w >= 520) {
+    drawMiniWireframeOverlay(p, focusWf, w - 212, 44, 196, 122);
+  }
 }
 
 /* ==========================================================================
@@ -754,9 +896,33 @@ function handleHover(p, w, h) {
       }
     }
     st.hoveredWireframe = best;
+    p.cursor(best ? p.HAND : p.ARROW);
     if (best) {
       updateHudReadout(`Hovering [${best.id}] ${best.title} (${best.year}) · Density: ${best.uxMetrics.informationDensity}`);
     }
+  } else if (st.p5Mode === "constellation") {
+    let best = null;
+    let bestDist = 12;
+    for (let i = 0; i < st.constellationNodes.length; i++) {
+      const cn = st.constellationNodes[i];
+      const d = Math.hypot(p.mouseX - cn.x, p.mouseY - cn.y);
+      if (d < bestDist) {
+        bestDist = d;
+        best = cn.wf;
+      }
+    }
+    st.hoveredWireframe = best;
+    p.cursor(best ? p.HAND : p.ARROW);
+    if (best) {
+      updateHudReadout(`Constellation Node [${best.id}] ${best.title} (${best.year}) · ${best.eraCode}`);
+    }
+  } else if (st.p5Mode === "web-morph") {
+    const hitStage = (st.morphStageBoxes || []).find(
+      (b) => p.mouseX >= b.x && p.mouseX <= b.x + b.w && p.mouseY >= b.y && p.mouseY <= b.y + b.h
+    );
+    p.cursor(hitStage ? p.HAND : p.ARROW);
+  } else {
+    p.cursor(p.ARROW);
   }
 }
 
@@ -769,17 +935,17 @@ function handleClick(p, w, h) {
   } else if (st.p5Mode === "simulator" && st.activeWireframe) {
     const wf = st.activeWireframe;
     const spec = wf.layoutSpec;
-    const pad = 38;
-    const availW = w - pad * 2;
-    const availH = h - pad * 2 - 18;
+    const pad = 28;
+    const availW = Math.max(200, w - pad * 2);
+    const availH = Math.max(200, h - pad * 2 - 20);
     const scale = Math.min(availW / spec.viewportWidth, availH / spec.viewportHeight);
     const stageW = spec.viewportWidth * scale;
     const stageH = spec.viewportHeight * scale;
     const stageX = (w - stageW) / 2;
-    const stageY = pad + 14 + (availH - stageH) / 2;
+    const stageY = pad + 16 + (availH - stageH) / 2;
 
     const clicked = [...spec.nodes]
-      .reverse()
+      .sort((a, b) => (b.zIndex || 1) - (a.zIndex || 1))
       .find((n) => {
         const nx = stageX + n.x * scale;
         const ny = stageY + n.y * scale;
@@ -794,17 +960,14 @@ function handleClick(p, w, h) {
       );
     }
   } else if (st.p5Mode === "web-morph") {
-    const stageX = 24;
-    const stageW = Math.floor(w * 0.56);
-    const rightX = stageX + stageW + 22;
-    if (p.mouseX >= rightX) {
-      const idx = Math.floor((p.mouseY - 90) / 42);
-      if (idx >= 0 && idx <= 5) {
-        st.morphProgress = idx;
-        const slider = document.getElementById("morph-stage-slider");
-        if (slider) slider.value = String(idx * 100);
-        updateMorphStageLabel();
-      }
+    const hitStage = (st.morphStageBoxes || []).find(
+      (b) => p.mouseX >= b.x && p.mouseX <= b.x + b.w && p.mouseY >= b.y && p.mouseY <= b.y + b.h
+    );
+    if (hitStage) {
+      st.morphProgress = hitStage.idx;
+      const slider = document.getElementById("morph-stage-slider");
+      if (slider) slider.value = String(hitStage.idx * 100);
+      updateMorphStageLabel();
     }
   } else if (st.p5Mode === "constellation") {
     let best = null;
@@ -831,7 +994,9 @@ function updateMorphStageLabel() {
   const st = window.UIHistoryState;
   const lbl = document.getElementById("morph-stage-label");
   if (!lbl || !st.trends) return;
-  const arch = st.trends.webLayoutMorphArchetypes[0];
+  const archetypes = st.trends.webLayoutMorphArchetypes || [];
+  const arch = archetypes.find((a) => a.id === st.morphArchetypeId) || archetypes[0];
+  if (!arch) return;
   const idx = Math.min(5, Math.round(st.morphProgress));
   const stage = arch.stages[idx];
   lbl.textContent = stage ? `${stage.year} (${stage.engine})` : "";

@@ -8,7 +8,7 @@ import json
 import os
 import sys
 
-ROOT = "/mnt/c2r/repos/history-in-ui-development"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT, "public", "data")
 WF_JSON = os.path.join(DATA_DIR, "wireframes.json")
 WF_JSONL = os.path.join(DATA_DIR, "wireframes.jsonl")

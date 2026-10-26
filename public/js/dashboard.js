@@ -11,14 +11,35 @@
     byId: new Map(),
   };
 
+  async function loadCorpusData() {
+    if (window.location.protocol !== "file:") {
+      try {
+        const [wfResp, trResp] = await Promise.all([
+          fetch("./data/wireframes.json"),
+          fetch("./data/trends.json"),
+        ]);
+        if (wfResp.ok && trResp.ok) {
+          return {
+            wfData: await wfResp.json(),
+            trData: await trResp.json(),
+          };
+        }
+      } catch (_) {
+        // Fall through to bundled corpus on offline / file:// / fetch failure
+      }
+    }
+    if (window.__UI_HISTORY_CORPUS__) {
+      return {
+        wfData: window.__UI_HISTORY_CORPUS__.wireframesData,
+        trData: window.__UI_HISTORY_CORPUS__.trendsData,
+      };
+    }
+    throw new Error("Unable to load wireframe corpus via fetch or corpus-bundle.js");
+  }
+
   async function bootApp() {
     try {
-      const [wfResp, trResp] = await Promise.all([
-        fetch("/data/wireframes.json"),
-        fetch("/data/trends.json"),
-      ]);
-      const wfData = await wfResp.json();
-      const trData = await trResp.json();
+      const { wfData, trData } = await loadCorpusData();
 
       const st = window.UIHistoryState;
       st.wireframes = wfData.wireframes || [];
@@ -208,6 +229,13 @@
       });
     }
 
+    const metricsChk = document.getElementById("sim-show-metrics");
+    if (metricsChk) {
+      metricsChk.addEventListener("change", () => {
+        st.simShowMetrics = metricsChk.checked;
+      });
+    }
+
     const prevSim = document.getElementById("btn-sim-prev");
     const nextSim = document.getElementById("btn-sim-next");
     if (prevSim) {
@@ -230,6 +258,7 @@
     if (morphArch) {
       morphArch.addEventListener("change", () => {
         st.morphArchetypeId = morphArch.value;
+        if (window.updateMorphStageLabel) window.updateMorphStageLabel();
       });
     }
 
@@ -257,6 +286,19 @@
     if (constLin) {
       constLin.addEventListener("change", () => {
         st.constellationShowLineage = constLin.checked;
+      });
+    }
+
+    const constReset = document.getElementById("btn-constellation-reset");
+    if (constReset) {
+      constReset.addEventListener("click", () => {
+        st.constellationZoom = 1.0;
+        st.constellationPanX = 0;
+        st.constellationPanY = 0;
+        const cnv = document.getElementById("p5-canvas-container");
+        if (window.rebuildConstellationLayout && cnv) {
+          window.rebuildConstellationLayout(cnv.clientWidth || 900, cnv.clientHeight || 500);
+        }
       });
     }
 
@@ -571,9 +613,14 @@
       ctx.strokeRect(nx, ny, nw, nh);
 
       if (showLabels && nw > 38 && nh > 14) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(nx + 1, ny + 1, Math.max(0, nw - 2), Math.max(0, nh - 2));
+        ctx.clip();
         ctx.fillStyle = pal.text;
         ctx.font = "10px monospace";
         ctx.fillText(`${n.type}`, nx + 4, ny + 11);
+        ctx.restore();
       }
     });
   }

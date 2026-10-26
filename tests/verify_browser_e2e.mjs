@@ -18,12 +18,21 @@ import fs from "node:fs";
 import net from "node:net";
 import path from "node:path";
 import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 
-const require = createRequire("/home/linuxbrew/.linuxbrew/lib/node_modules/playwright/index.js");
-const { chromium } = require("/home/linuxbrew/.linuxbrew/lib/node_modules/playwright");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(__dirname, "..");
+const EVIDENCE_DIR = fs.existsSync("/mnt/c2r/state/runs/20261026-124146-history-ui-dev-emfTsz/evidence")
+  ? "/mnt/c2r/state/runs/20261026-124146-history-ui-dev-emfTsz/evidence"
+  : path.join(ROOT, "evidence");
 
-const ROOT = "/mnt/c2r/repos/history-in-ui-development";
-const EVIDENCE_DIR = "/mnt/c2r/state/runs/20261026-124146-history-ui-dev-emfTsz/evidence";
+const pwCandidates = [
+  "/home/linuxbrew/.linuxbrew/lib/node_modules/playwright/index.js",
+  path.join(ROOT, "node_modules/playwright/index.js"),
+];
+const pwPath = pwCandidates.find((p) => fs.existsSync(p)) || "playwright";
+const require = createRequire(import.meta.url);
+const { chromium } = require(pwPath);
 
 function fail(msg) {
   console.error(`FAIL [verify_browser_e2e]: ${msg}`);

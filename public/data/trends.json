@@ -413,13 +413,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.447,
-        "interactionComplexity": 0.579,
-        "visualChromeRatio": 0.284,
-        "keyboardToPointerBias": -0.671,
-        "layoutResponsiveness": 0.148,
-        "fittsLawEfficiency": 0.49,
-        "cognitiveLoadIndex": 4.905
+        "informationDensity": 0.44,
+        "interactionComplexity": 0.587,
+        "visualChromeRatio": 0.307,
+        "keyboardToPointerBias": -0.662,
+        "layoutResponsiveness": 0.135,
+        "fittsLawEfficiency": 0.474,
+        "cognitiveLoadIndex": 4.941
       }
     },
     {
@@ -429,13 +429,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.474,
-        "interactionComplexity": 0.581,
-        "visualChromeRatio": 0.313,
-        "keyboardToPointerBias": -0.69,
-        "layoutResponsiveness": 0.144,
-        "fittsLawEfficiency": 0.491,
-        "cognitiveLoadIndex": 5.068
+        "informationDensity": 0.495,
+        "interactionComplexity": 0.582,
+        "visualChromeRatio": 0.309,
+        "keyboardToPointerBias": -0.673,
+        "layoutResponsiveness": 0.141,
+        "fittsLawEfficiency": 0.476,
+        "cognitiveLoadIndex": 5.169
       }
     },
     {
@@ -445,13 +445,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.525,
-        "interactionComplexity": 0.582,
-        "visualChromeRatio": 0.316,
-        "keyboardToPointerBias": -0.742,
-        "layoutResponsiveness": 0.113,
-        "fittsLawEfficiency": 0.498,
-        "cognitiveLoadIndex": 5.276
+        "informationDensity": 0.519,
+        "interactionComplexity": 0.576,
+        "visualChromeRatio": 0.304,
+        "keyboardToPointerBias": -0.766,
+        "layoutResponsiveness": 0.152,
+        "fittsLawEfficiency": 0.49,
+        "cognitiveLoadIndex": 5.241
       }
     },
     {
@@ -461,13 +461,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.53,
-        "interactionComplexity": 0.571,
-        "visualChromeRatio": 0.313,
-        "keyboardToPointerBias": -0.641,
+        "informationDensity": 0.538,
+        "interactionComplexity": 0.56,
+        "visualChromeRatio": 0.335,
+        "keyboardToPointerBias": -0.71,
         "layoutResponsiveness": 0.132,
-        "fittsLawEfficiency": 0.481,
-        "cognitiveLoadIndex": 5.316
+        "fittsLawEfficiency": 0.509,
+        "cognitiveLoadIndex": 5.348
       }
     },
     {
@@ -477,13 +477,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.582,
-        "interactionComplexity": 0.578,
-        "visualChromeRatio": 0.345,
-        "keyboardToPointerBias": -0.68,
-        "layoutResponsiveness": 0.151,
-        "fittsLawEfficiency": 0.479,
-        "cognitiveLoadIndex": 5.595
+        "informationDensity": 0.604,
+        "interactionComplexity": 0.563,
+        "visualChromeRatio": 0.332,
+        "keyboardToPointerBias": -0.654,
+        "layoutResponsiveness": 0.131,
+        "fittsLawEfficiency": 0.496,
+        "cognitiveLoadIndex": 5.638
       }
     },
     {
@@ -493,13 +493,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.62,
-        "interactionComplexity": 0.587,
-        "visualChromeRatio": 0.349,
-        "keyboardToPointerBias": -0.705,
-        "layoutResponsiveness": 0.143,
-        "fittsLawEfficiency": 0.509,
-        "cognitiveLoadIndex": 5.718
+        "informationDensity": 0.632,
+        "interactionComplexity": 0.577,
+        "visualChromeRatio": 0.333,
+        "keyboardToPointerBias": -0.675,
+        "layoutResponsiveness": 0.154,
+        "fittsLawEfficiency": 0.494,
+        "cognitiveLoadIndex": 5.762
       }
     },
     {
@@ -509,13 +509,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.664,
-        "interactionComplexity": 0.551,
-        "visualChromeRatio": 0.336,
-        "keyboardToPointerBias": -0.635,
-        "layoutResponsiveness": 0.137,
-        "fittsLawEfficiency": 0.506,
-        "cognitiveLoadIndex": 5.885
+        "informationDensity": 0.636,
+        "interactionComplexity": 0.546,
+        "visualChromeRatio": 0.356,
+        "keyboardToPointerBias": -0.696,
+        "layoutResponsiveness": 0.132,
+        "fittsLawEfficiency": 0.507,
+        "cognitiveLoadIndex": 5.803
       }
     },
     {
@@ -525,13 +525,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.662,
-        "interactionComplexity": 0.55,
-        "visualChromeRatio": 0.349,
-        "keyboardToPointerBias": -0.686,
-        "layoutResponsiveness": 0.129,
-        "fittsLawEfficiency": 0.523,
-        "cognitiveLoadIndex": 5.876
+        "informationDensity": 0.674,
+        "interactionComplexity": 0.543,
+        "visualChromeRatio": 0.351,
+        "keyboardToPointerBias": -0.719,
+        "layoutResponsiveness": 0.15,
+        "fittsLawEfficiency": 0.5,
+        "cognitiveLoadIndex": 5.961
       }
     },
     {
@@ -541,13 +541,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.707,
-        "interactionComplexity": 0.573,
-        "visualChromeRatio": 0.356,
-        "keyboardToPointerBias": -0.719,
-        "layoutResponsiveness": 0.114,
-        "fittsLawEfficiency": 0.508,
-        "cognitiveLoadIndex": 6.098
+        "informationDensity": 0.701,
+        "interactionComplexity": 0.553,
+        "visualChromeRatio": 0.35,
+        "keyboardToPointerBias": -0.762,
+        "layoutResponsiveness": 0.146,
+        "fittsLawEfficiency": 0.51,
+        "cognitiveLoadIndex": 6.061
       }
     },
     {
@@ -557,13 +557,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.73,
-        "interactionComplexity": 0.536,
-        "visualChromeRatio": 0.366,
-        "keyboardToPointerBias": -0.678,
-        "layoutResponsiveness": 0.138,
-        "fittsLawEfficiency": 0.518,
-        "cognitiveLoadIndex": 6.199
+        "informationDensity": 0.728,
+        "interactionComplexity": 0.537,
+        "visualChromeRatio": 0.367,
+        "keyboardToPointerBias": -0.691,
+        "layoutResponsiveness": 0.117,
+        "fittsLawEfficiency": 0.52,
+        "cognitiveLoadIndex": 6.186
       }
     },
     {
@@ -573,13 +573,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.732,
-        "interactionComplexity": 0.569,
-        "visualChromeRatio": 0.371,
-        "keyboardToPointerBias": -0.73,
-        "layoutResponsiveness": 0.12,
-        "fittsLawEfficiency": 0.548,
-        "cognitiveLoadIndex": 6.176
+        "informationDensity": 0.742,
+        "interactionComplexity": 0.564,
+        "visualChromeRatio": 0.361,
+        "keyboardToPointerBias": -0.743,
+        "layoutResponsiveness": 0.154,
+        "fittsLawEfficiency": 0.525,
+        "cognitiveLoadIndex": 6.231
       }
     },
     {
@@ -589,13 +589,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.743,
-        "interactionComplexity": 0.554,
-        "visualChromeRatio": 0.367,
-        "keyboardToPointerBias": -0.71,
-        "layoutResponsiveness": 0.155,
-        "fittsLawEfficiency": 0.542,
-        "cognitiveLoadIndex": 6.22
+        "informationDensity": 0.741,
+        "interactionComplexity": 0.56,
+        "visualChromeRatio": 0.373,
+        "keyboardToPointerBias": -0.642,
+        "layoutResponsiveness": 0.123,
+        "fittsLawEfficiency": 0.525,
+        "cognitiveLoadIndex": 6.248
       }
     },
     {
@@ -605,13 +605,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.76,
-        "interactionComplexity": 0.55,
-        "visualChromeRatio": 0.387,
-        "keyboardToPointerBias": -0.726,
-        "layoutResponsiveness": 0.149,
-        "fittsLawEfficiency": 0.565,
-        "cognitiveLoadIndex": 6.299
+        "informationDensity": 0.766,
+        "interactionComplexity": 0.567,
+        "visualChromeRatio": 0.376,
+        "keyboardToPointerBias": -0.657,
+        "layoutResponsiveness": 0.126,
+        "fittsLawEfficiency": 0.574,
+        "cognitiveLoadIndex": 6.289
       }
     },
     {
@@ -621,13 +621,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.76,
-        "interactionComplexity": 0.569,
-        "visualChromeRatio": 0.383,
-        "keyboardToPointerBias": 0.231,
-        "layoutResponsiveness": 0.135,
-        "fittsLawEfficiency": 0.543,
-        "cognitiveLoadIndex": 6.322
+        "informationDensity": 0.752,
+        "interactionComplexity": 0.554,
+        "visualChromeRatio": 0.394,
+        "keyboardToPointerBias": 0.2,
+        "layoutResponsiveness": 0.144,
+        "fittsLawEfficiency": 0.562,
+        "cognitiveLoadIndex": 6.282
       }
     },
     {
@@ -637,13 +637,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.744,
+        "informationDensity": 0.755,
         "interactionComplexity": 0.58,
-        "visualChromeRatio": 0.395,
-        "keyboardToPointerBias": 0.267,
-        "layoutResponsiveness": 0.126,
-        "fittsLawEfficiency": 0.562,
-        "cognitiveLoadIndex": 6.249
+        "visualChromeRatio": 0.407,
+        "keyboardToPointerBias": 0.164,
+        "layoutResponsiveness": 0.135,
+        "fittsLawEfficiency": 0.566,
+        "cognitiveLoadIndex": 6.312
       }
     },
     {
@@ -653,13 +653,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.755,
-        "interactionComplexity": 0.578,
-        "visualChromeRatio": 0.387,
-        "keyboardToPointerBias": 0.252,
-        "layoutResponsiveness": 0.125,
-        "fittsLawEfficiency": 0.563,
-        "cognitiveLoadIndex": 6.278
+        "informationDensity": 0.725,
+        "interactionComplexity": 0.572,
+        "visualChromeRatio": 0.411,
+        "keyboardToPointerBias": 0.159,
+        "layoutResponsiveness": 0.14,
+        "fittsLawEfficiency": 0.572,
+        "cognitiveLoadIndex": 6.184
       }
     },
     {
@@ -669,13 +669,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.73,
-        "interactionComplexity": 0.567,
-        "visualChromeRatio": 0.412,
-        "keyboardToPointerBias": 0.245,
-        "layoutResponsiveness": 0.128,
-        "fittsLawEfficiency": 0.575,
-        "cognitiveLoadIndex": 6.204
+        "informationDensity": 0.734,
+        "interactionComplexity": 0.566,
+        "visualChromeRatio": 0.417,
+        "keyboardToPointerBias": 0.173,
+        "layoutResponsiveness": 0.139,
+        "fittsLawEfficiency": 0.58,
+        "cognitiveLoadIndex": 6.219
       }
     },
     {
@@ -685,13 +685,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.732,
-        "interactionComplexity": 0.573,
-        "visualChromeRatio": 0.422,
-        "keyboardToPointerBias": 0.195,
-        "layoutResponsiveness": 0.121,
-        "fittsLawEfficiency": 0.556,
-        "cognitiveLoadIndex": 6.255
+        "informationDensity": 0.717,
+        "interactionComplexity": 0.557,
+        "visualChromeRatio": 0.415,
+        "keyboardToPointerBias": 0.14,
+        "layoutResponsiveness": 0.134,
+        "fittsLawEfficiency": 0.566,
+        "cognitiveLoadIndex": 6.164
       }
     },
     {
@@ -701,13 +701,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.693,
-        "interactionComplexity": 0.555,
-        "visualChromeRatio": 0.435,
-        "keyboardToPointerBias": 0.3,
-        "layoutResponsiveness": 0.123,
-        "fittsLawEfficiency": 0.576,
-        "cognitiveLoadIndex": 6.086
+        "informationDensity": 0.701,
+        "interactionComplexity": 0.551,
+        "visualChromeRatio": 0.44,
+        "keyboardToPointerBias": 0.151,
+        "layoutResponsiveness": 0.131,
+        "fittsLawEfficiency": 0.578,
+        "cognitiveLoadIndex": 6.125
       }
     },
     {
@@ -717,13 +717,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.662,
-        "interactionComplexity": 0.587,
-        "visualChromeRatio": 0.423,
-        "keyboardToPointerBias": 0.235,
-        "layoutResponsiveness": 0.119,
-        "fittsLawEfficiency": 0.57,
-        "cognitiveLoadIndex": 5.946
+        "informationDensity": 0.648,
+        "interactionComplexity": 0.563,
+        "visualChromeRatio": 0.435,
+        "keyboardToPointerBias": 0.133,
+        "layoutResponsiveness": 0.15,
+        "fittsLawEfficiency": 0.583,
+        "cognitiveLoadIndex": 5.891
       }
     },
     {
@@ -734,12 +734,12 @@
       "landmarkCount": 2,
       "avgMetrics": {
         "informationDensity": 0.619,
-        "interactionComplexity": 0.595,
-        "visualChromeRatio": 0.431,
-        "keyboardToPointerBias": 0.154,
-        "layoutResponsiveness": 0.161,
-        "fittsLawEfficiency": 0.583,
-        "cognitiveLoadIndex": 5.756
+        "interactionComplexity": 0.571,
+        "visualChromeRatio": 0.428,
+        "keyboardToPointerBias": 0.308,
+        "layoutResponsiveness": 0.158,
+        "fittsLawEfficiency": 0.592,
+        "cognitiveLoadIndex": 5.744
       }
     },
     {
@@ -749,13 +749,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.612,
-        "interactionComplexity": 0.585,
-        "visualChromeRatio": 0.441,
-        "keyboardToPointerBias": 0.111,
-        "layoutResponsiveness": 0.141,
-        "fittsLawEfficiency": 0.607,
-        "cognitiveLoadIndex": 5.716
+        "informationDensity": 0.592,
+        "interactionComplexity": 0.579,
+        "visualChromeRatio": 0.428,
+        "keyboardToPointerBias": 0.223,
+        "layoutResponsiveness": 0.149,
+        "fittsLawEfficiency": 0.594,
+        "cognitiveLoadIndex": 5.626
       }
     },
     {
@@ -765,13 +765,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.579,
-        "interactionComplexity": 0.593,
-        "visualChromeRatio": 0.668,
-        "keyboardToPointerBias": 0.194,
-        "layoutResponsiveness": 0.128,
-        "fittsLawEfficiency": 0.613,
-        "cognitiveLoadIndex": 5.978
+        "informationDensity": 0.546,
+        "interactionComplexity": 0.585,
+        "visualChromeRatio": 0.679,
+        "keyboardToPointerBias": 0.17,
+        "layoutResponsiveness": 0.154,
+        "fittsLawEfficiency": 0.616,
+        "cognitiveLoadIndex": 5.852
       }
     },
     {
@@ -781,13 +781,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.547,
-        "interactionComplexity": 0.584,
-        "visualChromeRatio": 0.704,
-        "keyboardToPointerBias": 0.185,
-        "layoutResponsiveness": 0.124,
-        "fittsLawEfficiency": 0.615,
-        "cognitiveLoadIndex": 5.904
+        "informationDensity": 0.538,
+        "interactionComplexity": 0.586,
+        "visualChromeRatio": 0.697,
+        "keyboardToPointerBias": 0.154,
+        "layoutResponsiveness": 0.132,
+        "fittsLawEfficiency": 0.611,
+        "cognitiveLoadIndex": 5.855
       }
     },
     {
@@ -797,13 +797,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.508,
-        "interactionComplexity": 0.574,
-        "visualChromeRatio": 0.719,
-        "keyboardToPointerBias": 0.095,
-        "layoutResponsiveness": 0.143,
-        "fittsLawEfficiency": 0.618,
-        "cognitiveLoadIndex": 5.762
+        "informationDensity": 0.501,
+        "interactionComplexity": 0.572,
+        "visualChromeRatio": 0.7,
+        "keyboardToPointerBias": 0.234,
+        "layoutResponsiveness": 0.135,
+        "fittsLawEfficiency": 0.608,
+        "cognitiveLoadIndex": 5.715
       }
     },
     {
@@ -813,13 +813,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.485,
-        "interactionComplexity": 0.595,
-        "visualChromeRatio": 0.725,
-        "keyboardToPointerBias": 0.539,
-        "layoutResponsiveness": 0.327,
-        "fittsLawEfficiency": 0.629,
-        "cognitiveLoadIndex": 5.659
+        "informationDensity": 0.458,
+        "interactionComplexity": 0.603,
+        "visualChromeRatio": 0.741,
+        "keyboardToPointerBias": 0.509,
+        "layoutResponsiveness": 0.315,
+        "fittsLawEfficiency": 0.622,
+        "cognitiveLoadIndex": 5.586
       }
     },
     {
@@ -829,13 +829,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.448,
-        "interactionComplexity": 0.603,
-        "visualChromeRatio": 0.756,
-        "keyboardToPointerBias": 0.513,
-        "layoutResponsiveness": 0.322,
-        "fittsLawEfficiency": 0.639,
-        "cognitiveLoadIndex": 5.551
+        "informationDensity": 0.453,
+        "interactionComplexity": 0.605,
+        "visualChromeRatio": 0.752,
+        "keyboardToPointerBias": 0.501,
+        "layoutResponsiveness": 0.34,
+        "fittsLawEfficiency": 0.63,
+        "cognitiveLoadIndex": 5.575
       }
     },
     {
@@ -845,13 +845,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.427,
-        "interactionComplexity": 0.593,
+        "informationDensity": 0.425,
+        "interactionComplexity": 0.597,
         "visualChromeRatio": 0.766,
-        "keyboardToPointerBias": 0.505,
-        "layoutResponsiveness": 0.348,
-        "fittsLawEfficiency": 0.627,
-        "cognitiveLoadIndex": 5.496
+        "keyboardToPointerBias": 0.546,
+        "layoutResponsiveness": 0.295,
+        "fittsLawEfficiency": 0.632,
+        "cognitiveLoadIndex": 5.48
       }
     },
     {
@@ -861,13 +861,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.414,
-        "interactionComplexity": 0.593,
-        "visualChromeRatio": 0.776,
-        "keyboardToPointerBias": 0.539,
-        "layoutResponsiveness": 0.372,
-        "fittsLawEfficiency": 0.661,
-        "cognitiveLoadIndex": 5.41
+        "informationDensity": 0.405,
+        "interactionComplexity": 0.608,
+        "visualChromeRatio": 0.788,
+        "keyboardToPointerBias": 0.588,
+        "layoutResponsiveness": 0.323,
+        "fittsLawEfficiency": 0.637,
+        "cognitiveLoadIndex": 5.428
       }
     },
     {
@@ -877,13 +877,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.384,
-        "interactionComplexity": 0.6,
-        "visualChromeRatio": 0.796,
-        "keyboardToPointerBias": 0.437,
-        "layoutResponsiveness": 0.348,
-        "fittsLawEfficiency": 0.653,
-        "cognitiveLoadIndex": 5.33
+        "informationDensity": 0.406,
+        "interactionComplexity": 0.602,
+        "visualChromeRatio": 0.777,
+        "keyboardToPointerBias": 0.547,
+        "layoutResponsiveness": 0.33,
+        "fittsLawEfficiency": 0.644,
+        "cognitiveLoadIndex": 5.403
       }
     },
     {
@@ -893,13 +893,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.408,
-        "interactionComplexity": 0.587,
-        "visualChromeRatio": 0.793,
-        "keyboardToPointerBias": 0.508,
-        "layoutResponsiveness": 0.262,
-        "fittsLawEfficiency": 0.656,
-        "cognitiveLoadIndex": 5.423
+        "informationDensity": 0.385,
+        "interactionComplexity": 0.592,
+        "visualChromeRatio": 0.803,
+        "keyboardToPointerBias": 0.395,
+        "layoutResponsiveness": 0.317,
+        "fittsLawEfficiency": 0.66,
+        "cognitiveLoadIndex": 5.338
       }
     },
     {
@@ -909,13 +909,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.414,
-        "interactionComplexity": 0.617,
-        "visualChromeRatio": 0.802,
+        "informationDensity": 0.388,
+        "interactionComplexity": 0.61,
+        "visualChromeRatio": 0.811,
         "keyboardToPointerBias": 0.51,
-        "layoutResponsiveness": 0.327,
-        "fittsLawEfficiency": 0.66,
-        "cognitiveLoadIndex": 5.457
+        "layoutResponsiveness": 0.35,
+        "fittsLawEfficiency": 0.658,
+        "cognitiveLoadIndex": 5.369
       }
     },
     {
@@ -925,13 +925,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.416,
-        "interactionComplexity": 0.605,
-        "visualChromeRatio": 0.809,
-        "keyboardToPointerBias": 0.516,
-        "layoutResponsiveness": 0.311,
-        "fittsLawEfficiency": 0.672,
-        "cognitiveLoadIndex": 5.463
+        "informationDensity": 0.399,
+        "interactionComplexity": 0.623,
+        "visualChromeRatio": 0.817,
+        "keyboardToPointerBias": 0.482,
+        "layoutResponsiveness": 0.288,
+        "fittsLawEfficiency": 0.671,
+        "cognitiveLoadIndex": 5.409
       }
     },
     {
@@ -941,13 +941,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.43,
-        "interactionComplexity": 0.622,
-        "visualChromeRatio": 0.83,
-        "keyboardToPointerBias": 0.54,
-        "layoutResponsiveness": 0.357,
-        "fittsLawEfficiency": 0.683,
-        "cognitiveLoadIndex": 5.545
+        "informationDensity": 0.436,
+        "interactionComplexity": 0.631,
+        "visualChromeRatio": 0.825,
+        "keyboardToPointerBias": 0.563,
+        "layoutResponsiveness": 0.326,
+        "fittsLawEfficiency": 0.665,
+        "cognitiveLoadIndex": 5.586
       }
     },
     {
@@ -957,13 +957,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.44,
-        "interactionComplexity": 0.609,
-        "visualChromeRatio": 0.831,
-        "keyboardToPointerBias": 0.55,
-        "layoutResponsiveness": 0.335,
-        "fittsLawEfficiency": 0.686,
-        "cognitiveLoadIndex": 5.581
+        "informationDensity": 0.452,
+        "interactionComplexity": 0.629,
+        "visualChromeRatio": 0.819,
+        "keyboardToPointerBias": 0.557,
+        "layoutResponsiveness": 0.292,
+        "fittsLawEfficiency": 0.683,
+        "cognitiveLoadIndex": 5.617
       }
     },
     {
@@ -973,13 +973,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.472,
-        "interactionComplexity": 0.651,
-        "visualChromeRatio": 0.826,
-        "keyboardToPointerBias": 0.471,
-        "layoutResponsiveness": 0.338,
-        "fittsLawEfficiency": 0.675,
-        "cognitiveLoadIndex": 5.725
+        "informationDensity": 0.474,
+        "interactionComplexity": 0.635,
+        "visualChromeRatio": 0.815,
+        "keyboardToPointerBias": 0.519,
+        "layoutResponsiveness": 0.352,
+        "fittsLawEfficiency": 0.689,
+        "cognitiveLoadIndex": 5.693
       }
     },
     {
@@ -989,13 +989,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.481,
-        "interactionComplexity": 0.62,
-        "visualChromeRatio": 0.821,
-        "keyboardToPointerBias": 0.526,
-        "layoutResponsiveness": 0.317,
-        "fittsLawEfficiency": 0.693,
-        "cognitiveLoadIndex": 5.729
+        "informationDensity": 0.505,
+        "interactionComplexity": 0.623,
+        "visualChromeRatio": 0.809,
+        "keyboardToPointerBias": 0.471,
+        "layoutResponsiveness": 0.356,
+        "fittsLawEfficiency": 0.702,
+        "cognitiveLoadIndex": 5.794
       }
     },
     {
@@ -1005,13 +1005,13 @@
       "wireframeCount": 17,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.527,
-        "interactionComplexity": 0.623,
-        "visualChromeRatio": 0.799,
-        "keyboardToPointerBias": 0.509,
-        "layoutResponsiveness": 0.33,
-        "fittsLawEfficiency": 0.698,
-        "cognitiveLoadIndex": 5.876
+        "informationDensity": 0.513,
+        "interactionComplexity": 0.63,
+        "visualChromeRatio": 0.804,
+        "keyboardToPointerBias": 0.511,
+        "layoutResponsiveness": 0.329,
+        "fittsLawEfficiency": 0.687,
+        "cognitiveLoadIndex": 5.841
       }
     },
     {
@@ -1021,13 +1021,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.545,
-        "interactionComplexity": 0.62,
-        "visualChromeRatio": 0.805,
-        "keyboardToPointerBias": 0.529,
-        "layoutResponsiveness": 0.337,
-        "fittsLawEfficiency": 0.687,
-        "cognitiveLoadIndex": 5.974
+        "informationDensity": 0.557,
+        "interactionComplexity": 0.607,
+        "visualChromeRatio": 0.807,
+        "keyboardToPointerBias": 0.539,
+        "layoutResponsiveness": 0.306,
+        "fittsLawEfficiency": 0.697,
+        "cognitiveLoadIndex": 6.015
       }
     },
     {
@@ -1037,13 +1037,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.596,
-        "interactionComplexity": 0.623,
+        "informationDensity": 0.586,
+        "interactionComplexity": 0.61,
         "visualChromeRatio": 0.777,
-        "keyboardToPointerBias": 0.525,
-        "layoutResponsiveness": 0.358,
-        "fittsLawEfficiency": 0.704,
-        "cognitiveLoadIndex": 6.115
+        "keyboardToPointerBias": 0.584,
+        "layoutResponsiveness": 0.368,
+        "fittsLawEfficiency": 0.696,
+        "cognitiveLoadIndex": 6.084
       }
     },
     {
@@ -1053,13 +1053,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.61,
-        "interactionComplexity": 0.627,
-        "visualChromeRatio": 0.753,
+        "informationDensity": 0.608,
+        "interactionComplexity": 0.618,
+        "visualChromeRatio": 0.765,
         "keyboardToPointerBias": 0.536,
-        "layoutResponsiveness": 0.337,
-        "fittsLawEfficiency": 0.708,
-        "cognitiveLoadIndex": 6.125
+        "layoutResponsiveness": 0.328,
+        "fittsLawEfficiency": 0.719,
+        "cognitiveLoadIndex": 6.123
       }
     },
     {
@@ -1069,13 +1069,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.647,
-        "interactionComplexity": 0.637,
-        "visualChromeRatio": 0.761,
-        "keyboardToPointerBias": 0.621,
-        "layoutResponsiveness": 0.318,
-        "fittsLawEfficiency": 0.724,
-        "cognitiveLoadIndex": 6.277
+        "informationDensity": 0.649,
+        "interactionComplexity": 0.62,
+        "visualChromeRatio": 0.751,
+        "keyboardToPointerBias": 0.603,
+        "layoutResponsiveness": 0.381,
+        "fittsLawEfficiency": 0.721,
+        "cognitiveLoadIndex": 6.268
       }
     },
     {
@@ -1085,13 +1085,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.671,
+        "informationDensity": 0.674,
         "interactionComplexity": 0.609,
-        "visualChromeRatio": 0.738,
-        "keyboardToPointerBias": 0.64,
-        "layoutResponsiveness": 0.346,
-        "fittsLawEfficiency": 0.718,
-        "cognitiveLoadIndex": 6.344
+        "visualChromeRatio": 0.735,
+        "keyboardToPointerBias": 0.65,
+        "layoutResponsiveness": 0.333,
+        "fittsLawEfficiency": 0.727,
+        "cognitiveLoadIndex": 6.337
       }
     },
     {
@@ -1101,13 +1101,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.671,
-        "interactionComplexity": 0.632,
-        "visualChromeRatio": 0.707,
-        "keyboardToPointerBias": 0.651,
-        "layoutResponsiveness": 0.347,
-        "fittsLawEfficiency": 0.732,
-        "cognitiveLoadIndex": 6.265
+        "informationDensity": 0.706,
+        "interactionComplexity": 0.628,
+        "visualChromeRatio": 0.706,
+        "keyboardToPointerBias": 0.649,
+        "layoutResponsiveness": 0.356,
+        "fittsLawEfficiency": 0.72,
+        "cognitiveLoadIndex": 6.428
       }
     },
     {
@@ -1117,13 +1117,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.706,
-        "interactionComplexity": 0.617,
-        "visualChromeRatio": 0.685,
-        "keyboardToPointerBias": 0.696,
-        "layoutResponsiveness": 0.777,
-        "fittsLawEfficiency": 0.728,
-        "cognitiveLoadIndex": 6.382
+        "informationDensity": 0.712,
+        "interactionComplexity": 0.614,
+        "visualChromeRatio": 0.714,
+        "keyboardToPointerBias": 0.649,
+        "layoutResponsiveness": 0.74,
+        "fittsLawEfficiency": 0.742,
+        "cognitiveLoadIndex": 6.438
       }
     },
     {
@@ -1133,13 +1133,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.624,
-        "interactionComplexity": 0.609,
-        "visualChromeRatio": 0.692,
-        "keyboardToPointerBias": 0.645,
-        "layoutResponsiveness": 0.787,
-        "fittsLawEfficiency": 0.763,
-        "cognitiveLoadIndex": 5.997
+        "informationDensity": 0.638,
+        "interactionComplexity": 0.635,
+        "visualChromeRatio": 0.677,
+        "keyboardToPointerBias": 0.675,
+        "layoutResponsiveness": 0.76,
+        "fittsLawEfficiency": 0.745,
+        "cognitiveLoadIndex": 6.056
       }
     },
     {
@@ -1149,13 +1149,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.635,
-        "interactionComplexity": 0.608,
-        "visualChromeRatio": 0.241,
-        "keyboardToPointerBias": 0.624,
-        "layoutResponsiveness": 0.72,
-        "fittsLawEfficiency": 0.768,
-        "cognitiveLoadIndex": 5.224
+        "informationDensity": 0.632,
+        "interactionComplexity": 0.621,
+        "visualChromeRatio": 0.237,
+        "keyboardToPointerBias": 0.609,
+        "layoutResponsiveness": 0.756,
+        "fittsLawEfficiency": 0.736,
+        "cognitiveLoadIndex": 5.249
       }
     },
     {
@@ -1165,13 +1165,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.625,
-        "interactionComplexity": 0.602,
-        "visualChromeRatio": 0.248,
-        "keyboardToPointerBias": 0.628,
-        "layoutResponsiveness": 0.762,
-        "fittsLawEfficiency": 0.758,
-        "cognitiveLoadIndex": 5.209
+        "informationDensity": 0.629,
+        "interactionComplexity": 0.608,
+        "visualChromeRatio": 0.246,
+        "keyboardToPointerBias": 0.683,
+        "layoutResponsiveness": 0.736,
+        "fittsLawEfficiency": 0.738,
+        "cognitiveLoadIndex": 5.253
       }
     },
     {
@@ -1181,13 +1181,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.646,
-        "interactionComplexity": 0.626,
-        "visualChromeRatio": 0.256,
-        "keyboardToPointerBias": 0.614,
-        "layoutResponsiveness": 0.725,
-        "fittsLawEfficiency": 0.754,
-        "cognitiveLoadIndex": 5.317
+        "informationDensity": 0.639,
+        "interactionComplexity": 0.616,
+        "visualChromeRatio": 0.25,
+        "keyboardToPointerBias": 0.585,
+        "layoutResponsiveness": 0.773,
+        "fittsLawEfficiency": 0.749,
+        "cognitiveLoadIndex": 5.284
       }
     },
     {
@@ -1197,13 +1197,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.627,
-        "interactionComplexity": 0.594,
-        "visualChromeRatio": 0.272,
-        "keyboardToPointerBias": 0.571,
-        "layoutResponsiveness": 0.784,
-        "fittsLawEfficiency": 0.766,
-        "cognitiveLoadIndex": 5.247
+        "informationDensity": 0.641,
+        "interactionComplexity": 0.588,
+        "visualChromeRatio": 0.262,
+        "keyboardToPointerBias": 0.62,
+        "layoutResponsiveness": 0.797,
+        "fittsLawEfficiency": 0.773,
+        "cognitiveLoadIndex": 5.282
       }
     },
     {
@@ -1213,13 +1213,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.616,
-        "interactionComplexity": 0.597,
-        "visualChromeRatio": 0.254,
-        "keyboardToPointerBias": 0.678,
-        "layoutResponsiveness": 0.732,
-        "fittsLawEfficiency": 0.776,
-        "cognitiveLoadIndex": 5.158
+        "informationDensity": 0.624,
+        "interactionComplexity": 0.595,
+        "visualChromeRatio": 0.257,
+        "keyboardToPointerBias": 0.634,
+        "layoutResponsiveness": 0.758,
+        "fittsLawEfficiency": 0.771,
+        "cognitiveLoadIndex": 5.201
       }
     },
     {
@@ -1229,13 +1229,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.724,
-        "interactionComplexity": 0.583,
-        "visualChromeRatio": 0.283,
-        "keyboardToPointerBias": 0.218,
-        "layoutResponsiveness": 0.734,
-        "fittsLawEfficiency": 0.785,
-        "cognitiveLoadIndex": 5.649
+        "informationDensity": 0.744,
+        "interactionComplexity": 0.601,
+        "visualChromeRatio": 0.275,
+        "keyboardToPointerBias": 0.133,
+        "layoutResponsiveness": 0.716,
+        "fittsLawEfficiency": 0.764,
+        "cognitiveLoadIndex": 5.751
       }
     },
     {
@@ -1245,13 +1245,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.703,
-        "interactionComplexity": 0.578,
-        "visualChromeRatio": 0.273,
-        "keyboardToPointerBias": 0.124,
-        "layoutResponsiveness": 0.859,
-        "fittsLawEfficiency": 0.772,
-        "cognitiveLoadIndex": 5.56
+        "informationDensity": 0.714,
+        "interactionComplexity": 0.571,
+        "visualChromeRatio": 0.265,
+        "keyboardToPointerBias": 0.114,
+        "layoutResponsiveness": 0.869,
+        "fittsLawEfficiency": 0.774,
+        "cognitiveLoadIndex": 5.593
       }
     },
     {
@@ -1261,13 +1261,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.693,
-        "interactionComplexity": 0.593,
-        "visualChromeRatio": 0.277,
-        "keyboardToPointerBias": 0.159,
-        "layoutResponsiveness": 0.876,
-        "fittsLawEfficiency": 0.793,
-        "cognitiveLoadIndex": 5.5
+        "informationDensity": 0.674,
+        "interactionComplexity": 0.591,
+        "visualChromeRatio": 0.283,
+        "keyboardToPointerBias": 0.175,
+        "layoutResponsiveness": 0.879,
+        "fittsLawEfficiency": 0.791,
+        "cognitiveLoadIndex": 5.435
       }
     },
     {
@@ -1277,13 +1277,13 @@
       "wireframeCount": 16,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.655,
-        "interactionComplexity": 0.588,
-        "visualChromeRatio": 0.299,
-        "keyboardToPointerBias": 0.217,
-        "layoutResponsiveness": 0.904,
-        "fittsLawEfficiency": 0.787,
-        "cognitiveLoadIndex": 5.389
+        "informationDensity": 0.658,
+        "interactionComplexity": 0.586,
+        "visualChromeRatio": 0.301,
+        "keyboardToPointerBias": 0.128,
+        "layoutResponsiveness": 0.903,
+        "fittsLawEfficiency": 0.782,
+        "cognitiveLoadIndex": 5.41
       }
     },
     {
@@ -1293,13 +1293,13 @@
       "wireframeCount": 18,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.637,
-        "interactionComplexity": 0.58,
-        "visualChromeRatio": 0.306,
-        "keyboardToPointerBias": 0.136,
-        "layoutResponsiveness": 0.863,
-        "fittsLawEfficiency": 0.8,
-        "cognitiveLoadIndex": 5.308
+        "informationDensity": 0.641,
+        "interactionComplexity": 0.583,
+        "visualChromeRatio": 0.297,
+        "keyboardToPointerBias": 0.071,
+        "layoutResponsiveness": 0.887,
+        "fittsLawEfficiency": 0.802,
+        "cognitiveLoadIndex": 5.306
       }
     },
     {
@@ -1309,13 +1309,13 @@
       "wireframeCount": 18,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.591,
-        "interactionComplexity": 0.585,
-        "visualChromeRatio": 0.295,
-        "keyboardToPointerBias": 0.168,
-        "layoutResponsiveness": 0.904,
-        "fittsLawEfficiency": 0.806,
-        "cognitiveLoadIndex": 5.082
+        "informationDensity": 0.601,
+        "interactionComplexity": 0.57,
+        "visualChromeRatio": 0.304,
+        "keyboardToPointerBias": 0.279,
+        "layoutResponsiveness": 0.897,
+        "fittsLawEfficiency": 0.803,
+        "cognitiveLoadIndex": 5.144
       }
     },
     {
@@ -1325,13 +1325,13 @@
       "wireframeCount": 18,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.567,
-        "interactionComplexity": 0.584,
-        "visualChromeRatio": 0.312,
-        "keyboardToPointerBias": 0.064,
-        "layoutResponsiveness": 0.877,
-        "fittsLawEfficiency": 0.833,
-        "cognitiveLoadIndex": 4.976
+        "informationDensity": 0.574,
+        "interactionComplexity": 0.591,
+        "visualChromeRatio": 0.303,
+        "keyboardToPointerBias": 0.088,
+        "layoutResponsiveness": 0.897,
+        "fittsLawEfficiency": 0.825,
+        "cognitiveLoadIndex": 5.0
       }
     },
     {
@@ -1341,13 +1341,13 @@
       "wireframeCount": 18,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.536,
-        "interactionComplexity": 0.566,
-        "visualChromeRatio": 0.316,
-        "keyboardToPointerBias": 0.143,
-        "layoutResponsiveness": 0.888,
-        "fittsLawEfficiency": 0.818,
-        "cognitiveLoadIndex": 4.875
+        "informationDensity": 0.513,
+        "interactionComplexity": 0.561,
+        "visualChromeRatio": 0.318,
+        "keyboardToPointerBias": 0.206,
+        "layoutResponsiveness": 0.891,
+        "fittsLawEfficiency": 0.82,
+        "cognitiveLoadIndex": 4.778
       }
     },
     {
@@ -1357,13 +1357,13 @@
       "wireframeCount": 18,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.507,
-        "interactionComplexity": 0.569,
-        "visualChromeRatio": 0.31,
-        "keyboardToPointerBias": 0.246,
-        "layoutResponsiveness": 0.885,
-        "fittsLawEfficiency": 0.811,
-        "cognitiveLoadIndex": 4.751
+        "informationDensity": 0.501,
+        "interactionComplexity": 0.565,
+        "visualChromeRatio": 0.324,
+        "keyboardToPointerBias": 0.117,
+        "layoutResponsiveness": 0.874,
+        "fittsLawEfficiency": 0.792,
+        "cognitiveLoadIndex": 4.779
       }
     },
     {
@@ -1373,13 +1373,13 @@
       "wireframeCount": 18,
       "landmarkCount": 2,
       "avgMetrics": {
-        "informationDensity": 0.469,
-        "interactionComplexity": 0.561,
-        "visualChromeRatio": 0.318,
-        "keyboardToPointerBias": 0.196,
-        "layoutResponsiveness": 0.873,
-        "fittsLawEfficiency": 0.833,
-        "cognitiveLoadIndex": 4.576
+        "informationDensity": 0.474,
+        "interactionComplexity": 0.568,
+        "visualChromeRatio": 0.321,
+        "keyboardToPointerBias": 0.146,
+        "layoutResponsiveness": 0.868,
+        "fittsLawEfficiency": 0.82,
+        "cognitiveLoadIndex": 4.623
       }
     }
   ],
@@ -4772,7 +4772,7 @@
     },
     {
       "componentType": "status-bar",
-      "totalOccurrences": 826,
+      "totalOccurrences": 822,
       "byEra": [
         {
           "era": "E01",
@@ -4802,37 +4802,37 @@
         {
           "era": "E06",
           "yearStart": 1997,
-          "count": 71
+          "count": 73
         },
         {
           "era": "E07",
           "yearStart": 2002,
-          "count": 42
+          "count": 45
         },
         {
           "era": "E08",
           "yearStart": 2007,
-          "count": 42
+          "count": 37
         },
         {
           "era": "E09",
           "yearStart": 2012,
-          "count": 47
+          "count": 43
         },
         {
           "era": "E10",
           "yearStart": 2017,
-          "count": 34
+          "count": 38
         },
         {
           "era": "E11",
           "yearStart": 2021,
-          "count": 28
+          "count": 30
         },
         {
           "era": "E12",
           "yearStart": 2024,
-          "count": 35
+          "count": 29
         }
       ]
     },

@@ -13,7 +13,7 @@ import math
 import os
 import random
 
-ROOT = "/mnt/c2r/repos/history-in-ui-development"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT, "public", "data")
 
 ERAS = [
@@ -617,13 +617,18 @@ def build_nodes_for_wireframe(
         ]
 
     extra_count = rng.randint(2, 5)
+    aux_band_h = round(body_h * rng.uniform(0.11, 0.16), 1)
+    aux_band_y = round(body_y + body_h - aux_band_h - pad * 0.5, 1)
+    slot_w = (vw - 2 * pad - (extra_count - 1) * pad) / float(extra_count)
+    domain_short = domain.split("&")[0].strip()
     for ei in range(extra_count):
         etype = era_primitives[(wf_index + ei * 3 + year) % len(era_primitives)]
-        ex = pad + ((wf_index * 37 + ei * 131) % int(vw * 0.68))
-        ey = body_y + ((wf_index * 53 + ei * 97) % int(max(40, body_h * 0.62)))
-        ew = round(vw * rng.uniform(0.11, 0.24), 1)
-        eh = round(vh * rng.uniform(0.05, 0.13), 1)
-        add_node(f"aux-{ei+1}", etype, f"{etype.replace('-', ' ').title()} #{ei+1}", ex, ey, ew, eh, z=3)
+        jitter_w = round(slot_w * rng.uniform(0.92, 1.0), 1)
+        jitter_h = round(aux_band_h * rng.uniform(0.84, 1.0), 1)
+        ex = round(pad + ei * (slot_w + pad) + ((wf_index + ei) % 3) * 1.5, 1)
+        ey = round(aux_band_y + (aux_band_h - jitter_h) * 0.5, 1)
+        pretty_type = etype.replace("-", " ").title()
+        add_node(f"aux-{ei+1}", etype, f"{domain_short} {pretty_type}", ex, ey, jitter_w, jitter_h, z=3)
 
     # Bottom status bar / Function key strip / Dock
     if year <= 1978:
@@ -761,9 +766,39 @@ def generate_all() -> None:
                     title = f"{title} [#{wf_counter}]"
             seen_titles.add(title)
 
-            # Select era-appropriate platform and layout archetype
+            # Select historically accurate platform and layout archetype for the era and landmark
             era_idx = ERAS.index(era)
-            platform = PLATFORMS[min(len(PLATFORMS) - 1, max(0, int(era_idx * len(PLATFORMS) / len(ERAS)) + (slot % 2)))]
+            t_low = title.lower()
+            if era["code"] == "E01":
+                platform = "Vector CRT / Mainframe Console"
+            elif era["code"] == "E02":
+                platform = "Vector CRT / Mainframe Console" if ("alto" in t_low or "spatial" in t_low or "smalltalk" in t_low) else "Character Terminal (TUI 80x24)"
+            elif era["code"] == "E03":
+                platform = "Character Terminal (TUI 80x24)" if ("dos" in t_low or "compuserve" in t_low or "terminal" in t_low) else "Desktop WIMP Native"
+            elif era["code"] == "E04":
+                platform = "Character Terminal (TUI 80x24)" if ("irc" in t_low or "norton" in t_low) else ("Workstation X11 / NeXT / Motif" if (slot % 2 == 0 or "next" in t_low or "symbolics" in t_low) else "Desktop WIMP Native")
+            elif era["code"] == "E05":
+                platform = "Desktop WIMP Native" if ("windows 95" in t_low or "visual basic" in t_low or "sap " in t_low or "doom" in t_low or "icq" in t_low) else "Web 1.0 Static / Frameset Browser"
+            elif era["code"] == "E06":
+                platform = "Desktop WIMP Native" if ("winamp" in t_low or "mac os x" in t_low or "windows xp" in t_low or "napster" in t_low) else "Dot-Com Table Portal / Flash"
+            elif era["code"] == "E07":
+                platform = "Desktop WIMP Native" if "itunes" in t_low else "Web 2.0 Ajax Rich Internet App"
+            elif era["code"] == "E08":
+                if any(k in t_low for k in ("iphone", "app store", "windows phone", "instagram")):
+                    platform = "Mobile Touch Viewport"
+                elif any(k in t_low for k in ("office 2007", "spotify desktop")):
+                    platform = "Desktop WIMP Native"
+                else:
+                    platform = "Mobile Touch Viewport" if slot % 2 == 1 else "Responsive SaaS Web Application"
+            elif era["code"] == "E09":
+                platform = "Mobile Touch Viewport" if (any(k in t_low for k in ("ios 7", "material design", "robinhood")) or slot % 4 == 3) else "Responsive SaaS Web Application"
+            elif era["code"] == "E10":
+                platform = "Mobile Touch Viewport" if "tiktok" in t_low else "Responsive SaaS Web Application"
+            elif era["code"] == "E11":
+                platform = "Spatial / Agentic Web Canvas" if any(k in t_low for k in ("copilot", "chatgpt", "claude", "perplexity")) else ("Responsive SaaS Web Application" if slot % 2 == 0 else "Spatial / Agentic Web Canvas")
+            else:
+                platform = "Spatial / Agentic Web Canvas"
+
             arch_idx = min(len(LAYOUT_ARCHETYPES) - 1, max(0, int(era_idx * len(LAYOUT_ARCHETYPES) / len(ERAS)) + (slot % 3) - 1))
             arch_code, arch_desc = LAYOUT_ARCHETYPES[arch_idx]
 
@@ -1082,6 +1117,14 @@ def generate_all() -> None:
     }
     with open(os.path.join(DATA_DIR, "schema.json"), "w", encoding="utf-8") as f:
         json.dump(schema_payload, f, indent=2)
+
+    bundle_js_path = os.path.join(DATA_DIR, "corpus-bundle.js")
+    with open(bundle_js_path, "w", encoding="utf-8") as f:
+        f.write("window.__UI_HISTORY_CORPUS__ = {\n  wireframesData: ")
+        json.dump(wf_payload, f, separators=(",", ":"))
+        f.write(",\n  trendsData: ")
+        json.dump(trends_payload, f, separators=(",", ":"))
+        f.write("\n};\n")
 
     print(f"Generated {len(wireframes)} unique wireframes across 1966-2026 in {DATA_DIR}")
 
